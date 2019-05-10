@@ -4,6 +4,7 @@ import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -39,6 +40,8 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActi
         mPlaylist = (Playlist) getIntent().getSerializableExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
         mMyAPIRequestForThisPlaylist = YoutubeHelper.setGoogleApiVideoListDataRetriever(mPlaylist.getVideoIdList()); // Get les infos
 
+        TextView playlistTitle = findViewById(R.id.title_playlist);
+        playlistTitle.setText(mPlaylist.getTitle());
         mListDisplayer = findViewById(R.id.listOfVideos);
         mVideoDetailsArrayList = new ArrayList<>();
         mYoutubeVideoListAdapter = new YoutubeVideoListAdapter(this, mVideoDetailsArrayList);
