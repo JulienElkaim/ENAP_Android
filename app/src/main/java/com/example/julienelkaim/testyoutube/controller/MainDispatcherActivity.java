@@ -30,6 +30,8 @@ public class MainDispatcherActivity extends AppCompatActivity {
         super.onStart();
         Constants.windowAndSystemSettings(this);
 
+        System.out.println("lol");
+
         // Authentification
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
