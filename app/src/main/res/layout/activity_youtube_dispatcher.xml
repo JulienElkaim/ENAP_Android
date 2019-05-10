@@ -30,6 +30,12 @@
             android:layout_height="70dp"
             android:background="@drawable/youtube_btn"
             android:contentDescription="Wikipedia Icon" />
+        <Button
+            android:id="@+id/video_search_button"
+            android:layout_width="143dp"
+            android:layout_height="64dp"
+            android:text="Video search button"
+            />
     </LinearLayout>
 
 

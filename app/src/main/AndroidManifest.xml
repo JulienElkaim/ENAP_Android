@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.LoginActivity"></activity>
+        <activity android:name=".controller.CONTROLYoutubeSinglePlaylistDisplayerActivity"></activity>
+        <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.StartAuthActivity" />
         <activity android:name=".controller.YoutubeChildDisplayerActivity" />
-        <activity android:name=".controller.CONTROLYoutubePlaylistEnumeratorActivity"/>
+        <activity android:name=".controller.CONTROLYoutubePlaylistEnumeratorActivity" />
         <activity android:name=".controller.MainDispatcherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

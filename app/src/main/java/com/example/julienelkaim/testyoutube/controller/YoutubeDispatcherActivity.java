@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
@@ -45,6 +46,21 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
 
                 Intent myPlaylists = new Intent(YoutubeDispatcherActivity.this, CONTROLYoutubePlaylistEnumeratorActivity.class);
                 startActivity(myPlaylists);
+                /*
+                Intent mySearcher = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
+                startActivity(mySearcher);
+                */
+            }
+        });
+
+        Button tmpButton = findViewById(R.id.video_search_button);
+        tmpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Reaction pour ALLER Aprochaine fenetre possible
+
+                Intent i = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
+                startActivity(i);
                 /*
                 Intent mySearcher = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
                 startActivity(mySearcher);

@@ -36,7 +36,7 @@ public class YoutubePlaylistResearchActivity extends AppCompatActivity {
     YoutubeVideoListAdapter mYoutubeVideoListAdapter;
     private String mSearchUrl;
     private String mBufferedSearch="";
-    public final int NB_RESULTS = 10;
+    public final int NB_RESULTS = 20;
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -115,7 +115,8 @@ public class YoutubePlaylistResearchActivity extends AppCompatActivity {
                 JSONObject jsonObject = jArray.getJSONObject(i);
                         System.out.println("YoutubePlaylistResearchActivity::processRequestResponse::DEBUG::TryBlock:: On a recup le jsonObject suivant: "+jsonObject);
                 //charger les détails de la video
-                if(jsonObject.getJSONObject("id").toString().contains("videoId")){ YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList); }
+                System.out.println("YoutubePlaylistResearchActivity::TEST:: On a recup le jsonObject suivant: "+jsonObject.getJSONObject("id").toString());
+                if(jsonObject.getJSONObject("id").toString().contains("videoId")){ YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList, "ControlSearchVideo"); }
             }
 
             YoutubeHelper.displayAYoutubeVideoList(mListView, mYoutubeVideoListAdapter);

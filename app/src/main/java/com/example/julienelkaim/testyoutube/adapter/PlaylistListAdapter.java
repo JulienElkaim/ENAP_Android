@@ -19,7 +19,9 @@ import com.example.julienelkaim.test_playlist.Tools.Constants;
 import com.example.julienelkaim.test_playlist.Tools.Playlist;
 */
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.CONTROLYoutubeSinglePlaylistDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Playlist;
+import com.example.julienelkaim.testyoutube.toolbox.Constants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -80,16 +82,11 @@ public class PlaylistListAdapter extends BaseAdapter {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                String concatenator = "";
-                for (int i = 0; i < mPlaylist.getVideoIdList().size(); i++) {
-                    concatenator += mPlaylist.getVideoIdList().get(i);
 
-                }
-                Toast.makeText(mActivity, concatenator, Toast.LENGTH_SHORT).show();
+                Intent displayThisPlaylist = new Intent(mActivity, CONTROLYoutubeSinglePlaylistDisplayerActivity.class) ;
+                displayThisPlaylist.putExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
+                mActivity.startActivity(displayThisPlaylist);
 
-                /*Intent i = new Intent(mActivity, CONTROLYoutubePlaylistEnumeratorActivity.class);
-                i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH, String.join(";",mPlaylist.getVideoIdList()) );
-                mActivity.startActivity(i);*/
             }
         });
 
