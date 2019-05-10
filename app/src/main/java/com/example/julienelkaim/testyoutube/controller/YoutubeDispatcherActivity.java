@@ -42,8 +42,13 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Reaction pour ALLER Aprochaine fenetre possible
+
+                Intent myPlaylists = new Intent(YoutubeDispatcherActivity.this, CONTROLYoutubePlaylistEnumeratorActivity.class);
+                startActivity(myPlaylists);
+                /*
                 Intent mySearcher = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
                 startActivity(mySearcher);
+                */
             }
         });
 

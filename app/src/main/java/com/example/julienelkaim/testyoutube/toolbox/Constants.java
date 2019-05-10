@@ -38,4 +38,5 @@ public final class Constants {
     public static final String YOUTUBE_VIDEO_ID_FROM_RESEARCH = "recuperer id de la video clicked dans activity de recherche";
     public static final String YOUTUBE_PLAYLIST_CURRENTLY = "Ma playlist actuellement saved dans lapplication";
     public static final String YOUTUBE_SHARED_PREFERENCES = "YOUTUBE";
+
 }

@@ -16,6 +16,7 @@
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.StartAuthActivity" />
         <activity android:name=".controller.YoutubeChildDisplayerActivity" />
+        <activity android:name=".controller.CONTROLYoutubePlaylistEnumeratorActivity"/>
         <activity android:name=".controller.MainDispatcherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

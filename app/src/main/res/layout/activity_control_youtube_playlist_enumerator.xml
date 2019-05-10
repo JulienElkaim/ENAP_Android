@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.CONTROLYoutubePlaylistEnumeratorActivity"
+    android:orientation="vertical"
+    android:background="#ffd6d5"
+    android:windowSoftInputMode="adjustResize"
+    android:theme="@style/NoActionBar">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Mes Playlists"
+            android:gravity="center"
+            android:textSize="20dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.85"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"/>
+        <ListView
+            android:id="@+id/listOfVideos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.94"
+            android:layout_marginBottom="5dp">
+
+        </ListView>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.15"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:layout_width="100px"
+            android:layout_height="100px"
+            android:background="@drawable/add_button"/>
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
