@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">ENAP</string>
+    <string name="app_name">TestYoutube</string>
+    <string name="title_activity_youtube_dispatcher">YoutubeDispatcherActivity</string>
+    <string name="se_deconnecter">Se déconnecter</string>
+    <string name="parametres_du_compte">Paramètres du compte</string>
+    <string name="utilisateurs">Utilisateurs</string>
 </resources>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:id="@+id/root">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/thumbnailsImageView"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="5dp">
+
+            <TextView
+                android:id="@+id/video_title"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_weight="0.20"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="12dp"
+                android:autoSizeMaxTextSize="100dp"
+                android:autoSizeStepGranularity="2dp"
+                android:textStyle="bold"
+                android:lines="1"
+                android:ellipsize="end"
+                android:text="Welcome to My Video"/>
+            <TextView
+                android:id="@+id/video_description"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.6"
+                android:autoSizeTextType="uniform"
+                android:autoSizeMinTextSize="10dp"
+                android:autoSizeMaxTextSize="100dp"
+                android:autoSizeStepGranularity="2dp"
+                android:text="Un text bien trop long pour cette tablette mais bon ca va j'ai pas trop de probleme avec ca parce que j'ai prevu un moyen pour régler le problème. La preuve je vais le répeter.Un text bien trop long pour cette tablette mais bon ca va j'ai pas trop de probleme avec ca parce que j'ai prevu un moyen pour régler le problème. La preuve je vais le répeter."
+                android:lines="2"
+                android:ellipsize="end"
+                android:paddingRight="8dp"
+                />
+
+            <LinearLayout
+                android:id="@+id/video_meta_data"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.2"
+                android:orientation="horizontal">
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

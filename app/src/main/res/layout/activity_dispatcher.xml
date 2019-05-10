@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:theme="@style/AppTheme"
+    tools:context=".controller.MainDispatcherActivity">
+
+    <LinearLayout
+        android:id="@+id/wrapper_ChoiceButtons"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+
+        <ImageButton
+            android:id="@+id/Ytbe_Button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/youtube_btn"
+            android:contentDescription="Youtube Icon" />
+
+        <ImageButton
+            android:id="@+id/Mail_Button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/mail_btn"
+            android:contentDescription="Mail Icon" />
+
+        <ImageButton
+            android:id="@+id/Wiki_Button"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/wikipedia_btn"
+            android:contentDescription="Wikipedia Icon" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/deconnexion_Button"
+        android:layout_width="143dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="124dp"
+        android:layout_marginTop="476dp"
+        android:layout_marginEnd="143dp"
+        android:layout_marginBottom="191dp"
+        android:text="@string/se_deconnecter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.802" />
+
+
+</RelativeLayout>

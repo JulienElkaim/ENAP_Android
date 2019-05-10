@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context=".controller.YoutubePlayListDisplayerActivity"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="#ffd6d5">
+
+
+<LinearLayout
+    android:id="@+id/Ytbe_Body"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.6"
+    android:orientation="horizontal">
+
+
+    <!-- Youtube Lecteur-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:id="@+id/youtubePlayerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
+
+
+</LinearLayout>
+
+<RelativeLayout
+    android:id="@+id/Ytbe_Playlist_Displayer_Foot"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="0.4"
+    android:orientation="horizontal">
+    <LinearLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
+
+        <Button
+            android:id="@+id/Ytbe_Return_To_Research"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retour"
+            android:layout_margin="10dp"
+            android:background="@color/colorAccent"/>
+        <Button
+            android:id="@+id/Ytbe_Add_To_Playlist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajout à la playlist"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+</RelativeLayout>
+
+</LinearLayout>

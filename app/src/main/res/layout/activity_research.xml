@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.YoutubePlaylistResearchActivity"
+    android:orientation="vertical"
+    android:background="#ffd6d5"
+    android:windowSoftInputMode="adjustResize"
+    android:theme="@style/NoActionBar">
+
+    <LinearLayout
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.10"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/my_area_to_input"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:lines="1"
+            android:maxLines="1"
+            android:scrollHorizontally="true"
+            android:hint="What are you looking for..."/>
+        <Button
+            android:id="@+id/my_search_button"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:text="Search"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.9"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.01"/>
+        <ListView
+            android:id="@+id/listOfVideos"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.94"
+            android:layout_marginBottom="5dp">
+
+        </ListView>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.05"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
