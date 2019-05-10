@@ -12,16 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="296dp"
+        android:layout_marginBottom="164dp"
         android:text="SE CONNECTER"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.713"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerPassword"
-        app:layout_constraintVertical_bias="0.224" />
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/insertPassword"
@@ -42,7 +39,9 @@
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Entrer son mot de passe" />
+            android:hint="Entrer son mot de passe"
+            android:inputType="textPassword"/>
+
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -55,8 +54,10 @@
         android:layout_marginBottom="32dp"
         app:layout_constraintBottom_toTopOf="@+id/connexion_Button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.491">
 
         <android.support.design.widget.TextInputEditText
             android:layout_width="match_parent"
@@ -71,7 +72,7 @@
         android:text="Se connecter :"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="148dp" />
+        tools:layout_editor_absoluteY="210dp" />
 
 
 </android.support.constraint.ConstraintLayout>
