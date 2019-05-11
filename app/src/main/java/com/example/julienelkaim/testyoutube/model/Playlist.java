@@ -8,14 +8,15 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class Playlist implements Serializable {
-    public String title, description;
-    public List<String> videoIdList;
+    private String title, description;
+    private List<String> videoIdList;
     private static final AtomicInteger count = new AtomicInteger(0);
     private final int PlaylistId = count.incrementAndGet();
 
@@ -25,7 +26,11 @@ public class Playlist implements Serializable {
         this.videoIdList = videoIdList ;
     }
 
-    public Playlist(){}
+    public Playlist(String title, String description){
+        this.title = title;
+        this.description = description;
+        this.videoIdList = Collections.emptyList();
+    }
 
     public List<String> getVideoIdList() {
         return videoIdList;

@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.CONTROLYoutubeSinglePlaylistDisplayerActivity"></activity>
+        <activity android:name=".controller.YOUTUBECONTROLPlaylistCreatorActivity"></activity>
+        <activity android:name=".controller.CONTROLYoutubeSinglePlaylistDisplayerActivity" />
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.StartAuthActivity" />

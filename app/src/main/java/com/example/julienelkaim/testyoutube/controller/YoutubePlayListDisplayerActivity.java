@@ -62,7 +62,7 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
         mBackButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackPressed();
             }
         });
         mAddPlaylistButton = findViewById(R.id.Ytbe_Add_To_Playlist);
@@ -72,7 +72,7 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
                 mVideoList.add(mVideoId);
                 Set<String> set = YoutubeHelper.setSetFromList( mVideoList);
                 mPreferences.edit().putStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,set).apply();
-                finish();
+                onBackPressed();
             }
         });
 

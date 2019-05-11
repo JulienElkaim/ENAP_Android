@@ -88,11 +88,11 @@ public class PlaylistListAdapter extends BaseAdapter {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                Toast.makeText(mActivity, "La playlist clicked a l'id : " + mPlaylist.getPlaylistId() , Toast.LENGTH_SHORT).show();
-                /*
+
+
                 Intent displayThisPlaylist = new Intent(mActivity, CONTROLYoutubeSinglePlaylistDisplayerActivity.class) ;
                 displayThisPlaylist.putExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
-                mActivity.startActivity(displayThisPlaylist);*/
+                mActivity.startActivity(displayThisPlaylist);
 
             }
         });

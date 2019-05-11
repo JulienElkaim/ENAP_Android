@@ -145,13 +145,14 @@ public final class YoutubeHelper {
 
     public static void saveListOfPlaylist(Activity activity, ArrayList<Playlist> mPlaylistArrayList) {
 
-
+        System.out.println("BUG::: JE SUIS APPELLER DEPUIS : " + activity.getLocalClassName());
         SharedPreferences mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(mPlaylistArrayList);
         prefsEditor.putString(Constants.YOUTUBE_LIST_OF_PLAYLIST_SAVED, json);
         prefsEditor.commit();
+        System.out.println("BUG::: On a save correctement ca : " + json);
     }
 
     public static ArrayList<Playlist> retrieveListOfPlaylist(Activity activity) {
@@ -163,7 +164,6 @@ public final class YoutubeHelper {
 
         if (json.equals("") ){
             playlists = new ArrayList<>();
-
             YoutubeHelper.defaultListOfPlaylists(playlists);
         }else {
 
