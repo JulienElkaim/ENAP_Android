@@ -74,6 +74,14 @@ android:orientation="vertical">
                 android:layout_marginRight="20dp"
                 />
 
+            <ImageButton
+                android:id="@+id/suprr_button_playlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginEnd="30px"
+                android:background="@drawable/suppr_button"/>
+
 
             <ImageButton
                 android:id="@+id/send_button_playlist"

@@ -178,6 +178,16 @@ public final class YoutubeHelper {
     private static void defaultListOfPlaylists(ArrayList<Playlist> playlists) {
         playlists.add(new Playlist("Jeux videos", "Permet aux enfants de découvrir l'univers des Jeux Videos", Arrays.asList("3-lmI6n4oy8", "SxLcKjfeaIw","6ptRzgvBaAk","livh7byDX1w&t=236s","Q3AilwYTvWM")));
         playlists.add(new Playlist("Animaux", "Playlist sur le monde animal terreste, liste de vidéos courtes.", Arrays.asList("3EVJ0LOIdnY","_Ms-pnNQQ3k","zGR2W8tKXk0")));
-        playlists.add(new Playlist("Paysages du monde", "Une sélection de paysages pour découvrir les différents reliefs du monde.", Arrays.asList("xD_oxqq9omo","JK0NprMZ8iw","a5ryXI_6YwU","MK8bXj5oGGM")));
+        playlists.add(new Playlist("Paysages du monde", "Une sélection de paysages pour découvrir les différents reliefs du monde.", Arrays.asList("xD_oxqq9omo","JK0NprMZ8iw","a5ryXI_6YwU","MK8bXj5oGGMgit")));
+    }
+
+    public static void destroyPlaylistById(Activity activity, int playlistId, ArrayList<Playlist> playlistArrayList) {
+        for (int i =0; i< playlistArrayList.size(); i++){
+            if (playlistArrayList.get(i).getPlaylistId() == playlistId) {
+                playlistArrayList.remove(i);
+                break;
+            }
+        }
+        saveListOfPlaylist(activity, playlistArrayList);
     }
 }

@@ -9,17 +9,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static android.content.Context.MODE_PRIVATE;
 
 public class Playlist implements Serializable {
     public String title, description;
     public List<String> videoIdList;
+    private static final AtomicInteger count = new AtomicInteger(0);
+    private final int PlaylistId = count.incrementAndGet();
 
     public Playlist(String title, String description, List<String> videoIdList) {
         this.title = title;
         this.description = description;
-
         this.videoIdList = videoIdList ;
     }
 
@@ -47,6 +49,10 @@ public class Playlist implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPlaylistId() {
+        return PlaylistId;
     }
 
 
