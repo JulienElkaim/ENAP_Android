@@ -1,9 +1,16 @@
 package com.example.julienelkaim.testyoutube.model;
 
+import android.content.SharedPreferences;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class Playlist implements Serializable {
     public String title, description;
@@ -46,4 +53,6 @@ public class Playlist implements Serializable {
     public int getNumberOfVideos(){
         return this.videoIdList.size();
     }
+
+
 }

@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.model.VideoHandler;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
@@ -16,7 +17,9 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.google.gson.Gson;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -116,8 +119,16 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         super.onCreate(savedInstanceState); // Default create method for an activity.
         initializeLinksWithView();// Créer le lien avec les éléments graphique mutables.
         initializeButtonsOnView();// Initialise les comportements de click
-        mPreferences = getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
-        List<String> videoList = YoutubeHelper.setListFromSet(mPreferences.getStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,null));//Arrays.asList("U_thPyTPwqw", "ADTdpypVZD0", "j9HYtsxteW0", "lXGYAoyabdg", "Dp_8O2FhoCY", "jwpV-p2Y5TU", "KeT_XDMnauU", "DCFW0gbEH0Y", "ixxxcHI4kpI", "aAcVD_TtlFI", "y3zKhDLCg9g");//
+
+        //Recuperer la playlist actuelle
+        SharedPreferences  mPrefs = getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = mPrefs.getString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, "");
+        Playlist mPlaylist = YoutubeHelper.retrieveCurrentPlaylist(this);
+        List<String> videoList = mPlaylist.getVideoIdList();
+
+
+        // Autre action
 
         mVideoHandler = new VideoHandler(videoList);
 

@@ -27,12 +27,21 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActivity {
+
     private Playlist mPlaylist;
     private ListView mListDisplayer;
     private YoutubeVideoListAdapter mYoutubeVideoListAdapter;
     private ArrayList<VideoDetails> mVideoDetailsArrayList;
     private String mMyAPIRequestForThisPlaylist;
-    @Override
+
+
+    protected void onStart() {
+        super.onStart();
+        Constants.windowAndSystemSettings(this);
+    }
+
+
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlyoutube_single_playlist_displayer);
@@ -49,7 +58,6 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActi
     }
 
 
-    // RECUPERED MAIS PAS ENCORE MODIFE !!!!! IL FAUT ADAPTER A CETTE ACTIVITY
 
     private void launchVideosResearch() {
         System.out.println(mMyAPIRequestForThisPlaylist);
