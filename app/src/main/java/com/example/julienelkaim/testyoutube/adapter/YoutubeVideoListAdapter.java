@@ -6,11 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.controller.YoutubePlayListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.VideoDetails;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
@@ -20,10 +23,10 @@ import java.util.ArrayList;
 
 public class YoutubeVideoListAdapter extends BaseAdapter {
 
-    Activity mActivity;
+    YoutubeThumbnailListDisplayerActivity mActivity;
     ArrayList<VideoDetails> mVideoDetailsArrayList;
     LayoutInflater mLayoutInflater;
-    public YoutubeVideoListAdapter(Activity activity, ArrayList<VideoDetails> videoDetailsArrayList){
+    public YoutubeVideoListAdapter(YoutubeThumbnailListDisplayerActivity activity, ArrayList<VideoDetails> videoDetailsArrayList){
 
         mActivity = activity;
         mVideoDetailsArrayList = videoDetailsArrayList;
@@ -67,16 +70,71 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         secondTextView.setText(videoDetails.getDescription());
 
         LinearLayout linearLayout = convertView.findViewById(R.id.root);
-        linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
-                i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
-                mActivity.startActivity(i);
-            }
-        });
+        System.out.println("BUG::: On est arrive jusqua avant le boutton");
 
+        if(mActivity.mIsListModifiable){
+            //Single playlist display part    =================== DIFFERENT INTENT QUE DANS LE ELSE !!
+            addASupprButton(mActivity,convertView, videoDetails);
+            linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
+                    i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
+                    mActivity.startActivity(i);
+                }
+            });
+
+        }else{
+
+            linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
+                    i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
+                    mActivity.startActivity(i);
+                }
+            });
+
+        }
+
+        mActivity.incrementCountVideoDisplayed();
         return convertView;
     }
 
+    private void addASupprButton(final YoutubeThumbnailListDisplayerActivity activity, View convertView, final VideoDetails videoDetails) {
+
+
+        ImageButton supprBtn = new ImageButton(activity);
+        supprBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activity.modifyYourList(videoDetails.getVideoId());
+            }
+        });
+
+        supprBtn.setLayoutParams(new ViewGroup.LayoutParams(50,50));
+        supprBtn.setBackgroundResource(R.drawable.suppr_button);
+
+        LinearLayout ll = convertView.findViewById(R.id.desc_and_button);
+        if(ll.getChildCount() == 1 ){
+            ll.addView(supprBtn);
+        }else{
+            ll.removeViewAt(1);
+            ll.addView(supprBtn);
+        }
+    }
+
 }
+
+
+/*
+
+<ImageButton
+                    android:id="@+id/suppr_video_from_playlist"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/suppr_button"
+
+                    />
+
+*/

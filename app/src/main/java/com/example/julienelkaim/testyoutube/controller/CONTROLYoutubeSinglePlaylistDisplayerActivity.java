@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.adapter.YoutubeVideoListAdapter;
+import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.model.VideoDetails;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
@@ -25,8 +26,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
-public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActivity {
+public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbnailListDisplayerActivity {
 
     private Playlist mPlaylist;
     private ListView mListDisplayer;
@@ -43,10 +47,16 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActi
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mIsListModifiable = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlyoutube_single_playlist_displayer);
 
         mPlaylist = (Playlist) getIntent().getSerializableExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
+        initializeViews();
+
+    }
+
+    private void initializeViews(){
         mMyAPIRequestForThisPlaylist = YoutubeHelper.setGoogleApiVideoListDataRetriever(mPlaylist.getVideoIdList()); // Get les infos
 
         TextView playlistTitle = findViewById(R.id.title_playlist);
@@ -55,9 +65,22 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends AppCompatActi
         mVideoDetailsArrayList = new ArrayList<>();
         mYoutubeVideoListAdapter = new YoutubeVideoListAdapter(this, mVideoDetailsArrayList);
         launchVideosResearch();
+
     }
 
 
+    @Override
+    public void modifyYourList(String videoId) {
+        System.out.println("DEBUG::: " + videoId);
+        ArrayList<String> vList =  new ArrayList<>(mPlaylist.getVideoIdList());
+        vList.remove(videoId);
+
+
+        mPlaylist.setVideoIdList(vList);
+        initializeViews();
+        YoutubeHelper.updateListOfPlaylist(this, mPlaylist, YoutubeHelper.retrieveListOfPlaylist(this));
+
+    }
 
     private void launchVideosResearch() {
         System.out.println(mMyAPIRequestForThisPlaylist);

@@ -3,8 +3,11 @@ package com.example.julienelkaim.testyoutube.controller;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -16,6 +19,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.julienelkaim.testyoutube.adapter.YoutubeVideoListAdapter;
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.VideoDetails;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
@@ -27,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class YoutubePlaylistResearchActivity extends AppCompatActivity {
+public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplayerActivity {
 
 
     EditText mInputArea;
@@ -45,6 +49,32 @@ public class YoutubePlaylistResearchActivity extends AppCompatActivity {
 
 
     }
+
+    /*
+    @Override
+    public void modifyYourList(String action) {
+        if (action.equals("delete")){
+            System.out.println("Utile pour faire un switch plus tard si besoin");
+        }
+        //Ici on va supprimer les ImageButtons
+
+        System.out.println("DEV::: On va iterer sur notre liste de "+ countVideoDisplayed+" video");
+
+        for (int i = 0; i < countVideoDisplayed; i++){
+            LinearLayout ll = (LinearLayout)mListView.getChildAt(i);
+            System.out.println("DEV::: OK 1");
+            ll = (LinearLayout)ll.getChildAt(1);
+            System.out.println("DEV::: OK 2");
+            ll = (LinearLayout)ll.getChildAt(1);
+            System.out.println("DEV::: OK 3");
+            ImageButton imgBtn = (ImageButton)ll.getChildAt(1);
+            System.out.println("DEV::: OK 4");
+            ((ViewGroup)imgBtn.getParent()).removeView(imgBtn);
+            System.out.println("DEV::: OK 5");
+
+        }
+    }
+    */
 
     @Override
     protected void onStart() {
