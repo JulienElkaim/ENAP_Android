@@ -32,6 +32,9 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         mVideoDetailsArrayList = videoDetailsArrayList;
 
     }
+
+    public LayoutInflater getLayoutInflater(){return mLayoutInflater;}
+
     @Override
     public int getCount() {
         return mVideoDetailsArrayList.size();

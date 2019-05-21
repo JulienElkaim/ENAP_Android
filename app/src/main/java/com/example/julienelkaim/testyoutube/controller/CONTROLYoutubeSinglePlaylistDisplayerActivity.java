@@ -3,6 +3,7 @@ package com.example.julienelkaim.testyoutube.controller;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -54,6 +55,7 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         mPlaylist = (Playlist) getIntent().getSerializableExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
         initializeViews();
 
+
     }
 
     private void initializeViews(){
@@ -65,6 +67,15 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         mVideoDetailsArrayList = new ArrayList<>();
         mYoutubeVideoListAdapter = new YoutubeVideoListAdapter(this, mVideoDetailsArrayList);
         launchVideosResearch();
+
+        TextView emptyText = findViewById(android.R.id.empty);
+        mListDisplayer.setEmptyView(emptyText);
+
+        if (mPlaylist.getVideoIdList().size() != 0){
+            ((ViewGroup) emptyText.getParent()).removeView(emptyText);
+            //Permet de ne pas afficher ce empty-message  si on est juste entrain d'attendre les videos
+        }
+
 
     }
 

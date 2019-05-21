@@ -288,7 +288,5 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
                 lt.addView(vdHandler.createPlaylistHeader("grey", this));
             }
         }
-
     }
-
 }
