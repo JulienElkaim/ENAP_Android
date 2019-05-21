@@ -69,26 +69,25 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         launchVideosResearch();
 
         TextView emptyText = findViewById(android.R.id.empty);
-        mListDisplayer.setEmptyView(emptyText);
-
-        if (mPlaylist.getVideoIdList().size() != 0){
-            ((ViewGroup) emptyText.getParent()).removeView(emptyText);
-            //Permet de ne pas afficher ce empty-message  si on est juste entrain d'attendre les videos
+        System.out.println("DEBUG::: On y est mec! IN IT");
+        if (emptyText != null) {
+            mListDisplayer.setEmptyView(emptyText);
+            System.out.println("DEBUG::: On y est mec! GRAVE IN IT");
+            if (mPlaylist.getVideoIdList().size() != 0) { ((ViewGroup) emptyText.getParent()).removeView(emptyText);}
         }
-
-
     }
 
 
     @Override
     public void modifyYourList(String videoId) {
         System.out.println("DEBUG::: " + videoId);
+        System.out.println("DEBUG::: On y est mec! now, on modif la list");
         ArrayList<String> vList =  new ArrayList<>(mPlaylist.getVideoIdList());
         vList.remove(videoId);
-
-
         mPlaylist.setVideoIdList(vList);
+        System.out.println("DEBUG::: On y est mec! FRONT");
         initializeViews();
+        System.out.println("DEBUG::: On y est mec! BACK");
         YoutubeHelper.updateListOfPlaylist(this, mPlaylist, YoutubeHelper.retrieveListOfPlaylist(this));
 
     }

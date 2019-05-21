@@ -88,9 +88,11 @@ public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistLis
 
         TextView emptyText = findViewById(android.R.id.empty);
         if (emptyText != null) {
+            System.out.println("DEBUGGO::: On a vu que la liste de playlist pas null");
             mListView.setEmptyView(emptyText);
             if (mPlaylistArrayList.size() != 0){ ((ViewGroup) emptyText.getParent()).removeView(emptyText); }
         }
+
 
     }
 

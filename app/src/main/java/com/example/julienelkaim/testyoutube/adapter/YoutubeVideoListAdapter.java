@@ -111,7 +111,12 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         supprBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 activity.modifyYourList(videoDetails.getVideoId());
+                System.out.println("DEBUG::: On a suppr tkt");
+                activity.finish();
+                activity.startActivity(activity.getIntent());
+
             }
         });
 

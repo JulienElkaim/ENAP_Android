@@ -119,7 +119,8 @@ public class PlaylistListAdapter extends BaseAdapter {
             public void onClick(View v) {
                 //Save my playlist in preferences as the current playlist, and update listview
                 YoutubeHelper.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
-                mActivity.setMyPlaylistList();
+                mActivity.finish();
+                mActivity.startActivity(mActivity.getIntent());
 
 
             }
