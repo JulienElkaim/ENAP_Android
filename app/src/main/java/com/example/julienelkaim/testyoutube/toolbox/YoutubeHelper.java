@@ -12,12 +12,14 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -188,6 +190,37 @@ public final class YoutubeHelper {
 
         return playlists;
     }
+
+    public static Playlist findPlaylistById(Activity activity, int id){
+        Playlist playlist;
+
+        ArrayList<Playlist> lOfPlaylist = retrieveListOfPlaylist(activity);
+        for (int i = 0; i < lOfPlaylist.size(); i++) {
+            playlist = lOfPlaylist.get(i);
+            if (playlist.getPlaylistId() == id ){return playlist;}
+
+        }
+        return null;
+    }
+
+    public static void modifyPlaylistListOfVideo(Activity activity, int id, String newVideoId){
+        ArrayList<Playlist> lOfPlaylist = retrieveListOfPlaylist(activity);
+        Playlist playlist;
+        for (int i = 0; i < lOfPlaylist.size(); i++){
+            playlist = lOfPlaylist.get(i);
+            if (id == playlist.getPlaylistId()){
+                List<String> vidList = playlist.getVideoIdList();
+                vidList.add(newVideoId);
+
+
+                playlist.setVideoIdList(vidList);
+                updateListOfPlaylist(activity,playlist,lOfPlaylist);
+            }
+        }
+
+
+    }
+
 
     private static void defaultListOfPlaylists(ArrayList<Playlist> playlists) {
         playlists.add(new Playlist("Jeux videos", "Permet aux enfants de découvrir l'univers des Jeux Videos", Arrays.asList("6ptRzgvBaAk", "SxLcKjfeaIw","6ptRzgvBaAk","6ptRzgvBaAk","Q3AilwYTvWM")));

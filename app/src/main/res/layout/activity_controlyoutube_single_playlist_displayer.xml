@@ -72,6 +72,7 @@ android:theme="@style/NoActionBar">
     android:gravity="center">
 
     <ImageButton
+        android:id="@+id/add_button_video"
         android:layout_width="80px"
         android:layout_height="80px"
         android:background="@drawable/add_button"/>

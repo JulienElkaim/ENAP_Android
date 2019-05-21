@@ -1,9 +1,12 @@
 package com.example.julienelkaim.testyoutube.controller;
 
+import android.content.Intent;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,7 +41,7 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
     private YoutubeVideoListAdapter mYoutubeVideoListAdapter;
     private ArrayList<VideoDetails> mVideoDetailsArrayList;
     private String mMyAPIRequestForThisPlaylist;
-
+    private ImageButton mAddButton;
 
 
 
@@ -47,14 +50,22 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         Constants.windowAndSystemSettings(this);
     }
 
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        System.out.println("RELOAD::: ALLER ON RELOAD");
+        finish();
+        startActivity(getIntent());
+    }
+
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
         mIsListModifiable = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlyoutube_single_playlist_displayer);
-
         mPlaylist = (Playlist) getIntent().getSerializableExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
+        mPlaylist = YoutubeHelper.findPlaylistById(this, mPlaylist.getPlaylistId());
         initializeViews();
 
 
@@ -77,6 +88,23 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
             System.out.println("DEBUG::: On y est mec! GRAVE IN IT");
             if (mPlaylist.getVideoIdList().size() != 0) { ((ViewGroup) emptyText.getParent()).removeView(emptyText);}
         }
+
+        mAddButton = findViewById(R.id.add_button_video);
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mettre la playlist d'ici en a changer global
+                // Lancer activité de recherche
+                System.out.println("DEBBY:::  On va noter la playlsit en modif");
+                Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
+                System.out.println("DEBBY:::  On A DEJA noter la playlsit en modif");
+                Intent i = new Intent( CONTROLYoutubeSinglePlaylistDisplayerActivity.this , YoutubePlaylistResearchActivity.class);
+                //i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE,"ADD");
+                startActivity(i);
+                System.out.println("DEBBY:::  On A Envoyé pour la playlist "+ Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION);
+
+            }
+        });
     }
 
 

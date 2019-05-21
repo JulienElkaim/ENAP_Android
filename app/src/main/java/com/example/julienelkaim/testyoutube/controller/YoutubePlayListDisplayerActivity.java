@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
@@ -73,10 +74,14 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
             public void onClick(View v) {
                 // ICI Faire le comportement modifier la playlist en cours de modif
                 //YOUTUBE_PLAYLIST_ID_IN_MODIFICATION
-                mVideoList.add(mVideoId);
+                YoutubeHelper.modifyPlaylistListOfVideo(YoutubePlayListDisplayerActivity.this, Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION, mVideoId);
+
+                Toast.makeText(YoutubePlayListDisplayerActivity.this, "Video ajoutée à la playlist!", Toast.LENGTH_SHORT).show();
+                onBackPressed();
+                /*mVideoList.add(mVideoId);
                 Set<String> set = YoutubeHelper.setSetFromList( mVideoList);
                 mPreferences.edit().putStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,set).apply();
-                onBackPressed();
+                onBackPressed();*/
             }
         });
         mMode = getIntent().getStringExtra(Constants.YOUTUBE_DISPLAYER_MODE);
