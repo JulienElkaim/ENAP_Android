@@ -53,21 +53,6 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
             }
         });
 
-        Button tmpButton = findViewById(R.id.video_search_button);
-        tmpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Reaction pour ALLER Aprochaine fenetre possible
-
-                Intent i = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
-                startActivity(i);
-                /*
-                Intent mySearcher = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
-                startActivity(mySearcher);
-                */
-            }
-        });
-
     }
 
 }
