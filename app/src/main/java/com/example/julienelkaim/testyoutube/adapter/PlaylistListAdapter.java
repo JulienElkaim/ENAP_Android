@@ -21,7 +21,9 @@ import com.example.julienelkaim.test_playlist.Tools.Constants;
 import com.example.julienelkaim.test_playlist.Tools.Playlist;
 */
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.CONTROLYoutubePlaylistEnumeratorActivity;
 import com.example.julienelkaim.testyoutube.controller.CONTROLYoutubeSinglePlaylistDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubePlaylistListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
@@ -34,10 +36,10 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class PlaylistListAdapter extends BaseAdapter {
 
-    Activity mActivity;
+    YoutubePlaylistListDisplayerActivity mActivity;
     ArrayList<Playlist> mPlaylistArrayList;
     LayoutInflater mLayoutInflater;
-    public PlaylistListAdapter(Activity activity, ArrayList<Playlist> PlaylistArrayList){
+    public PlaylistListAdapter(YoutubePlaylistListDisplayerActivity activity, ArrayList<Playlist> PlaylistArrayList){
 
         mActivity = activity;
         mPlaylistArrayList = PlaylistArrayList;
@@ -115,13 +117,10 @@ public class PlaylistListAdapter extends BaseAdapter {
         supprButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Save my playlist in preferences as the current playlist
-
+                //Save my playlist in preferences as the current playlist, and update listview
                 YoutubeHelper.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
+                mActivity.setMyPlaylistList();
 
-                Intent i = new Intent(mActivity, mActivity.getClass()); // Reload the activity
-                mActivity.startActivity(i);
-                Toast.makeText(mActivity, "Playlist supprimée", Toast.LENGTH_SHORT).show();
 
             }
         });

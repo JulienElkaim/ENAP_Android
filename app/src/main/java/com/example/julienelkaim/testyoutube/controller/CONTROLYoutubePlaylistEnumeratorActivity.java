@@ -4,11 +4,14 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.adapter.PlaylistListAdapter;
+import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubePlaylistListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
@@ -16,7 +19,7 @@ import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class CONTROLYoutubePlaylistEnumeratorActivity extends AppCompatActivity {
+public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistListDisplayerActivity {
 
 
     ListView mListView;
@@ -74,12 +77,21 @@ public class CONTROLYoutubePlaylistEnumeratorActivity extends AppCompatActivity 
         YoutubeHelper.saveListOfPlaylist(this , mPlaylistArrayList);
     }
 
-    private void setMyPlaylistList() {
+
+    @Override
+    public void setMyPlaylistList() {
         mPlaylistArrayList = YoutubeHelper.retrieveListOfPlaylist(this);
         mPlaylistListAdapter = new PlaylistListAdapter(this, mPlaylistArrayList);
 
         mListView.setAdapter(mPlaylistListAdapter);
         mPlaylistListAdapter.notifyDataSetChanged();
+
+        TextView emptyText = findViewById(android.R.id.empty);
+        if (emptyText != null) {
+            mListView.setEmptyView(emptyText);
+            if (mPlaylistArrayList.size() != 0){ ((ViewGroup) emptyText.getParent()).removeView(emptyText); }
+        }
+
     }
 
 

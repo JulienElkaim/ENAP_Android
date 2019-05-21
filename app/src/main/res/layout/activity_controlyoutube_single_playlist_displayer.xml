@@ -45,6 +45,18 @@ android:theme="@style/NoActionBar">
         android:layout_marginBottom="5dp">
 
     </ListView>
+    <TextView
+        android:id="@android:id/empty"
+        android:layout_width="0dp"
+        android:layout_weight="0.94"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:textStyle="bold"
+
+        android:textColor="#A9A9A9"
+        android:text="Welcome in your new playlist ! \n Please, click the button below to add a video  🙂." />
+
     <View
         android:layout_width="0dp"
         android:layout_height="match_parent"
