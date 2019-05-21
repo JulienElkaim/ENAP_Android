@@ -3,6 +3,7 @@ package com.example.julienelkaim.testyoutube.controller;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.julienelkaim.testyoutube.R;
@@ -24,7 +25,7 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
     private Button mAddPlaylistButton;
     private SharedPreferences mPreferences;
     private List<String> mVideoList ;//= Arrays.asList("U_thPyTPwqw", "ADTdpypVZD0", "j9HYtsxteW0", "lXGYAoyabdg", "Dp_8O2FhoCY", "jwpV-p2Y5TU", "KeT_XDMnauU", "DCFW0gbEH0Y", "ixxxcHI4kpI", "aAcVD_TtlFI", "y3zKhDLCg9g");//
-
+    private String mMode;
 
 
     //================================ LISTENER -> YouTubePlayer: Initialisation ================================
@@ -46,6 +47,7 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        System.out.println("DEBIGG::: OK OK OK" );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_video_details);
         mYouTubePlayerView = findViewById(R.id.youtubePlayerView);
@@ -69,12 +71,26 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
         mAddPlaylistButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // ICI Faire le comportement modifier la playlist en cours de modif
+                //YOUTUBE_PLAYLIST_ID_IN_MODIFICATION
                 mVideoList.add(mVideoId);
                 Set<String> set = YoutubeHelper.setSetFromList( mVideoList);
                 mPreferences.edit().putStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,set).apply();
                 onBackPressed();
             }
         });
+        mMode = getIntent().getStringExtra(Constants.YOUTUBE_DISPLAYER_MODE);
+
+        System.out.println("DEBIGG::: ok mon gars mode :" + mMode);
+         if (mMode.equals("VIEW")){
+             System.out.println("DEBIGG::: ok mon gars j'ai recu VIEW");
+             //Supprimer le boutton add
+             ((ViewGroup) mAddPlaylistButton.getParent()).removeView(mAddPlaylistButton);
+
+         }
+
+
+
 
     }
 

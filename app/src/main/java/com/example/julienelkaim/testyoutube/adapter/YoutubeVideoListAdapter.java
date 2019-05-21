@@ -83,6 +83,8 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
                     i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
+                    System.out.println("DEBIGG::: ok mon gars on a dit view dans l'extra");
+                    i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE, "VIEW");
                     mActivity.startActivity(i);
                 }
             });
@@ -94,6 +96,8 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
                     i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
+                    i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE, "ADD");
+                    System.out.println("DEBIGG::: ok mon gars on a dit add dans l'extra");
                     mActivity.startActivity(i);
                 }
             });
@@ -113,9 +117,8 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
             public void onClick(View v) {
 
                 activity.modifyYourList(videoDetails.getVideoId());
-
                 activity.finish();
-                activity.startActivity(activity.getIntent());
+                activity.startActivity(activity.getIntent()); //Relancer l'activité elle même
 
 
             }

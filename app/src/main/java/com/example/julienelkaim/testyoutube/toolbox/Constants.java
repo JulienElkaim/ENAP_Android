@@ -7,7 +7,10 @@ import android.view.WindowManager;
 
 import java.util.Objects;
 
+import static java.sql.Types.NULL;
+
 public final class Constants {
+
 
 
 
@@ -40,5 +43,7 @@ public final class Constants {
     public static final String YOUTUBE_LIST_OF_PLAYLIST_SAVED = "List of playlist saved by the user !";
     public static final String YOUTUBE_SHARED_PREFERENCES = "YOUTUBE";
     public static final String YOUTUBE_ACTUAL_MODIFIED_PLAYLIST = "Playlist currently displayed in control. In modification process.";
+    public static final String YOUTUBE_DISPLAYER_MODE = "Le mode d'execution du displayer youtube";
+    public static int YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = NULL;
 
 }
