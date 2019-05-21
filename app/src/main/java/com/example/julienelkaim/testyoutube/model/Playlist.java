@@ -27,7 +27,6 @@ public class Playlist implements Serializable {
         this.description = description;
         this.videoIdList = videoIdList ;
         this.playlistId = id;
-        System.out.println("BIGG::: ok donc on a lid: "+ id+ " donc =" +this.playlistId);
     }
 
     public Playlist(int id, String title, String description){
@@ -35,7 +34,7 @@ public class Playlist implements Serializable {
         this.description = description;
         this.videoIdList = Collections.emptyList();
         this.playlistId = id;
-        System.out.println("BIGG::: OUIIIII donc on a lid: "+ id+ " donc =" +this.playlistId);
+
     }
 
     public List<String> getVideoIdList() {

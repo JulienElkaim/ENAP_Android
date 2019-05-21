@@ -53,7 +53,6 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
     @Override
     protected void onRestart(){
         super.onRestart();
-        System.out.println("RELOAD::: ALLER ON RELOAD");
         finish();
         startActivity(getIntent());
     }
@@ -82,10 +81,8 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         launchVideosResearch();
 
         TextView emptyText = findViewById(android.R.id.empty);
-        System.out.println("DEBUG::: On y est mec! IN IT");
         if (emptyText != null) {
             mListDisplayer.setEmptyView(emptyText);
-            System.out.println("DEBUG::: On y est mec! GRAVE IN IT");
             if (mPlaylist.getVideoIdList().size() != 0) { ((ViewGroup) emptyText.getParent()).removeView(emptyText);}
         }
 
@@ -93,16 +90,10 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Mettre la playlist d'ici en a changer global
-                // Lancer activité de recherche
-                System.out.println("DEBBY:::  On va noter la playlsit en modif");
-                Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
-                System.out.println("DEBBY:::  On A DEJA noter la playlsit en modif");
-                Intent i = new Intent( CONTROLYoutubeSinglePlaylistDisplayerActivity.this , YoutubePlaylistResearchActivity.class);
-                //i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE,"ADD");
-                startActivity(i);
-                System.out.println("DEBBY:::  On A Envoyé pour la playlist "+ Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION);
 
+                Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
+                Intent i = new Intent( CONTROLYoutubeSinglePlaylistDisplayerActivity.this , YoutubePlaylistResearchActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -110,20 +101,16 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
 
     @Override
     public void modifyYourList(String videoId) {
-        System.out.println("DEBUG::: " + videoId);
-        System.out.println("DEBUG::: On y est mec! now, on modif la list");
+
         ArrayList<String> vList =  new ArrayList<>(mPlaylist.getVideoIdList());
         vList.remove(videoId);
         mPlaylist.setVideoIdList(vList);
-        System.out.println("DEBUG::: On y est mec! FRONT");
         initializeViews();
-        System.out.println("DEBUG::: On y est mec! BACK");
         YoutubeHelper.updateListOfPlaylist(this, mPlaylist, YoutubeHelper.retrieveListOfPlaylist(this));
 
     }
 
     private void launchVideosResearch() {
-        System.out.println(mMyAPIRequestForThisPlaylist);
         RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRqQueue = new StringRequest(
                 Request.Method.GET,
@@ -141,18 +128,12 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
                 JSONObject jsonObject = jArray.getJSONObject(i);
 
                 //charger les détails de la video
-                System.out.println("CONTROLYoutubeSinglePlaylistDisplayerActivity::TEST:: NOUS EN SOMME A ID : " + i);
-                System.out.println("CONTROLYoutubeSinglePlaylistDisplayerActivity::TEST:: On a trouvé l'ID suivante : "+ jsonObject.getString("id"));
                YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList, "ControlPlaylistDisplayer");
             }
 
             YoutubeHelper.displayAYoutubeVideoList(mListDisplayer, mYoutubeVideoListAdapter);
-            System.out.println("CONTROLYoutubeSinglePlaylistDisplayerActivity::processRequestResponse::DEBUG::TryBlock::SUCCESS:: Fial Adapter");
-
-
 
         } catch (JSONException e) {
-            System.out.println("CONTROLYoutubeSinglePlaylistDisplayerActivity::processRequestResponse::DEBUG::TryBlock::FAIL:: On est dans JSON error");
             e.printStackTrace();
         }
 

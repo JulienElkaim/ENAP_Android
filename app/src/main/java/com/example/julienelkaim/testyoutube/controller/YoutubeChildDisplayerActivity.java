@@ -45,7 +45,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
     private YouTubePlayer.OnInitializedListener mPlayerInitializedListener = new YouTubePlayer.OnInitializedListener() {
         @Override
         public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-            System.out.println("PlayerInitializer::onSuccess");
             mYouTubePlayer = youTubePlayer;
             initializePlayerParams(); // Paramétrer le player
         }
@@ -61,19 +60,16 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         @Override
         public void onLoading() {
             mYouTubePlayerView.setVisibility(View.INVISIBLE);
-            System.out.println("PlayerState::onLoading");
         }
 
         @Override
         public void onLoaded(String s) {
             mYouTubePlayerView.setVisibility(View.VISIBLE);
-            System.out.println("PlayerState::onLoaded");
             headerHandler(mLinearLayout, mVideoHandler);
         }
 
         @Override
         public void onAdStarted() {
-            System.out.println("PlayerState::onAdStarted");
             //mYouTubePlayer.loadVideo(mVideoHandler.getPlayingVideoId()); //ACTIVER SI PUB PRESENTE
         }
 
@@ -85,13 +81,11 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         @Override
         public void onVideoEnded() {
             mYouTubePlayerView.setVisibility(View.INVISIBLE); //Contrer le problème des suggestions de fin
-            System.out.println("PlayerState::onVideoEnded");
             mYouTubePlayer.loadVideo(mVideoHandler.nextVideo());
         }
 
         @Override
         public void onError(YouTubePlayer.ErrorReason errorReason) {
-            System.out.println("PlayerState::onError");
         }
     };
 
@@ -101,7 +95,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      */
     @Override
     protected void onStart() {
-        System.out.println("YoutubeActivity::onStart");
         super.onStart();
         Constants.windowAndSystemSettings(this);
     }
@@ -114,7 +107,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("YoutubeActivity::onCreate");
 
         super.onCreate(savedInstanceState); // Default create method for an activity.
         initializeLinksWithView();// Créer le lien avec les éléments graphique mutables.
@@ -122,8 +114,8 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
 
         //Recuperer la playlist actuelle
         SharedPreferences  mPrefs = getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
-        Gson gson = new Gson();
-        String json = mPrefs.getString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, "");
+        /*Gson gson = new Gson();
+        String json = mPrefs.getString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, "");*/
         Playlist mPlaylist = YoutubeHelper.retrieveCurrentPlaylist(this);
         List<String> videoList = mPlaylist.getVideoIdList();
 
@@ -156,7 +148,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         mPlayPauseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("ButtonPlayPause::onClick");
                 myPlayerControls("Play&Pause");
                 //playerTest();
             }
@@ -166,7 +157,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         buttonGoBackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("ButtonBackward::onClick");
                 myPlayerControls("Backward");
             }
         });
@@ -175,7 +165,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         buttonGoForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("ButtonForward::onClick");
                 myPlayerControls("Forward");
             }
         });
@@ -184,7 +173,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("ButtonHome::onClick");
                 Intent myGame = new Intent(YoutubeChildDisplayerActivity.this, MainDispatcherActivity.class);
                 startActivity(myGame);
             }
@@ -272,7 +260,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      * Handle the header to fit with playlist datas.
      */
     public void headerHandler(LinearLayout lt, VideoHandler vdHandler) {
-        System.out.println("DebugMyLife::headerHandler");
         lt.removeAllViews();
         int nbOfVideos = vdHandler.getVideoList().size();
         int actuallyPlaying = vdHandler.getPlayingVideoIndex();

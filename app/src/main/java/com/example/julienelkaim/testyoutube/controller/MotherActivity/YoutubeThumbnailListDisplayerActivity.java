@@ -7,7 +7,6 @@ public abstract class YoutubeThumbnailListDisplayerActivity extends AppCompatAct
     public int countVideoDisplayed = 0;
 
     public void incrementCountVideoDisplayed(){
-        System.out.println("DEV::: Je viens d'augmenter le counter : "+ countVideoDisplayed);
         countVideoDisplayed+=1;
     }
 

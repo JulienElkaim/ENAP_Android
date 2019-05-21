@@ -33,7 +33,6 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
     private YouTubePlayer.OnInitializedListener mPlayerInitializedListener = new YouTubePlayer.OnInitializedListener() {
         @Override
         public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-            System.out.println("PlayerInitializer::onSuccess");
             mYouTubePlayer = youTubePlayer;
             mYouTubePlayerView.setVisibility(View.VISIBLE);
             mYouTubePlayer.loadVideo(mVideoId);
@@ -48,7 +47,6 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        System.out.println("DEBIGG::: OK OK OK" );
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_video_details);
         mYouTubePlayerView = findViewById(R.id.youtubePlayerView);
@@ -72,24 +70,16 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
         mAddPlaylistButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // ICI Faire le comportement modifier la playlist en cours de modif
-                //YOUTUBE_PLAYLIST_ID_IN_MODIFICATION
-                YoutubeHelper.modifyPlaylistListOfVideo(YoutubePlayListDisplayerActivity.this, Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION, mVideoId);
 
+                YoutubeHelper.modifyPlaylistListOfVideo(YoutubePlayListDisplayerActivity.this, Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION, mVideoId);
                 Toast.makeText(YoutubePlayListDisplayerActivity.this, "Video ajoutée à la playlist!", Toast.LENGTH_SHORT).show();
                 onBackPressed();
-                /*mVideoList.add(mVideoId);
-                Set<String> set = YoutubeHelper.setSetFromList( mVideoList);
-                mPreferences.edit().putStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,set).apply();
-                onBackPressed();*/
+
             }
         });
         mMode = getIntent().getStringExtra(Constants.YOUTUBE_DISPLAYER_MODE);
 
-        System.out.println("DEBIGG::: ok mon gars mode :" + mMode);
          if (mMode.equals("VIEW")){
-             System.out.println("DEBIGG::: ok mon gars j'ai recu VIEW");
-             //Supprimer le boutton add
              ((ViewGroup) mAddPlaylistButton.getParent()).removeView(mAddPlaylistButton);
 
          }

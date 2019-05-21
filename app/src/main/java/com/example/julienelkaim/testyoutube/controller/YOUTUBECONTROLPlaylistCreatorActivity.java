@@ -35,15 +35,12 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
                 }else{
                     //Creer la playlist et l'ajouter
                     ArrayList<Playlist> mesPlaylists = YoutubeHelper.retrieveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this);
-                    System.out.println("BUG::: ON va ajouter la new playlist. il y a " + mesPlaylists.size() + " playlists dans la liste.");
                     mesPlaylists.add(
                             new Playlist(YoutubeHelper.provideUniqueId(YOUTUBECONTROLPlaylistCreatorActivity.this), mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
                     );
-                    System.out.println("BUG::: ON va save. il y a " + mesPlaylists.size() + " playlists dans la liste.");
                     YoutubeHelper.saveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this ,mesPlaylists);
-                    System.out.println("BUG::: ON a fini de save");
                     onBackPressed(); //finish activity and go back to previous activity. Better than finish that will open a "copy".
-                    //finish();
+
 
                 }
             }

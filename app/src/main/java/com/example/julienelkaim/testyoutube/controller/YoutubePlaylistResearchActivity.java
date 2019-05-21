@@ -50,31 +50,6 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
 
     }
 
-    /*
-    @Override
-    public void modifyYourList(String action) {
-        if (action.equals("delete")){
-            System.out.println("Utile pour faire un switch plus tard si besoin");
-        }
-        //Ici on va supprimer les ImageButtons
-
-        System.out.println("DEV::: On va iterer sur notre liste de "+ countVideoDisplayed+" video");
-
-        for (int i = 0; i < countVideoDisplayed; i++){
-            LinearLayout ll = (LinearLayout)mListView.getChildAt(i);
-            System.out.println("DEV::: OK 1");
-            ll = (LinearLayout)ll.getChildAt(1);
-            System.out.println("DEV::: OK 2");
-            ll = (LinearLayout)ll.getChildAt(1);
-            System.out.println("DEV::: OK 3");
-            ImageButton imgBtn = (ImageButton)ll.getChildAt(1);
-            System.out.println("DEV::: OK 4");
-            ((ViewGroup)imgBtn.getParent()).removeView(imgBtn);
-            System.out.println("DEV::: OK 5");
-
-        }
-    }
-    */
 
     @Override
     protected void onStart() {
@@ -101,21 +76,16 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
             public void onClick(View v) {
                 if(!mBufferedSearch.equals(mInputArea.getText().toString())) { /*Si la requête n'a point changé*/
                     if (mListView.getChildCount() != 0) {
-                        System.out.println("YoutubePlaylistResearchActivity::onCreate::DEBUG:: On réinitialise le listview et les détails de vidéo.");
                         //YoutubeHelper.displayAYoutubeVideoList(mListView,mYoutubeVideoListAdapter);
                         setListViewAndListAsset();
                     }
 
-                    System.out.println("YoutubePlaylistResearchActivity::onCreate::DEBUG:: On se prépare pour faire la recherche.");
                     mBufferedSearch = mInputArea.getText().toString();
                     mSearchUrl= YoutubeHelper.setGoogleApiSearchUrl(mBufferedSearch, NB_RESULTS);
-                    System.out.println("YoutubePlaylistResearchActivity::onCreate::DEBUG:: Clic du bouton.");
                     launchVideosResearch();
                 }
             }
         });
-
-        System.out.println("YoutubePlaylistResearchActivity::onCreate::DEBUG:: Activité créée avec succès.");
     }
 
     private void setListViewAndListAsset() {
@@ -126,7 +96,6 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
 
 
     private void launchVideosResearch() {
-        System.out.println(mSearchUrl);
         RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRqQueue = new StringRequest(
                 Request.Method.GET,
@@ -143,18 +112,14 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
 
             for (int i=0; i< jArray.length();i++) {
                 JSONObject jsonObject = jArray.getJSONObject(i);
-                        System.out.println("YoutubePlaylistResearchActivity::processRequestResponse::DEBUG::TryBlock:: On a recup le jsonObject suivant: "+jsonObject);
+
                 //charger les détails de la video
-                System.out.println("YoutubePlaylistResearchActivity::TEST:: On a recup le jsonObject suivant: "+jsonObject.getJSONObject("id").toString());
                 if(jsonObject.getJSONObject("id").toString().contains("videoId")){ YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList, "ControlSearchVideo"); }
             }
 
             YoutubeHelper.displayAYoutubeVideoList(mListView, mYoutubeVideoListAdapter);
-                System.out.println("YoutubePlaylistResearchActivity::processRequestResponse::DEBUG::TryBlock::SUCCESS:: Fial Adapter");
-
 
         } catch (JSONException e) {
-                System.out.println("YoutubePlaylistResearchActivity::processRequestResponse::DEBUG::TryBlock::FAIL:: On est dans JSON error");
             e.printStackTrace();
         }
 

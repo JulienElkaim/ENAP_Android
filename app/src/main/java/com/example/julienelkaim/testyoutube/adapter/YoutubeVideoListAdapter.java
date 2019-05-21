@@ -73,7 +73,6 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         secondTextView.setText(videoDetails.getDescription());
 
         LinearLayout linearLayout = convertView.findViewById(R.id.root);
-        System.out.println("BUG::: On est arrive jusqua avant le boutton");
 
         if(mActivity.mIsListModifiable){
             //Single playlist display part    =================== DIFFERENT INTENT QUE DANS LE ELSE !!
@@ -83,7 +82,6 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
                 public void onClick(View v) {
                     Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
                     i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
-                    System.out.println("DEBIGG::: ok mon gars on a dit view dans l'extra");
                     i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE, "VIEW");
                     mActivity.startActivity(i);
                 }
@@ -97,7 +95,6 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
                     Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
                     i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
                     i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE, "ADD");
-                    System.out.println("DEBIGG::: ok mon gars on a dit add dans l'extra");
                     mActivity.startActivity(i);
                 }
             });

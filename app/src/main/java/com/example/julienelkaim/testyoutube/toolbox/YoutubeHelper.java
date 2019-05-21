@@ -12,7 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
+
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +33,7 @@ public final class YoutubeHelper {
     }
 
     /*JSON Parse object when looking by keyword*/
-    public static String getSEARCHYTBAPIVideoId(JSONObject jsonObject, String switcher) throws JSONException {
+    private static String getSEARCHYTBAPIVideoId(JSONObject jsonObject, String switcher) throws JSONException {
         String returnedId = "";
         switch(switcher){
             case "playlist":
@@ -59,7 +59,6 @@ public final class YoutubeHelper {
 
         switch(switcher){
             case "ControlPlaylistDisplayer":
-                System.out.println("CONTROLYoutubeSinglePlaylistDisplayerActivity:: HELPER, controlplaylist");
                 vdl.add(new VideoDetails(
                         YoutubeHelper.getSEARCHYTBAPIVideoId(jsonObject,"playlist"),
                         YoutubeHelper.getSEARCHYTBAPIVideoTitle(jsonObject),
@@ -97,17 +96,17 @@ public final class YoutubeHelper {
                 "&id="+ transformVideoIdListIntoVideoIdAPIListUrl(listOfVideoid) +
                 "&key=" +Constants.API_KEY;
     }
-    public static String transformVideoIdListIntoVideoIdAPIListUrl( List<String> listOfVideoId){
-        String concatenator = "";
+    private static String transformVideoIdListIntoVideoIdAPIListUrl( List<String> listOfVideoId){
+        StringBuilder concatenator = new StringBuilder();
         for (int i =0 ;i < listOfVideoId.size();i++){
-            if (concatenator.equals("") ){
-                concatenator = listOfVideoId.get(i);
+            if (concatenator.toString().equals("") ){
+                concatenator = new StringBuilder(listOfVideoId.get(i));
             }else{
-                concatenator+= "," + listOfVideoId.get(i);
+                concatenator.append(",").append(listOfVideoId.get(i));
             }
 
         }
-        return  StringModifier.escapeMyUrl( concatenator );
+        return  StringModifier.escapeMyUrl(concatenator.toString());
     }
 
     public static <T> List<T> setListFromSet(Set<T> set)
@@ -161,14 +160,13 @@ public final class YoutubeHelper {
 
     public static void saveListOfPlaylist(Activity activity, ArrayList<Playlist> mPlaylistArrayList) {
 
-        System.out.println("BUG::: JE SUIS APPELLER DEPUIS : " + activity.getLocalClassName());
         SharedPreferences mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(mPlaylistArrayList);
         prefsEditor.putString(Constants.YOUTUBE_LIST_OF_PLAYLIST_SAVED, json);
         prefsEditor.commit();
-        System.out.println("BUG::: On a save correctement ca : " + json);
+
     }
 
     public static ArrayList<Playlist> retrieveListOfPlaylist(Activity activity) {
@@ -241,12 +239,10 @@ public final class YoutubeHelper {
     public static int provideUniqueId(Activity activity) {
 
         ArrayList<Integer> lId = retrieveAllPlaylistId(activity);
-        System.out.println("BIGG::: Ok donc on a ;" + lId);
         int i =0;
         while (lId.contains(i)){
             i++;
         }
-        System.out.println("BIGG::: Ok donc new id ;" + i);
         return i;
     }
 
