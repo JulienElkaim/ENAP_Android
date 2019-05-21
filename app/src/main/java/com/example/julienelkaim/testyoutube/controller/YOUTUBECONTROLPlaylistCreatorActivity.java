@@ -37,7 +37,7 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
                     ArrayList<Playlist> mesPlaylists = YoutubeHelper.retrieveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this);
                     System.out.println("BUG::: ON va ajouter la new playlist. il y a " + mesPlaylists.size() + " playlists dans la liste.");
                     mesPlaylists.add(
-                            new Playlist(mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
+                            new Playlist(YoutubeHelper.provideUniqueId(YOUTUBECONTROLPlaylistCreatorActivity.this), mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
                     );
                     System.out.println("BUG::: ON va save. il y a " + mesPlaylists.size() + " playlists dans la liste.");
                     YoutubeHelper.saveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this ,mesPlaylists);

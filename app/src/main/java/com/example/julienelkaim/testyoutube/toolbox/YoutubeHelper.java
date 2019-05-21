@@ -223,9 +223,9 @@ public final class YoutubeHelper {
 
 
     private static void defaultListOfPlaylists(ArrayList<Playlist> playlists) {
-        playlists.add(new Playlist("Jeux videos", "Permet aux enfants de découvrir l'univers des Jeux Videos", Arrays.asList("6ptRzgvBaAk", "SxLcKjfeaIw","6ptRzgvBaAk","6ptRzgvBaAk","Q3AilwYTvWM")));
-        playlists.add(new Playlist("Animaux", "Playlist sur le monde animal terreste, liste de vidéos courtes.", Arrays.asList("3EVJ0LOIdnY","_Ms-pnNQQ3k","zGR2W8tKXk0")));
-        playlists.add(new Playlist("Paysages du monde", "Une sélection de paysages pour découvrir les différents reliefs du monde.", Arrays.asList("xD_oxqq9omo","JK0NprMZ8iw","a5ryXI_6YwU","a5ryXI_6YwU")));
+        playlists.add(new Playlist(0,"Jeux videos", "Permet aux enfants de découvrir l'univers des Jeux Videos", Arrays.asList("6ptRzgvBaAk", "SxLcKjfeaIw","6ptRzgvBaAk","6ptRzgvBaAk","Q3AilwYTvWM")));
+        playlists.add(new Playlist(1,"Animaux", "Playlist sur le monde animal terreste, liste de vidéos courtes.", Arrays.asList("3EVJ0LOIdnY","_Ms-pnNQQ3k","zGR2W8tKXk0")));
+        playlists.add(new Playlist(2,"Paysages du monde", "Une sélection de paysages pour découvrir les différents reliefs du monde.", Arrays.asList("xD_oxqq9omo","JK0NprMZ8iw","a5ryXI_6YwU","a5ryXI_6YwU")));
     }
 
     public static void destroyPlaylistById(Activity activity, int playlistId, ArrayList<Playlist> playlistArrayList) {
@@ -236,5 +236,28 @@ public final class YoutubeHelper {
             }
         }
         saveListOfPlaylist(activity, playlistArrayList);
+    }
+
+    public static int provideUniqueId(Activity activity) {
+
+        ArrayList<Integer> lId = retrieveAllPlaylistId(activity);
+        System.out.println("BIGG::: Ok donc on a ;" + lId);
+        int i =0;
+        while (lId.contains(i)){
+            i++;
+        }
+        System.out.println("BIGG::: Ok donc new id ;" + i);
+        return i;
+    }
+
+    private static ArrayList<Integer> retrieveAllPlaylistId(Activity activity) {
+        ArrayList<Playlist> lPlaylist = retrieveListOfPlaylist(activity);
+        ArrayList <Integer> lId = new ArrayList<>();
+
+        for (int i = 0; i< lPlaylist.size(); i++){
+        lId.add(lPlaylist.get(i).getPlaylistId());
+        }
+
+        return lId;
     }
 }

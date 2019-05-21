@@ -2,6 +2,8 @@ package com.example.julienelkaim.testyoutube.model;
 
 import android.content.SharedPreferences;
 
+import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,19 +19,23 @@ import static android.content.Context.MODE_PRIVATE;
 public class Playlist implements Serializable {
     private String title, description;
     private List<String> videoIdList;
-    private static final AtomicInteger count = new AtomicInteger(0);
-    private final int PlaylistId = count.incrementAndGet();
+    private int playlistId;
 
-    public Playlist(String title, String description, List<String> videoIdList) {
+
+    public Playlist(int id, String title, String description, List<String> videoIdList) {
         this.title = title;
         this.description = description;
         this.videoIdList = videoIdList ;
+        this.playlistId = id;
+        System.out.println("BIGG::: ok donc on a lid: "+ id+ " donc =" +this.playlistId);
     }
 
-    public Playlist(String title, String description){
+    public Playlist(int id, String title, String description){
         this.title = title;
         this.description = description;
         this.videoIdList = Collections.emptyList();
+        this.playlistId = id;
+        System.out.println("BIGG::: OUIIIII donc on a lid: "+ id+ " donc =" +this.playlistId);
     }
 
     public List<String> getVideoIdList() {
@@ -57,7 +63,7 @@ public class Playlist implements Serializable {
     }
 
     public int getPlaylistId() {
-        return PlaylistId;
+        return playlistId;
     }
 
 
