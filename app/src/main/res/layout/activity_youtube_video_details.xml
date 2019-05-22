@@ -6,7 +6,7 @@ tools:context=".controller.YoutubePlayListDisplayerActivity"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
-android:background="#ffd6d5">
+android:background="@color/colorBackground">
 
 
 <LinearLayout

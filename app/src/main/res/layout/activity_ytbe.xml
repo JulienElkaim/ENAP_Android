@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".controller.YoutubeChildDisplayerActivity"
-    android:background="#ffd6d5">
+    android:background="@color/colorBackground">
 
     <LinearLayout
         android:id="@+id/Ytbe_ALLHeader"

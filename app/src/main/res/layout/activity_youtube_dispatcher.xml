@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".controller.YoutubeDispatcherActivity"
-    android:background="#ffd6d5">
+    android:background="@color/colorBackground">
     <LinearLayout
         android:id="@+id/wrapper_ChoiceButtons"
         android:layout_width="wrap_content"
