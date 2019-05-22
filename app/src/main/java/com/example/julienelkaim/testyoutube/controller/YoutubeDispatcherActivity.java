@@ -24,11 +24,11 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Default initiation
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_youtube_dispatcher);
 
-        //Init Button
+
         YtbeChildDplButton = findViewById(R.id.YtbeChildDpl_Button);
         YtbeChildDplButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,14 +42,9 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
         YtbePlaylistsrchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Reaction pour ALLER Aprochaine fenetre possible
-
                 Intent myPlaylists = new Intent(YoutubeDispatcherActivity.this, CONTROLYoutubePlaylistEnumeratorActivity.class);
                 startActivity(myPlaylists);
-                /*
-                Intent mySearcher = new Intent(YoutubeDispatcherActivity.this, YoutubePlaylistResearchActivity.class);
-                startActivity(mySearcher);
-                */
+
             }
         });
 

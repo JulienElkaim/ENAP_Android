@@ -25,7 +25,7 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
     private Button mBackButton;
     private Button mAddPlaylistButton;
     private SharedPreferences mPreferences;
-    private List<String> mVideoList ;//= Arrays.asList("U_thPyTPwqw", "ADTdpypVZD0", "j9HYtsxteW0", "lXGYAoyabdg", "Dp_8O2FhoCY", "jwpV-p2Y5TU", "KeT_XDMnauU", "DCFW0gbEH0Y", "ixxxcHI4kpI", "aAcVD_TtlFI", "y3zKhDLCg9g");//
+    private List<String> mVideoList ;
     private String mMode;
 
 
@@ -55,10 +55,6 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
         mPreferences =getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         mVideoList = YoutubeHelper.setListFromSet(mPreferences.getStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,null));
 
-        //Recupere la playlist deja existante
-
-        /*YoutubeHelper.setListFromSet(mPreferences.getStringSet(Constants.YOUTUBE_PLAYLIST_CURRENTLY,null));*/
-
         mBackButton = findViewById(R.id.Ytbe_Return_To_Research);
         mBackButton.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -83,9 +79,6 @@ public class YoutubePlayListDisplayerActivity extends YouTubeBaseActivity {
              ((ViewGroup) mAddPlaylistButton.getParent()).removeView(mAddPlaylistButton);
 
          }
-
-
-
 
     }
 

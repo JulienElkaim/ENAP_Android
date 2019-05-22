@@ -5,6 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 
 public class YoutubePlaylistListDisplayerActivity extends AppCompatActivity {
 
-    public void setMyPlaylistList(){};
+    public void setMyPlaylistList(){}
 
 }

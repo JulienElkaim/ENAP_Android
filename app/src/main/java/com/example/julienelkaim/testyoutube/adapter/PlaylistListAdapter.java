@@ -74,11 +74,6 @@ public class PlaylistListAdapter extends BaseAdapter {
 
         final Playlist mPlaylist = mPlaylistArrayList.get(position);
 
-        // INSERT HERE SOME FEATURES
-
-        /*ImageView imageView = convertView.findViewById(R.id.thumbnailsImageView);
-        Picasso.get().load(mPlaylist.getVideoId()).into(imageView);*/
-
         TextView textView = convertView.findViewById(R.id.video_title);
         textView.setText(mPlaylist.getTitle());
 
@@ -121,7 +116,6 @@ public class PlaylistListAdapter extends BaseAdapter {
                 YoutubeHelper.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
                 mActivity.finish();
                 mActivity.startActivity(mActivity.getIntent());
-
 
             }
         });

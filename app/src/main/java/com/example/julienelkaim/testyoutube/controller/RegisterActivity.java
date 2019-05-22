@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         mDisplayName = findViewById(R.id.registerName);
         mEmail = findViewById(R.id.registerEmail);
         mPassword = findViewById(R.id.registerPassword);
-        mSubmitAccount = (Button) findViewById(R.id.submitAccount);
+        mSubmitAccount = findViewById(R.id.submitAccount);
 
         // Progress Dialog
         mRegProgress= new ProgressDialog(this);
@@ -93,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
                     mRegProgress.dismiss();
                     Toast.makeText(RegisterActivity.this, "Erreur", Toast.LENGTH_LONG).show();
                     Log.w("RegisterActivity", "createUserWithEmail:failure", task.getException());
-                    ;
+
                 }
             }
         });

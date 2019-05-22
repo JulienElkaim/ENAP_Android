@@ -33,8 +33,6 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
 
     }
 
-    public LayoutInflater getLayoutInflater(){return mLayoutInflater;}
-
     @Override
     public int getCount() {
         return mVideoDetailsArrayList.size();
@@ -134,16 +132,3 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
     }
 
 }
-
-
-/*
-
-<ImageButton
-                    android:id="@+id/suppr_video_from_playlist"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/suppr_button"
-
-                    />
-
-*/

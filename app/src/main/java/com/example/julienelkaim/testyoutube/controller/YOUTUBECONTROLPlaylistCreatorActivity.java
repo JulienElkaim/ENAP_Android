@@ -46,7 +46,7 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
                             new Playlist(YoutubeHelper.provideUniqueId(YOUTUBECONTROLPlaylistCreatorActivity.this), mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
                     );
                     YoutubeHelper.saveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this ,mesPlaylists);
-                    onBackPressed(); //finish activity and go back to previous activity. Better than finish that will open a "copy".
+                    onBackPressed();
 
 
                 }

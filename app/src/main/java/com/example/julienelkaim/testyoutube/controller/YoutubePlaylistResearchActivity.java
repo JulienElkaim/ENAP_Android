@@ -1,13 +1,11 @@
 package com.example.julienelkaim.testyoutube.controller;
 
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
+
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -76,7 +74,7 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
             public void onClick(View v) {
                 if(!mBufferedSearch.equals(mInputArea.getText().toString())) { /*Si la requête n'a point changé*/
                     if (mListView.getChildCount() != 0) {
-                        //YoutubeHelper.displayAYoutubeVideoList(mListView,mYoutubeVideoListAdapter);
+
                         setListViewAndListAsset();
                     }
 

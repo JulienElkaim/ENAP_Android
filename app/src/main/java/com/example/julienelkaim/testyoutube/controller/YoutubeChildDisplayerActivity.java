@@ -114,8 +114,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
 
         //Recuperer la playlist actuelle
         SharedPreferences  mPrefs = getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
-        /*Gson gson = new Gson();
-        String json = mPrefs.getString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, "");*/
         Playlist mPlaylist = YoutubeHelper.retrieveCurrentPlaylist(this);
         List<String> videoList = mPlaylist.getVideoIdList();
 
@@ -184,7 +182,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      * Initialize the player with API and Player Params by default.
      */
     public void initializePlayer() {
-        mYouTubePlayerView.initialize("AIzaSyAgCH9R0s_c6OH2bW2DZ47Nv7VqVMV9Qdk",
+        mYouTubePlayerView.initialize(Constants.API_KEY,
                 mPlayerInitializedListener); // Envoyer l'API key à Youtube, et réagir avec mPlayerInitializedListener si Success/Fail
     }
 
