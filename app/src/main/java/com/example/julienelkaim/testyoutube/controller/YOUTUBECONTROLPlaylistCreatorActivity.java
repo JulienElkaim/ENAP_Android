@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.Playlist;
+import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
 
 import java.util.ArrayList;
@@ -17,6 +18,12 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
     Button mButtonCreate;
     EditText mEditTextTitle;
     EditText mEditTextDescription;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Constants.windowAndSystemSettings(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
