@@ -125,7 +125,7 @@ public class PlaylistListAdapter extends BaseAdapter {
 
             }
         });
-        System.out.println("DEV::: PLAYLIST - {Name: "+ mPlaylist.getTitle() +" , ID: " + mPlaylist.getPlaylistId());
+        System.out.println("DEV::: PLAYLIST - { Name: "+ mPlaylist.getTitle() +" , ID: " + mPlaylist.getPlaylistId() + " }");
         return convertView;
     }
 

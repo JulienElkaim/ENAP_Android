@@ -39,7 +39,17 @@
             android:layout_height="70dp"
             android:background="@drawable/wikipedia_btn"
             android:contentDescription="Wikipedia Icon" />
+
+        <ImageButton
+            android:id="@+id/Chenapan_Button"
+            android:layout_marginLeft="30dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/logo_chenapan"
+            android:contentDescription="Wikipedia Icon" />
     </LinearLayout>
+
+
 
     <Button
         android:id="@+id/deconnexion_Button"

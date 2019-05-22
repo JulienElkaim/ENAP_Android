@@ -1,6 +1,7 @@
 package com.example.julienelkaim.testyoutube.controller;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,10 +17,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainDispatcherActivity extends AppCompatActivity {
-    ImageButton YtbeButton;
-
+    private ImageButton YtbeButton;
+    private ImageButton mChenapanButton;
     private FirebaseAuth mAuth;
     private Button mLogOut;
+
 
     @Override
     protected void onRestart() { super.onRestart(); }
@@ -77,6 +79,15 @@ public class MainDispatcherActivity extends AppCompatActivity {
                 sendToStart();
             }
         });
+
+        mChenapanButton = findViewById(R.id.Chenapan_Button);
+        mChenapanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.chenapan.eu")));
+            }
+        });
+
 
     }
 
