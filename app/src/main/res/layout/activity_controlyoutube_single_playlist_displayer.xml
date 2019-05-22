@@ -6,7 +6,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".controller.CONTROLYoutubeSinglePlaylistDisplayerActivity"
 android:orientation="vertical"
-android:background="#ffd6d5"
+android:background="@color/colorBackground"
 android:windowSoftInputMode="adjustResize"
 android:theme="@style/NoActionBar">
 

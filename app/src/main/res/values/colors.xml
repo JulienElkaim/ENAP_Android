@@ -4,5 +4,5 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBackgroundToolbar">#EE8180</color>
-    <color name="colorBackground">#ffd6d5</color>
+    <color name="colorBackground">#EEEEEE</color>
 </resources>
