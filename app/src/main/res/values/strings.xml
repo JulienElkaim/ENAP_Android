@@ -4,4 +4,12 @@
     <string name="se_deconnecter">Se déconnecter</string>
     <string name="parametres_du_compte">Paramètres du compte</string>
     <string name="utilisateurs">Utilisateurs</string>
+    <string name="youtube_icon">Youtube Icon</string>
+    <string name="wikipedia_icon">Wikipedia Icon</string>
+    <string name="retour">Retour</string>
+    <string name="ajout_la_playlist">Ajout à la playlist</string>
+    <string name="nouvelle_playlist">Nouvelle Playlist</string>
+    <string name="name">Name :</string>
+    <string name="description">Description:</string>
+    <string name="create">create</string>
 </resources>

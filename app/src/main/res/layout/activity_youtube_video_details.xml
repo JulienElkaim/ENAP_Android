@@ -21,7 +21,8 @@ android:background="@color/colorBackground">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
+        tools:ignore="UselessParent">
+
         <com.google.android.youtube.player.YouTubePlayerView
             android:id="@+id/youtubePlayerView"
             android:layout_width="wrap_content"
@@ -43,23 +44,27 @@ android:background="@color/colorBackground">
         android:layout_marginTop="20dp"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true">
+        android:layout_centerInParent="true"
+        tools:ignore="UselessParent">
 
         <Button
             android:id="@+id/Ytbe_Return_To_Research"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Retour"
+            android:text="@string/retour"
             android:layout_margin="10dp"
-            android:background="@color/colorAccent"/>
+            android:background="@color/colorAccent"
+            tools:ignore="ButtonStyle" />
+
         <Button
             android:id="@+id/Ytbe_Add_To_Playlist"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Ajout à la playlist"
+            android:text="@string/ajout_la_playlist"
             android:padding="10dp"
             android:layout_margin="10dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 </RelativeLayout>
