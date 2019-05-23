@@ -8,6 +8,8 @@ import com.example.julienelkaim.testyoutube.controller.YoutubeChildDisplayerActi
 
 import java.util.List;
 
+
+
 public class VideoHandler {
 
     private List<String> mVideoList;
@@ -20,7 +22,6 @@ public class VideoHandler {
     }
 
 
-
     /**
      *
      * @return the next video to play, null if no video to play
@@ -30,9 +31,6 @@ public class VideoHandler {
         return (mPlayedVideoNumber == (mVideoList.size()-1) )? null: mVideoList.get(++mPlayedVideoNumber);
     }
 
-    public String getPlayingVideoId(){
-        return mVideoList.get(mPlayedVideoNumber);
-    }
 
     public int getPlayingVideoIndex(){
         return mPlayedVideoNumber;
@@ -63,6 +61,5 @@ public class VideoHandler {
 
         return addedChild;
     }
-
 
 }

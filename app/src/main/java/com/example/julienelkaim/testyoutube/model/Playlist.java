@@ -1,20 +1,10 @@
 package com.example.julienelkaim.testyoutube.model;
 
-import android.content.SharedPreferences;
-
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import static android.content.Context.MODE_PRIVATE;
+
 
 public class Playlist implements Serializable {
     private String title, description;
@@ -23,18 +13,20 @@ public class Playlist implements Serializable {
 
 
     public Playlist(int id, String title, String description, List<String> videoIdList) {
-        this.title = title;
-        this.description = description;
+        this.assignCommonFeatures(id, title,  description);
         this.videoIdList = videoIdList ;
-        this.playlistId = id;
+
     }
 
     public Playlist(int id, String title, String description){
+        this.assignCommonFeatures(id, title,  description);
+        this.videoIdList = Collections.emptyList();
+
+    }
+    private void assignCommonFeatures(int id, String title, String description){
         this.title = title;
         this.description = description;
-        this.videoIdList = Collections.emptyList();
         this.playlistId = id;
-
     }
 
     public List<String> getVideoIdList() {
@@ -49,16 +41,8 @@ public class Playlist implements Serializable {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public int getPlaylistId() {

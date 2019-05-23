@@ -1,10 +1,10 @@
 package com.example.julienelkaim.testyoutube.toolbox;
 
-public final class StringModifier {
+final class StringModifier {
 
     private StringModifier(){}
 
-    public static String escapeMyUrl(String requested) {
+    static String escapeMyUrl(String requested) {
         return requested
                 .replace("%","%25")
                 .replace("+","%2B")
