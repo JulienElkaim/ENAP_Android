@@ -15,9 +15,8 @@ public class VideoHandler {
 
     public VideoHandler(List<String> myVideoList) {
         mVideoList = myVideoList;
-        mPlayedVideoNumber = -1; //Position debut
+        mPlayedVideoNumber = -1;
 
-        //List<String> supplierNames1 = new ArrayList<String>()
     }
 
 

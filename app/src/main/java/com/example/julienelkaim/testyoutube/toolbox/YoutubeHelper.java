@@ -32,7 +32,7 @@ public final class YoutubeHelper {
         adpt.notifyDataSetChanged();
     }
 
-    /*JSON Parse object when looking by keyword*/
+
     private static String getSEARCHYTBAPIVideoId(JSONObject jsonObject, String switcher) throws JSONException {
         String returnedId = "";
         switch(switcher){
@@ -49,12 +49,7 @@ public final class YoutubeHelper {
     public static String getSEARCHYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("description"); }
     public static String getSEARCHYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"); }
 
-    /*JSON Parse object when looking by video ID
-    public static String getPLAYLISTYTBAPIVideoId(JSONObject jsonObject) throws JSONException {return jsonObject.getString("id"); }
-    public static String getPLAYLISTYTBAPIVideoTitle(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("title"); }
-    public static String getPLAYLISTYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("description"); }
-    public static String getPLAYLISTYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"); }
-    */
+
     public static void loadVideoDetailsInAList(JSONObject jsonObject, ArrayList<VideoDetails> vdl, String switcher) throws JSONException {
 
         switch(switcher){

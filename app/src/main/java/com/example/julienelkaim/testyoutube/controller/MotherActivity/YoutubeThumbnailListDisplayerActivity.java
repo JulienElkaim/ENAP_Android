@@ -6,9 +6,7 @@ public abstract class YoutubeThumbnailListDisplayerActivity extends AppCompatAct
     public boolean mIsListModifiable = false;
     public int countVideoDisplayed = 0;
 
-    public void incrementCountVideoDisplayed(){
-        countVideoDisplayed+=1;
-    }
+    public void incrementCountVideoDisplayed(){ countVideoDisplayed+=1; }
 
-    public void modifyYourList(String videoId){};
+    public void modifyYourList(String videoId){}
 }
