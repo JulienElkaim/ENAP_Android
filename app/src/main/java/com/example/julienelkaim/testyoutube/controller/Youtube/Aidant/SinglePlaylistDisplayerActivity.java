@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube.Aidant;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +15,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.adapter.YoutubeVideoListAdapter;
-import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.model.VideoDetails;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.adapter.Youtube.VideoListAdapter;
+import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.ThumbnailListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.model.Youtube.Video;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,18 +28,18 @@ import java.util.ArrayList;
 
 
 
-public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbnailListDisplayerActivity {
+public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActivity {
 
     private Playlist mPlaylist;
     private ListView mListDisplayer;
-    private YoutubeVideoListAdapter mYoutubeVideoListAdapter;
-    private ArrayList<VideoDetails> mVideoDetailsArrayList;
+    private VideoListAdapter mVideoListAdapter;
+    private ArrayList<Video> mVideoArrayList;
     private String mMyAPIRequestForThisPlaylist;
 
 
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
     @Override
@@ -55,21 +55,21 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         mIsListModifiable = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlyoutube_single_playlist_displayer);
-        mPlaylist = (Playlist) getIntent().getSerializableExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
-        mPlaylist = YoutubeHelper.findPlaylistById(this, mPlaylist.getPlaylistId());
+        mPlaylist = (Playlist) getIntent().getSerializableExtra(GlobalBox.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
+        mPlaylist = YoutubeBox.findPlaylistById(this, mPlaylist.getPlaylistId());
         initializeViews();
 
 
     }
 
     private void initializeViews(){
-        mMyAPIRequestForThisPlaylist = YoutubeHelper.setGoogleApiVideoListDataRetriever(mPlaylist.getVideoIdList()); // Get les infos
+        mMyAPIRequestForThisPlaylist = YoutubeBox.setGoogleApiVideoListDataRetriever(mPlaylist.getVideoIdList()); // Get les infos
 
         TextView playlistTitle = findViewById(R.id.title_playlist);
         playlistTitle.setText(mPlaylist.getTitle());
         mListDisplayer = findViewById(R.id.listOfVideos);
-        mVideoDetailsArrayList = new ArrayList<>();
-        mYoutubeVideoListAdapter = new YoutubeVideoListAdapter(this, mVideoDetailsArrayList);
+        mVideoArrayList = new ArrayList<>();
+        mVideoListAdapter = new VideoListAdapter(this, mVideoArrayList);
         launchVideosResearch();
 
         TextView emptyText = findViewById(android.R.id.empty);
@@ -83,8 +83,8 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
             @Override
             public void onClick(View v) {
 
-                Constants.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
-                Intent i = new Intent( CONTROLYoutubeSinglePlaylistDisplayerActivity.this , YoutubePlaylistResearchActivity.class);
+                GlobalBox.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
+                Intent i = new Intent( SinglePlaylistDisplayerActivity.this , PlaylistResearchActivity.class);
                 startActivity(i);
             }
         });
@@ -98,7 +98,7 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
         vList.remove(videoId);
         mPlaylist.setVideoIdList(vList);
         initializeViews();
-        YoutubeHelper.updateListOfPlaylist(this, mPlaylist, YoutubeHelper.retrieveListOfPlaylist(this));
+        YoutubeBox.updateListOfPlaylist(this, mPlaylist, YoutubeBox.retrieveListOfPlaylist(this));
 
     }
 
@@ -120,10 +120,10 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
                 JSONObject jsonObject = jArray.getJSONObject(i);
 
                 //charger les détails de la video
-               YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList, "ControlPlaylistDisplayer");
+               YoutubeBox.loadVideoDetailsInAList(jsonObject, mVideoArrayList, "ControlPlaylistDisplayer");
             }
 
-            YoutubeHelper.displayAYoutubeVideoList(mListDisplayer, mYoutubeVideoListAdapter);
+            YoutubeBox.displayAYoutubeVideoList(mListDisplayer, mVideoListAdapter);
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 
 
-public class MainDispatcherActivity extends AppCompatActivity {
+public class DispatcherActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
 
@@ -25,7 +25,7 @@ public class MainDispatcherActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
 
         // Authentification
 
@@ -38,7 +38,7 @@ public class MainDispatcherActivity extends AppCompatActivity {
 
     public void sendToStart(){
 
-        Intent startIntent = new Intent(MainDispatcherActivity.this,StartAuthActivity.class);
+        Intent startIntent = new Intent(DispatcherActivity.this, AuthActivity.class);
         startActivity(startIntent);
         finish();
 
@@ -56,7 +56,7 @@ public class MainDispatcherActivity extends AppCompatActivity {
         ytbeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                Intent myGame = new Intent(MainDispatcherActivity.this, YoutubeDispatcherActivity.class);
+                Intent myGame = new Intent(DispatcherActivity.this, com.example.julienelkaim.testyoutube.controller.Youtube.DispatcherActivity.class);
                 startActivity(myGame);
             }
         });

@@ -9,12 +9,12 @@ import java.util.Objects;
 
 import static java.sql.Types.NULL;
 
-public final class Constants {
+public final class GlobalBox {
 
 
 
 
-    private Constants() {
+    private GlobalBox() {
         // restrict instantiation
     }
     public static void windowAndSystemSettings(Activity myActivity){
@@ -39,9 +39,9 @@ public final class Constants {
     }
     public static final String API_KEY = "AIzaSyAgCH9R0s_c6OH2bW2DZ47Nv7VqVMV9Qdk";
     public static final String YOUTUBE_VIDEO_ID_FROM_RESEARCH = "recuperer id de la video clicked dans activity de recherche";
-    static final String YOUTUBE_PLAYLIST_CURRENTLY = "Ma playlist actuellement saved dans lapplication";
-    static final String YOUTUBE_LIST_OF_PLAYLIST_SAVED = "List of playlist saved by the user.";
-    static final String YOUTUBE_SHARED_PREFERENCES = "YOUTUBE";
+    public static final String YOUTUBE_PLAYLIST_CURRENTLY = "Ma playlist actuellement saved dans lapplication";
+    public static final String YOUTUBE_LIST_OF_PLAYLIST_SAVED = "List of playlist saved by the user.";
+    public static final String YOUTUBE_SHARED_PREFERENCES = "YOUTUBE";
     public static final String YOUTUBE_ACTUAL_MODIFIED_PLAYLIST = "Playlist currently displayed in control. In modification process.";
     public static int YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = NULL;
 

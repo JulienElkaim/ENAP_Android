@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.adapter;
+package com.example.julienelkaim.testyoutube.adapter.Youtube;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,40 +11,40 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.controller.YoutubePlayListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.model.VideoDetails;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
+import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.ThumbnailListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlayListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Video;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 
 
-public class YoutubeVideoListAdapter extends BaseAdapter {
+public class VideoListAdapter extends BaseAdapter {
 
-    private YoutubeThumbnailListDisplayerActivity mActivity;
-    private ArrayList<VideoDetails> mVideoDetailsArrayList;
+    private ThumbnailListDisplayerActivity mActivity;
+    private ArrayList<Video> mVideoArrayList;
     private LayoutInflater mLayoutInflater;
 
 
 
-    public YoutubeVideoListAdapter(YoutubeThumbnailListDisplayerActivity activity, ArrayList<VideoDetails> videoDetailsArrayList){
+    public VideoListAdapter(ThumbnailListDisplayerActivity activity, ArrayList<Video> videoArrayList){
         mActivity = activity;
-        mVideoDetailsArrayList = videoDetailsArrayList;
+        mVideoArrayList = videoArrayList;
     }
 
 
 
     @Override
     public int getCount() {
-        return mVideoDetailsArrayList.size();
+        return mVideoArrayList.size();
     }
 
 
 
     @Override
     public Object getItem(int position) {
-        return mVideoDetailsArrayList.get(position);
+        return mVideoArrayList.get(position);
     }
 
 
@@ -64,29 +64,29 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         if(convertView == null){    convertView = mLayoutInflater.inflate(R.layout.custom_video_item,null); }
 
 
-        final VideoDetails videoDetails = mVideoDetailsArrayList.get(position);
+        final Video video = mVideoArrayList.get(position);
 
         ImageView imageView = convertView.findViewById(R.id.thumbnailsImageView);
-        Picasso.get().load(videoDetails.getUrl()).into(imageView);
+        Picasso.get().load(video.getUrl()).into(imageView);
 
         TextView textView = convertView.findViewById(R.id.video_title);
-        textView.setText(videoDetails.getTitle());
+        textView.setText(video.getTitle());
 
         TextView secondTextView = convertView.findViewById(R.id.video_description);
-        secondTextView.setText(videoDetails.getDescription());
+        secondTextView.setText(video.getDescription());
 
         LinearLayout linearLayout = convertView.findViewById(R.id.root);
 
-        final Intent i = new Intent(mActivity, YoutubePlayListDisplayerActivity.class);
-        i.putExtra(Constants.YOUTUBE_VIDEO_ID_FROM_RESEARCH,videoDetails.getVideoId());
+        final Intent i = new Intent(mActivity, PlayListDisplayerActivity.class);
+        i.putExtra(GlobalBox.YOUTUBE_VIDEO_ID_FROM_RESEARCH, video.getVideoId());
 
         if(mActivity.mIsListModifiable){
             //Single playlist display part    =================== DIFFERENT INTENT QUE DANS LE ELSE !!
-            addASupprButton(mActivity,convertView, videoDetails);
+            addASupprButton(mActivity,convertView, video);
             linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE, Constants.YOUTUBE_DISPLAYER_MODE_VIEW);
+                    i.putExtra(GlobalBox.YOUTUBE_DISPLAYER_MODE, GlobalBox.YOUTUBE_DISPLAYER_MODE_VIEW);
                     mActivity.startActivity(i);
                 }
             });
@@ -95,7 +95,7 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
             linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    i.putExtra(Constants.YOUTUBE_DISPLAYER_MODE,  Constants.YOUTUBE_DISPLAYER_MODE_ADD);
+                    i.putExtra(GlobalBox.YOUTUBE_DISPLAYER_MODE,  GlobalBox.YOUTUBE_DISPLAYER_MODE_ADD);
                     mActivity.startActivity(i);
                 }
             });
@@ -105,7 +105,7 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void addASupprButton(final YoutubeThumbnailListDisplayerActivity activity, View convertView, final VideoDetails videoDetails) {
+    private void addASupprButton(final ThumbnailListDisplayerActivity activity, View convertView, final Video video) {
 
 
         ImageButton supprBtn = new ImageButton(activity);
@@ -114,7 +114,7 @@ public class YoutubeVideoListAdapter extends BaseAdapter {
         supprBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                activity.modifyYourList(videoDetails.getVideoId());
+                activity.modifyYourList(video.getVideoId());
                 activity.finish();
                 activity.startActivity(activity.getIntent()); //Relancer l'activité elle même
 

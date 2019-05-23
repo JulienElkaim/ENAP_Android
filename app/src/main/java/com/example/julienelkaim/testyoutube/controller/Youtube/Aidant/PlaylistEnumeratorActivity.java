@@ -1,7 +1,6 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube.Aidant;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,16 +9,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.adapter.PlaylistListAdapter;
-import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubePlaylistListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.adapter.Youtube.PlaylistListAdapter;
+import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.PlaylistListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistListDisplayerActivity {
+public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
 
 
     ListView mListView;
@@ -30,7 +28,7 @@ public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistLis
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
 
 
     }
@@ -38,7 +36,7 @@ public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistLis
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
 
     }
 
@@ -68,19 +66,19 @@ public class CONTROLYoutubePlaylistEnumeratorActivity extends YoutubePlaylistLis
     }
 
     private void launchCreatePlaylistActivity() {
-        startActivity(new Intent(this, YOUTUBECONTROLPlaylistCreatorActivity.class));
+        startActivity(new Intent(this, PlaylistCreatorActivity.class));
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        YoutubeHelper.saveListOfPlaylist(this , mPlaylistArrayList);
+        YoutubeBox.saveListOfPlaylist(this , mPlaylistArrayList);
     }
 
 
     @Override
     public void setMyPlaylistList() {
-        mPlaylistArrayList = YoutubeHelper.retrieveListOfPlaylist(this);
+        mPlaylistArrayList = YoutubeBox.retrieveListOfPlaylist(this);
         mPlaylistListAdapter = new PlaylistListAdapter(this, mPlaylistArrayList);
 
         mListView.setAdapter(mPlaylistListAdapter);

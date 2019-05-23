@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +7,18 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlaylistEnumeratorActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Child.DisplayerActivity;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 
-public class YoutubeDispatcherActivity extends AppCompatActivity {
+public class DispatcherActivity extends AppCompatActivity {
     ImageButton YtbeChildDplButton;
     ImageButton YtbePlaylistsrchButton;
 
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
     @Override
@@ -32,7 +34,7 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Se connecter a l'activité lecteur youtube
-                Intent myGame = new Intent(YoutubeDispatcherActivity.this, YoutubeChildDisplayerActivity.class);
+                Intent myGame = new Intent(DispatcherActivity.this, DisplayerActivity.class);
                 startActivity(myGame);
             }
         });
@@ -40,7 +42,7 @@ public class YoutubeDispatcherActivity extends AppCompatActivity {
         YtbePlaylistsrchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myPlaylists = new Intent(YoutubeDispatcherActivity.this, CONTROLYoutubePlaylistEnumeratorActivity.class);
+                Intent myPlaylists = new Intent(DispatcherActivity.this, PlaylistEnumeratorActivity.class);
                 startActivity(myPlaylists);
 
             }

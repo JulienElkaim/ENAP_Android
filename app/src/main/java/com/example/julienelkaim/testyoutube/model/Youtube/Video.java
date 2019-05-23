@@ -1,10 +1,10 @@
-package com.example.julienelkaim.testyoutube.model;
+package com.example.julienelkaim.testyoutube.model.Youtube;
 
-public class VideoDetails {
+public class Video {
 
     private String videoId, title, description, url;
 
-    public VideoDetails(String videoId, String title, String description, String url) {
+    public Video(String videoId, String title, String description, String url) {
         this.videoId = videoId;
         this.title = title;
         this.description = description;

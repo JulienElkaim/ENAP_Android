@@ -12,24 +12,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.YOUTUBECONTROLPlaylistCreatorActivity"></activity>
-        <activity android:name=".controller.CONTROLYoutubeSinglePlaylistDisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorActivity"></activity>
+        <activity android:name=".controller.Youtube.Aidant.SinglePlaylistDisplayerActivity" />
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.RegisterActivity" />
-        <activity android:name=".controller.StartAuthActivity" />
-        <activity android:name=".controller.YoutubeChildDisplayerActivity" />
-        <activity android:name=".controller.CONTROLYoutubePlaylistEnumeratorActivity" />
-        <activity android:name=".controller.MainDispatcherActivity">
+        <activity android:name=".controller.AuthActivity" />
+        <activity android:name=".controller.Youtube.Child.DisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlaylistEnumeratorActivity" />
+        <activity android:name=".controller.DispatcherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.YoutubePlaylistResearchActivity" />
-        <activity android:name=".controller.YoutubePlayListDisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlaylistResearchActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlayListDisplayerActivity" />
         <activity
-            android:name=".controller.YoutubeDispatcherActivity"
+            android:name=".controller.Youtube.DispatcherActivity"
             android:label="@string/title_activity_youtube_dispatcher"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>

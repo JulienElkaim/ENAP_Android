@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.adapter;
+package com.example.julienelkaim.testyoutube.adapter.Youtube;
 
 
 import android.annotation.SuppressLint;
@@ -14,22 +14,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.CONTROLYoutubeSinglePlaylistDisplayerActivity;
-import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubePlaylistListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.SinglePlaylistDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.PlaylistListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 import java.util.ArrayList;
 
 
 public class PlaylistListAdapter extends BaseAdapter {
 
-    private YoutubePlaylistListDisplayerActivity mActivity;
+    private PlaylistListDisplayerActivity mActivity;
     private ArrayList<Playlist> mPlaylistArrayList;
     private LayoutInflater mLayoutInflater;
 
 
-    public PlaylistListAdapter(YoutubePlaylistListDisplayerActivity activity, ArrayList<Playlist> PlaylistArrayList){
+    public PlaylistListAdapter(PlaylistListDisplayerActivity activity, ArrayList<Playlist> PlaylistArrayList){
         mActivity = activity;
         mPlaylistArrayList = PlaylistArrayList;
     }
@@ -76,8 +76,8 @@ public class PlaylistListAdapter extends BaseAdapter {
             public void onClick(View v) {
 
 
-                Intent displayThisPlaylist = new Intent(mActivity, CONTROLYoutubeSinglePlaylistDisplayerActivity.class) ;
-                displayThisPlaylist.putExtra(Constants.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
+                Intent displayThisPlaylist = new Intent(mActivity, SinglePlaylistDisplayerActivity.class) ;
+                displayThisPlaylist.putExtra(GlobalBox.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
                 mActivity.startActivity(displayThisPlaylist);
 
             }
@@ -91,7 +91,7 @@ public class PlaylistListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Save my playlist in preferences as the current playlist
-                YoutubeHelper.sendPlaylistToYourChild(mActivity,mPlaylist);
+                YoutubeBox.sendPlaylistToYourChild(mActivity,mPlaylist);
                 Toast.makeText(mActivity, "Playlist envoyée à l'enfant!", Toast.LENGTH_SHORT).show();
 
             }
@@ -102,7 +102,7 @@ public class PlaylistListAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 //Save my playlist in preferences as the current playlist, and update listview
-                YoutubeHelper.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
+                YoutubeBox.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
                 mActivity.finish();
                 mActivity.startActivity(mActivity.getIntent());
 

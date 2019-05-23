@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 
-public class StartAuthActivity extends AppCompatActivity {
+public class AuthActivity extends AppCompatActivity {
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
     
@@ -30,7 +30,7 @@ public class StartAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent registerIntent = new Intent(StartAuthActivity.this, RegisterActivity.class);
+                Intent registerIntent = new Intent(AuthActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
                 finish();
 
@@ -43,7 +43,7 @@ public class StartAuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent connexionIntent = new Intent(StartAuthActivity.this, LoginActivity.class);
+                Intent connexionIntent = new Intent(AuthActivity.this, LoginActivity.class);
                 startActivity(connexionIntent);
                 finish();
 

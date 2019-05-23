@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
 
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     mLoginProgress.dismiss();
 
-                    Intent mainIntent = new Intent(LoginActivity.this, MainDispatcherActivity.class);
+                    Intent mainIntent = new Intent(LoginActivity.this, DispatcherActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainIntent);
                     finish();

@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube.Aidant;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,13 +8,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 
 import java.util.ArrayList;
 
-public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
+public class PlaylistCreatorActivity extends AppCompatActivity {
     Button mButtonCreate;
     EditText mEditTextTitle;
     EditText mEditTextDescription;
@@ -22,7 +22,7 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
     @Override
@@ -38,14 +38,14 @@ public class YOUTUBECONTROLPlaylistCreatorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(mEditTextDescription.getText().toString().equals("") || mEditTextTitle.getText().toString().equals("") ){
-                    Toast.makeText(YOUTUBECONTROLPlaylistCreatorActivity.this, "Veuillez remplir les champs titre et description.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlaylistCreatorActivity.this, "Veuillez remplir les champs titre et description.", Toast.LENGTH_SHORT).show();
                 }else{
                     //Creer la playlist et l'ajouter
-                    ArrayList<Playlist> mesPlaylists = YoutubeHelper.retrieveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this);
+                    ArrayList<Playlist> mesPlaylists = YoutubeBox.retrieveListOfPlaylist(PlaylistCreatorActivity.this);
                     mesPlaylists.add(
-                            new Playlist(YoutubeHelper.provideUniqueId(YOUTUBECONTROLPlaylistCreatorActivity.this), mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
+                            new Playlist(YoutubeBox.provideUniqueId(PlaylistCreatorActivity.this), mEditTextTitle.getText().toString(),mEditTextDescription.getText().toString() )
                     );
-                    YoutubeHelper.saveListOfPlaylist(YOUTUBECONTROLPlaylistCreatorActivity.this ,mesPlaylists);
+                    YoutubeBox.saveListOfPlaylist(PlaylistCreatorActivity.this ,mesPlaylists);
                     onBackPressed();
 
 

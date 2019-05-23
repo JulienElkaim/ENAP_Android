@@ -1,21 +1,21 @@
-package com.example.julienelkaim.testyoutube.model;
+package com.example.julienelkaim.testyoutube.model.Youtube;
 
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.YoutubeChildDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Child.DisplayerActivity;
 
 import java.util.List;
 
 
 
-public class VideoHandler {
+public class VideoListManager {
 
     private List<String> mVideoList;
     private int mPlayedVideoNumber;
 
-    public VideoHandler(List<String> myVideoList) {
+    public VideoListManager(List<String> myVideoList) {
         mVideoList = myVideoList;
         mPlayedVideoNumber = -1;
 
@@ -44,7 +44,7 @@ public class VideoHandler {
         return (mPlayedVideoNumber <= 0)? null:mVideoList.get(--mPlayedVideoNumber);
     }
 
-    public ImageView createPlaylistHeader(String color, YoutubeChildDisplayerActivity context) {
+    public ImageView createPlaylistHeader(String color, DisplayerActivity context) {
         ImageView addedChild = new ImageView(context);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);

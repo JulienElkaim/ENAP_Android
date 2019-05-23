@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.model;
+package com.example.julienelkaim.testyoutube.model.Youtube;
 
 import java.io.Serializable;
 import java.util.Collections;

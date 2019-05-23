@@ -1,31 +1,26 @@
-package com.example.julienelkaim.testyoutube.toolbox;
-import android.annotation.SuppressLint;
+package com.example.julienelkaim.testyoutube.toolbox.Youtube;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.ListView;
-
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.model.VideoDetails;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.model.Youtube.Video;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.StringBox;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 
 import static android.content.Context.MODE_PRIVATE;
 
-public final class YoutubeHelper {
+public final class YoutubeBox {
 
-    private YoutubeHelper(){}
+    private YoutubeBox(){}
 
     public static void displayAYoutubeVideoList(ListView lv, android.widget.BaseAdapter adpt) {
         lv.setAdapter(adpt);
@@ -45,27 +40,27 @@ public final class YoutubeHelper {
         }
         return returnedId;
     }
-    public static String getSEARCHYTBAPIVideoTitle(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("title"); }
-    public static String getSEARCHYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("description"); }
-    public static String getSEARCHYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"); }
+    private static String getSEARCHYTBAPIVideoTitle(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("title"); }
+    private static String getSEARCHYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("description"); }
+    private static String getSEARCHYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"); }
 
 
-    public static void loadVideoDetailsInAList(JSONObject jsonObject, ArrayList<VideoDetails> vdl, String switcher) throws JSONException {
+    public static void loadVideoDetailsInAList(JSONObject jsonObject, ArrayList<Video> vdl, String switcher) throws JSONException {
 
         switch(switcher){
             case "ControlPlaylistDisplayer":
-                vdl.add(new VideoDetails(
-                        YoutubeHelper.getSEARCHYTBAPIVideoId(jsonObject,"playlist"),
-                        YoutubeHelper.getSEARCHYTBAPIVideoTitle(jsonObject),
-                        YoutubeHelper.getSEARCHYTBAPIVideoDescription(jsonObject),
-                        YoutubeHelper.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
+                vdl.add(new Video(
+                        YoutubeBox.getSEARCHYTBAPIVideoId(jsonObject,"playlist"),
+                        YoutubeBox.getSEARCHYTBAPIVideoTitle(jsonObject),
+                        YoutubeBox.getSEARCHYTBAPIVideoDescription(jsonObject),
+                        YoutubeBox.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
                 break;
             case "ControlSearchVideo":
-                vdl.add(new VideoDetails(
-                        YoutubeHelper.getSEARCHYTBAPIVideoId(jsonObject,"search"),
-                        YoutubeHelper.getSEARCHYTBAPIVideoTitle(jsonObject),
-                        YoutubeHelper.getSEARCHYTBAPIVideoDescription(jsonObject),
-                        YoutubeHelper.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
+                vdl.add(new Video(
+                        YoutubeBox.getSEARCHYTBAPIVideoId(jsonObject,"search"),
+                        YoutubeBox.getSEARCHYTBAPIVideoTitle(jsonObject),
+                        YoutubeBox.getSEARCHYTBAPIVideoDescription(jsonObject),
+                        YoutubeBox.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
                 break;
 
         }
@@ -81,15 +76,15 @@ public final class YoutubeHelper {
         return "https://www.googleapis.com/youtube/v3/search?" +
                 "part="+"snippet"+
                 "&maxResults="+ nbResults +
-                "&q="+ StringModifier.escapeMyUrl(requested) +
-                "&key=" + Constants.API_KEY;
+                "&q="+ StringBox.escapeMyUrl(requested) +
+                "&key=" + GlobalBox.API_KEY;
     }
 
     public static String setGoogleApiVideoListDataRetriever (List<String> listOfVideoid){
         return "https://www.googleapis.com/youtube/v3/videos?" +
                 "part=snippet%2CcontentDetails%2Cstatistics" +
                 "&id="+ transformVideoIdListIntoVideoIdAPIListUrl(listOfVideoid) +
-                "&key=" +Constants.API_KEY;
+                "&key=" + GlobalBox.API_KEY;
     }
     private static String transformVideoIdListIntoVideoIdAPIListUrl( List<String> listOfVideoId){
         StringBuilder concatenator = new StringBuilder();
@@ -101,39 +96,27 @@ public final class YoutubeHelper {
             }
 
         }
-        return  StringModifier.escapeMyUrl(concatenator.toString());
-    }
-
-    public static <T> List<T> setListFromSet(Set<T> set)
-    {
-
-        if (set == null){   return new ArrayList<T>();}
-        else{               return new ArrayList<>(set);}
-
+        return StringBox.escapeMyUrl(concatenator.toString());
     }
 
 
-    @SuppressLint("ApplySharedPref")
-    public static HashSet<String> setSetFromList(List<String> videoList) {
-        if (videoList == null){     return new HashSet<>();}
-        else{                       return new HashSet<>(videoList);}
 
-    }
+
 
     public static void sendPlaylistToYourChild(Activity activity, Playlist mPlaylist) {
-        SharedPreferences mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
+        SharedPreferences mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(mPlaylist);
-        prefsEditor.putString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, json);
-        prefsEditor.commit();
+        prefsEditor.putString(GlobalBox.YOUTUBE_PLAYLIST_CURRENTLY, json);
+        prefsEditor.apply();
     }
 
     public static Playlist retrieveCurrentPlaylist(Activity activity) {
 
-        SharedPreferences  mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
+        SharedPreferences  mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = mPrefs.getString(Constants.YOUTUBE_PLAYLIST_CURRENTLY, "");
+        String json = mPrefs.getString(GlobalBox.YOUTUBE_PLAYLIST_CURRENTLY, "");
 
 
         return gson.fromJson(json, Playlist.class);
@@ -155,25 +138,26 @@ public final class YoutubeHelper {
 
     public static void saveListOfPlaylist(Activity activity, ArrayList<Playlist> mPlaylistArrayList) {
 
-        SharedPreferences mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
+        SharedPreferences mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(mPlaylistArrayList);
-        prefsEditor.putString(Constants.YOUTUBE_LIST_OF_PLAYLIST_SAVED, json);
-        prefsEditor.commit();
+        prefsEditor.putString(GlobalBox.YOUTUBE_LIST_OF_PLAYLIST_SAVED, json);
+        prefsEditor.apply();
 
     }
 
     public static ArrayList<Playlist> retrieveListOfPlaylist(Activity activity) {
 
         ArrayList<Playlist> playlists;
-        SharedPreferences  mPrefs = activity.getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES , MODE_PRIVATE);
+        SharedPreferences  mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES , MODE_PRIVATE);
         Gson gson = new Gson();
-        String json = mPrefs.getString(Constants.YOUTUBE_LIST_OF_PLAYLIST_SAVED, "");
+        String json = mPrefs.getString(GlobalBox.YOUTUBE_LIST_OF_PLAYLIST_SAVED, "");
 
+        assert json != null;
         if (json.equals("") ){
             playlists = new ArrayList<>();
-            YoutubeHelper.defaultListOfPlaylists(playlists);
+            YoutubeBox.defaultListOfPlaylists(playlists);
         }else {
 
             Type type = new TypeToken<ArrayList<Playlist>>() {}.getType();

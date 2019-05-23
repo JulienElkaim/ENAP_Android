@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube.Aidant;
 
 
 import android.os.Bundle;
@@ -15,12 +15,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.julienelkaim.testyoutube.adapter.YoutubeVideoListAdapter;
+import com.example.julienelkaim.testyoutube.adapter.Youtube.VideoListAdapter;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.MotherActivity.YoutubeThumbnailListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.model.VideoDetails;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.ThumbnailListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Video;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,13 +29,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 
-public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplayerActivity {
+public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
 
 
     EditText mInputArea;
     ListView mListView;
-    ArrayList<VideoDetails> mVideoDetailsArrayList;
-    YoutubeVideoListAdapter mYoutubeVideoListAdapter;
+    ArrayList<Video> mVideoArrayList;
+    VideoListAdapter mVideoListAdapter;
     private String mSearchUrl;
     private String mBufferedSearch="";
     public final int NB_RESULTS = 20;
@@ -43,7 +43,7 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
 
 
     }
@@ -52,7 +52,7 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
 
     }
 
@@ -79,7 +79,7 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
                     }
 
                     mBufferedSearch = mInputArea.getText().toString();
-                    mSearchUrl= YoutubeHelper.setGoogleApiSearchUrl(mBufferedSearch, NB_RESULTS);
+                    mSearchUrl= YoutubeBox.setGoogleApiSearchUrl(mBufferedSearch, NB_RESULTS);
                     launchVideosResearch();
                 }
             }
@@ -87,8 +87,8 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
     }
 
     private void setListViewAndListAsset() {
-        mVideoDetailsArrayList = new ArrayList<>();
-        mYoutubeVideoListAdapter = new YoutubeVideoListAdapter(this, mVideoDetailsArrayList);
+        mVideoArrayList = new ArrayList<>();
+        mVideoListAdapter = new VideoListAdapter(this, mVideoArrayList);
 
     }
 
@@ -112,10 +112,10 @@ public class YoutubePlaylistResearchActivity extends YoutubeThumbnailListDisplay
                 JSONObject jsonObject = jArray.getJSONObject(i);
 
                 //charger les détails de la video
-                if(jsonObject.getJSONObject("id").toString().contains("videoId")){ YoutubeHelper.loadVideoDetailsInAList(jsonObject,mVideoDetailsArrayList, "ControlSearchVideo"); }
+                if(jsonObject.getJSONObject("id").toString().contains("videoId")){ YoutubeBox.loadVideoDetailsInAList(jsonObject, mVideoArrayList, "ControlSearchVideo"); }
             }
 
-            YoutubeHelper.displayAYoutubeVideoList(mListView, mYoutubeVideoListAdapter);
+            YoutubeBox.displayAYoutubeVideoList(mListView, mVideoListAdapter);
 
         } catch (JSONException e) {
             e.printStackTrace();

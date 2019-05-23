@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Youtube.Child;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,10 +6,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.model.Playlist;
-import com.example.julienelkaim.testyoutube.model.VideoHandler;
-import com.example.julienelkaim.testyoutube.toolbox.Constants;
-import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
+import com.example.julienelkaim.testyoutube.controller.DispatcherActivity;
+import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
+import com.example.julienelkaim.testyoutube.model.Youtube.VideoListManager;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
+import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -18,12 +19,12 @@ import java.util.List;
 
 
 
-public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
-    /*SHA1: "F7:E1:3F:C3:1E:91:1A:2D:BB:65:AA:B7:D2:69:8C:7A:14:14:2D:4F" AUTH key */
+public class DisplayerActivity extends YouTubeBaseActivity {
+
     //================================ Params ================================
     private YouTubePlayer mYouTubePlayer; // YouTube Player.
     private YouTubePlayerView mYouTubePlayerView; // View encapsulating YouTube Player.
-    private VideoHandler mVideoHandler;
+    private VideoListManager mVideoListManager;
     private LinearLayout mLinearLayout;
     private ImageButton mPlayPauseButton;
 
@@ -60,12 +61,12 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         @Override
         public void onLoaded(String s) {
             mYouTubePlayerView.setVisibility(View.VISIBLE);
-            headerHandler(mLinearLayout, mVideoHandler);
+            headerHandler(mLinearLayout, mVideoListManager);
         }
 
         @Override
         public void onAdStarted() {
-            //mYouTubePlayer.loadVideo(mVideoHandler.getPlayingVideoId()); //ACTIVER SI PUB PRESENTE
+
         }
 
         @Override
@@ -76,7 +77,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         @Override
         public void onVideoEnded() {
             mYouTubePlayerView.setVisibility(View.INVISIBLE); //Contrer le problème des suggestions de fin
-            mYouTubePlayer.loadVideo(mVideoHandler.nextVideo());
+            mYouTubePlayer.loadVideo(mVideoListManager.nextVideo());
         }
 
         @Override
@@ -91,7 +92,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Constants.windowAndSystemSettings(this);
+        GlobalBox.windowAndSystemSettings(this);
     }
 
 
@@ -107,16 +108,16 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         initializeLinksWithView();// Créer le lien avec les éléments graphique mutables.
         initializeButtonsOnView();// Initialise les comportements de click
 
-        Playlist mPlaylist = YoutubeHelper.retrieveCurrentPlaylist(this);
+        Playlist mPlaylist = YoutubeBox.retrieveCurrentPlaylist(this);
         List<String> videoList = mPlaylist.getVideoIdList();
 
 
         // Autre action
 
-        mVideoHandler = new VideoHandler(videoList);
+        mVideoListManager = new VideoListManager(videoList);
 
         initializePlayer();
-        headerHandler(mLinearLayout, mVideoHandler);
+        headerHandler(mLinearLayout, mVideoListManager);
     }
 
 
@@ -164,7 +165,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myGame = new Intent(YoutubeChildDisplayerActivity.this, MainDispatcherActivity.class);
+                Intent myGame = new Intent(DisplayerActivity.this, DispatcherActivity.class);
                 startActivity(myGame);
             }
         });
@@ -175,7 +176,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      * Initialize the player with API and Player Params by default.
      */
     public void initializePlayer() {
-        mYouTubePlayerView.initialize(Constants.API_KEY,
+        mYouTubePlayerView.initialize(GlobalBox.API_KEY,
                 mPlayerInitializedListener); // Envoyer l'API key à Youtube, et réagir avec mPlayerInitializedListener si Success/Fail
     }
 
@@ -189,7 +190,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
 
         mYouTubePlayer.setPlayerStyle(YouTubePlayer.PlayerStyle.CHROMELESS);/*YouTubePlayer.PlayerStyle.MINIMAL*/
         mYouTubePlayer.setPlayerStateChangeListener(mPlayerStateChangeListener);
-        mYouTubePlayer.loadVideo(mVideoHandler.nextVideo());
+        mYouTubePlayer.loadVideo(mVideoListManager.nextVideo());
     }
 
 
@@ -232,8 +233,8 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      * Load the previous video of the playlist.
      */
     private void goToPreviousVideo() {
-        if (mVideoHandler.getPlayingVideoIndex() >= 1) {
-            mYouTubePlayer.loadVideo(mVideoHandler.previousVideo());
+        if (mVideoListManager.getPlayingVideoIndex() >= 1) {
+            mYouTubePlayer.loadVideo(mVideoListManager.previousVideo());
         }
     }
 
@@ -242,15 +243,15 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
      * Load the next video of the playlist.
      */
     private void goToNextVideo() {
-        if (mVideoHandler.getPlayingVideoIndex() < mVideoHandler.getVideoList().size() - 1)
-            mYouTubePlayer.loadVideo(mVideoHandler.nextVideo());
+        if (mVideoListManager.getPlayingVideoIndex() < mVideoListManager.getVideoList().size() - 1)
+            mYouTubePlayer.loadVideo(mVideoListManager.nextVideo());
     }
 
 
     /**
      * Handle the header to fit with playlist datas.
      */
-    public void headerHandler(LinearLayout lt, VideoHandler vdHandler) {
+    public void headerHandler(LinearLayout lt, VideoListManager vdHandler) {
         lt.removeAllViews();
         int nbOfVideos = vdHandler.getVideoList().size();
         int actuallyPlaying = vdHandler.getPlayingVideoIndex();
