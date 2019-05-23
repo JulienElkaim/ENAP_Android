@@ -18,15 +18,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-
     private TextInputLayout mLoginEmail;
     private TextInputLayout mLoginPassword;
-
-    private Button mConnexionButton;
-
     private ProgressDialog mLoginProgress;
 
     @Override
@@ -46,17 +44,17 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginProgress = new ProgressDialog(this);
 
-        mLoginEmail = (TextInputLayout) findViewById(R.id.insertEmail);
-        mLoginPassword = (TextInputLayout) findViewById(R.id.insertPassword);
+        mLoginEmail = findViewById(R.id.insertEmail);
+        mLoginPassword = findViewById(R.id.insertPassword);
 
-        mConnexionButton = (Button) findViewById(R.id.connexion_Button);
+        Button connexionButton = findViewById(R.id.connexion_Button);
 
-        mConnexionButton.setOnClickListener(new View.OnClickListener() {
+        connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String email = mLoginEmail.getEditText().getText().toString();
-                String password = mLoginPassword.getEditText().getText().toString();
+                String email = Objects.requireNonNull(mLoginEmail.getEditText()).getText().toString();
+                String password = Objects.requireNonNull(mLoginPassword.getEditText()).getText().toString();
 
                 if ( !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ){
 

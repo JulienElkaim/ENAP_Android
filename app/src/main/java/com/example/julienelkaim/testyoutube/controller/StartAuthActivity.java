@@ -11,9 +11,6 @@ import com.example.julienelkaim.testyoutube.toolbox.Constants;
 
 public class StartAuthActivity extends AppCompatActivity {
 
-    private Button registerButton;
-    private Button connexionButton;
-
 
     @Override
     protected void onStart() {
@@ -28,7 +25,7 @@ public class StartAuthActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_auth);
 
         // Création de compte
-        registerButton = findViewById(R.id.registerButton);
+        Button registerButton = findViewById(R.id.registerButton);
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +38,7 @@ public class StartAuthActivity extends AppCompatActivity {
         });
 
         // S'identifier
-        connexionButton = findViewById(R.id.connexionButton);
+        Button connexionButton = findViewById(R.id.connexionButton);
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

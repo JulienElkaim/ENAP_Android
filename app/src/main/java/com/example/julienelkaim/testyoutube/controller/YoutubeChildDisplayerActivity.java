@@ -1,13 +1,10 @@
 package com.example.julienelkaim.testyoutube.controller;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.model.VideoHandler;
@@ -17,10 +14,8 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
-import com.google.gson.Gson;
-
-import java.util.Arrays;
 import java.util.List;
+
 
 
 public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
@@ -31,7 +26,7 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
     private VideoHandler mVideoHandler;
     private LinearLayout mLinearLayout;
     private ImageButton mPlayPauseButton;
-    private SharedPreferences mPreferences;
+
 
     //================================ LISTENER -> YouTubePlayerView: On Click ================================
     private YouTubePlayerView.OnClickListener mYouTubePlayerViewOnClickListener = new View.OnClickListener() {
@@ -112,8 +107,6 @@ public class YoutubeChildDisplayerActivity extends YouTubeBaseActivity {
         initializeLinksWithView();// Créer le lien avec les éléments graphique mutables.
         initializeButtonsOnView();// Initialise les comportements de click
 
-        //Recuperer la playlist actuelle
-        SharedPreferences  mPrefs = getSharedPreferences(Constants.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         Playlist mPlaylist = YoutubeHelper.retrieveCurrentPlaylist(this);
         List<String> videoList = mPlaylist.getVideoIdList();
 

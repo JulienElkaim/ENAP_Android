@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Objects;
+
 public class RegisterActivity extends AppCompatActivity {
 
     public TextInputLayout mDisplayName;
@@ -58,9 +60,9 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String display_name = mDisplayName.getEditText().getText().toString();
-                String email = mEmail.getEditText().getText().toString();
-                String password = mPassword.getEditText().getText().toString();
+                String display_name = Objects.requireNonNull(mDisplayName.getEditText()).getText().toString();
+                String email = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
+                String password = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
 
                 if ( !TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ){
                     mRegProgress.setTitle("Enregistrement de l'utilisateur");
@@ -74,7 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(String display_name, String email, String password) {
+    private void registerUser(final String display_name, String email, String password) {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -86,6 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     Intent mainIntent = new Intent(RegisterActivity.this, MainDispatcherActivity.class);
                     startActivity(mainIntent);
+                    Toast.makeText(RegisterActivity.this, "Bievenue, "+display_name+" !", Toast.LENGTH_SHORT).show();
                     finish();
 
                 } else {

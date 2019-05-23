@@ -1,8 +1,6 @@
 package com.example.julienelkaim.testyoutube.controller;
 
 import android.content.Intent;
-import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,7 +8,6 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -24,15 +21,12 @@ import com.example.julienelkaim.testyoutube.model.Playlist;
 import com.example.julienelkaim.testyoutube.model.VideoDetails;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.example.julienelkaim.testyoutube.toolbox.YoutubeHelper;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+
+
 
 public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbnailListDisplayerActivity {
 
@@ -41,8 +35,6 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
     private YoutubeVideoListAdapter mYoutubeVideoListAdapter;
     private ArrayList<VideoDetails> mVideoDetailsArrayList;
     private String mMyAPIRequestForThisPlaylist;
-    private ImageButton mAddButton;
-
 
 
     protected void onStart() {
@@ -86,8 +78,8 @@ public class CONTROLYoutubeSinglePlaylistDisplayerActivity extends YoutubeThumbn
             if (mPlaylist.getVideoIdList().size() != 0) { ((ViewGroup) emptyText.getParent()).removeView(emptyText);}
         }
 
-        mAddButton = findViewById(R.id.add_button_video);
-        mAddButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton addButton = findViewById(R.id.add_button_video);
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

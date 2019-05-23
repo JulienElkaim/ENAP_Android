@@ -4,23 +4,18 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.toolbox.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
+
 public class MainDispatcherActivity extends AppCompatActivity {
-    private ImageButton YtbeButton;
-    private ImageButton mChenapanButton;
     private FirebaseAuth mAuth;
-    private Button mLogOut;
 
 
     @Override
@@ -57,8 +52,8 @@ public class MainDispatcherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dispatcher);
 
         //Youtube Button
-        YtbeButton = findViewById(R.id.Ytbe_Button);
-        YtbeButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton ytbeButton = findViewById(R.id.Ytbe_Button);
+        ytbeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Intent myGame = new Intent(MainDispatcherActivity.this, YoutubeDispatcherActivity.class);
@@ -69,8 +64,8 @@ public class MainDispatcherActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        mLogOut = findViewById(R.id.deconnexion_Button);
-        mLogOut.setOnClickListener(new View.OnClickListener() {
+        Button logOut = findViewById(R.id.deconnexion_Button);
+        logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -78,8 +73,8 @@ public class MainDispatcherActivity extends AppCompatActivity {
             }
         });
 
-        mChenapanButton = findViewById(R.id.Chenapan_Button);
-        mChenapanButton.setOnClickListener(new View.OnClickListener() {
+        ImageButton chenapanButton = findViewById(R.id.Chenapan_Button);
+        chenapanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.chenapan.eu")));
