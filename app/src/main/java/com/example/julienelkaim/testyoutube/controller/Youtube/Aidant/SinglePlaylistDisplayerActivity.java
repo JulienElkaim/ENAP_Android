@@ -62,6 +62,12 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
 
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Initialize every view of the activity.
+     * @see this.onCreate
+     */
     private void initializeViews(){
         mMyAPIRequestForThisPlaylist = YoutubeBox.setGoogleApiVideoListDataRetriever(mPlaylist.getVideoIdList()); // Get les infos
 
@@ -91,6 +97,12 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
     }
 
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Modify the playlist in the memory
+     * @param videoId is the video we want to
+     */
     @Override
     public void modifyYourList(String videoId) {
 
@@ -102,6 +114,11 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
 
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Search video Datas to display thumbnails and basic data.
+     */
     private void launchVideosResearch() {
         RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRqQueue = new StringRequest(
@@ -113,6 +130,11 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
         rqQueue.add(stringRqQueue);
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param response is the answer to the request launched asynchronously.
+     */
     private void processRequestResponse(String response) {
         try {
             JSONArray jArray = new JSONObject(response).getJSONArray("items");

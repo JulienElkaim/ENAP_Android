@@ -4,6 +4,12 @@ public final class StringBox {
 
     private StringBox(){}
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param requested is the url to escape.
+     * @return an escaped version of the url.
+     */
     public static String escapeMyUrl(String requested) {
         return requested
                 .replace("%","%25")

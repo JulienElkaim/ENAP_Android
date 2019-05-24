@@ -12,11 +12,17 @@ import static java.sql.Types.NULL;
 public final class GlobalBox {
 
 
-
-
     private GlobalBox() {
         // restrict instantiation
     }
+
+    /**
+     * @author Julien Elkaim
+     *
+     * Set Full screen and hide sidebar for any activities calling this method.
+     *
+     * @param myActivity is any activity to apply these settings.
+     */
     public static void windowAndSystemSettings(Activity myActivity){
 
         try {
@@ -37,6 +43,8 @@ public final class GlobalBox {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
     }
+
+    //=========================================== YOUTUBE Global variables =========================================================
     public static final String API_KEY = "AIzaSyAgCH9R0s_c6OH2bW2DZ47Nv7VqVMV9Qdk";
     public static final String YOUTUBE_VIDEO_ID_FROM_RESEARCH = "recuperer id de la video clicked dans activity de recherche";
     public static final String YOUTUBE_PLAYLIST_CURRENTLY = "Ma playlist actuellement saved dans lapplication";
@@ -49,4 +57,7 @@ public final class GlobalBox {
     public static final String YOUTUBE_DISPLAYER_MODE_VIEW = "VIEW";
     public static final String YOUTUBE_DISPLAYER_MODE_ADD = "ADD";
 
+    //=========================================== WIKIPEDIA Global variables =========================================================
+
+    //=========================================== MAIL Global variables =========================================================
 }

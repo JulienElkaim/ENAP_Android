@@ -56,7 +56,7 @@ public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
         launchCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                launchCreatePlaylistActivity();
+                startActivity(new Intent(PlaylistEnumeratorActivity.this, PlaylistCreatorActivity.class));
             }
         });
 
@@ -65,17 +65,17 @@ public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
 
     }
 
-    private void launchCreatePlaylistActivity() {
-        startActivity(new Intent(this, PlaylistCreatorActivity.class));
-    }
-
     @Override
     protected void onStop() {
         super.onStop();
         YoutubeBox.saveListOfPlaylist(this , mPlaylistArrayList);
     }
 
-
+    /**
+     * @author Julien Elkaim
+     *
+     * Initialize list of playlist displayed.
+     */
     @Override
     public void setMyPlaylistList() {
         mPlaylistArrayList = YoutubeBox.retrieveListOfPlaylist(this);

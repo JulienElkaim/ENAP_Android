@@ -29,26 +29,54 @@ public class PlaylistListAdapter extends BaseAdapter {
     private LayoutInflater mLayoutInflater;
 
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is the context of the list view using this adapter.
+     * @param PlaylistArrayList is the list of playlist to adapte at the list view.
+     */
     public PlaylistListAdapter(PlaylistListDisplayerActivity activity, ArrayList<Playlist> PlaylistArrayList){
         mActivity = activity;
         mPlaylistArrayList = PlaylistArrayList;
     }
 
+    /**
+     *
+     * @return the number of playlist to add at the list view
+     */
     @Override
     public int getCount() {
         return mPlaylistArrayList.size();
     }
 
+    /**
+     *
+     * @param position is the index of the playlist in the list.
+     * @return the playlist at the position provided.
+     */
     @Override
     public Object getItem(int position) {
         return mPlaylistArrayList.get(position);
     }
 
+    /**
+     *
+     * @param position  is the index of the playlist in the list.
+     * @return the id number of the playlist in the total list displayed.
+     */
     @Override
     public long getItemId(int position) {
         return (long)position;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param position is the index of the playlist in the list.
+     * @param convertView is the view object that will display our element.
+     * @param parent is the list view that will display our playlists.
+     * @return the view object after modification to display.
+     */
     @SuppressLint("InflateParams")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -108,7 +136,7 @@ public class PlaylistListAdapter extends BaseAdapter {
 
             }
         });
-        System.out.println("DEV::: PLAYLIST - { Name: "+ mPlaylist.getTitle() +" , ID: " + mPlaylist.getPlaylistId() + " }");
+
         return convertView;
     }
 

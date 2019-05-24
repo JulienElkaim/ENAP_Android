@@ -25,6 +25,7 @@ public class PlaylistCreatorActivity extends AppCompatActivity {
         GlobalBox.windowAndSystemSettings(this);
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,12 +3,10 @@ package com.example.julienelkaim.testyoutube.controller.Youtube.Aidant;
 
 import android.os.Bundle;
 import android.view.View;
-
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,12 +19,11 @@ import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.Th
 import com.example.julienelkaim.testyoutube.model.Youtube.Video;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
+
 
 
 public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
@@ -47,7 +44,6 @@ public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
 
 
     }
-
 
     @Override
     protected void onStart() {
@@ -86,6 +82,11 @@ public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
         });
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Initialize list of video (empty) and the adapter of the list view.
+     */
     private void setListViewAndListAsset() {
         mVideoArrayList = new ArrayList<>();
         mVideoListAdapter = new VideoListAdapter(this, mVideoArrayList);
@@ -93,6 +94,11 @@ public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
     }
 
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Initiate API request with the user's entry.
+     */
     private void launchVideosResearch() {
         RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRqQueue = new StringRequest(
@@ -104,6 +110,13 @@ public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
         rqQueue.add(stringRqQueue);
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Handle API's answers to display videos matching to our requests.
+     *
+     * @param response is the request' answer of the Youtube Data API.
+     */
     private void processRequestResponse(String response) {
         try {
             JSONArray jArray = new JSONObject(response).getJSONArray("items");

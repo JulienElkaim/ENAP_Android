@@ -26,36 +26,57 @@ public class VideoListAdapter extends BaseAdapter {
     private ArrayList<Video> mVideoArrayList;
     private LayoutInflater mLayoutInflater;
 
-
-
+    /**
+     * @author  Julien Elkaim
+     *
+     * @param activity is the page where video list is displayed.
+     * @param videoArrayList is the list of video object to display.
+     */
     public VideoListAdapter(ThumbnailListDisplayerActivity activity, ArrayList<Video> videoArrayList){
         mActivity = activity;
         mVideoArrayList = videoArrayList;
     }
 
 
-
+    /**
+     *
+     * @return the number of video to display.
+     */
     @Override
     public int getCount() {
         return mVideoArrayList.size();
     }
 
-
-
+    /**
+     *
+     * @param position is the position in the arraylist of the video to get
+     * @return the video object at this position.
+     */
     @Override
     public Object getItem(int position) {
         return mVideoArrayList.get(position);
     }
 
 
-
+    /**
+     *
+     * @param position of the relative video.
+     * @return position in a long encoding.
+     */
     @Override
     public long getItemId(int position) {
         return (long)position;
     }
 
 
-
+    /**
+     * @author Julien Elkaim
+     *
+     * @param position is the position in the arraylist of the video to display.
+     * @param convertView is the view to convert and adapte with the video data.
+     * @param parent is the list view to display every convertview.
+     * @return the view converted with video's data.
+     */
     @SuppressLint("InflateParams")
     @Override
     public View getView(int position,  View convertView, ViewGroup parent) {
@@ -105,6 +126,13 @@ public class VideoListAdapter extends BaseAdapter {
         return convertView;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is the activity displaying the list of video
+     * @param convertView is the video card that we should modify.
+     * @param video is the video relative to the convertView.
+     */
     private void addASupprButton(final ThumbnailListDisplayerActivity activity, View convertView, final Video video) {
 
 

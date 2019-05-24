@@ -1,4 +1,5 @@
 package com.example.julienelkaim.testyoutube.toolbox.Youtube;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.widget.ListView;
@@ -22,13 +23,28 @@ public final class YoutubeBox {
 
     private YoutubeBox(){}
 
+    /**
+     * @author Julien Elkaim
+     *
+     * Set adapter in the list view.
+     *
+     * @param lv is the list view to adapte
+     * @param adpt is the adapter for the list view
+     */
     public static void displayAYoutubeVideoList(ListView lv, android.widget.BaseAdapter adpt) {
         lv.setAdapter(adpt);
         adpt.notifyDataSetChanged();
     }
 
-
-    private static String getSEARCHYTBAPIVideoId(JSONObject jsonObject, String switcher) throws JSONException {
+    /**
+     * @author Julien Elkaim
+     *
+     * @param jsonObject json to parse.
+     * @param switcher mode of parsing.
+     * @return the video ID.
+     * @throws JSONException is raised if JSON is broken or if request are unvalidated.
+     */
+    private static String getSearchYoutubeAPIVideoId(JSONObject jsonObject, String switcher) throws JSONException {
         String returnedId = "";
         switch(switcher){
             case "playlist":
@@ -40,24 +56,62 @@ public final class YoutubeBox {
         }
         return returnedId;
     }
-    private static String getSEARCHYTBAPIVideoTitle(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("title"); }
-    private static String getSEARCHYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getString("description"); }
-    private static String getSEARCHYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url"); }
+
+    /**
+     * @author Julien Elkaim
+     *
+     * @param jsonObject json to parse. Represent a single video.
+     * @return the video title.
+     * @throws JSONException is raised if JSON is broken or if request are unvalidated.
+     */
+    private static String getSEARCHYTBAPIVideoTitle(JSONObject jsonObject) throws JSONException {
+        return jsonObject.getJSONObject("snippet").getString("title");
+    }
+
+    /**
+     * @author Julien Elkaim
+     *
+     * @param jsonObject json to parse. Represent a single video.
+     * @return the video description.
+     * @throws JSONException is raised if JSON is broken or if request are unvalidated.
+     */
+    private static String getSEARCHYTBAPIVideoDescription(JSONObject jsonObject) throws JSONException {
+        return jsonObject.getJSONObject("snippet").getString("description");
+    }
+
+    /**
+     * @author Julien Elkaim
+     *
+     * @param jsonObject json to parse. Represent a single video.
+     * @return the video thumbnail's url.
+     * @throws JSONException is raised if JSON is broken or if request are unvalidated.
+     */
+    private static String getSEARCHYTBAPIVideoThumbnails(JSONObject jsonObject) throws JSONException {
+        return jsonObject.getJSONObject("snippet").getJSONObject("thumbnails").getJSONObject("medium").getString("url");
+    }
 
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param jsonObject json to parse. Represent a single video.
+     * @param vdl is the list of video to load.
+     * @param switcher is the loading mode.
+     * @throws JSONException is raised if JSON is broken or if request are unvalidated.
+     */
     public static void loadVideoDetailsInAList(JSONObject jsonObject, ArrayList<Video> vdl, String switcher) throws JSONException {
 
         switch(switcher){
             case "ControlPlaylistDisplayer":
                 vdl.add(new Video(
-                        YoutubeBox.getSEARCHYTBAPIVideoId(jsonObject,"playlist"),
+                        YoutubeBox.getSearchYoutubeAPIVideoId(jsonObject,"playlist"),
                         YoutubeBox.getSEARCHYTBAPIVideoTitle(jsonObject),
                         YoutubeBox.getSEARCHYTBAPIVideoDescription(jsonObject),
                         YoutubeBox.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
                 break;
             case "ControlSearchVideo":
                 vdl.add(new Video(
-                        YoutubeBox.getSEARCHYTBAPIVideoId(jsonObject,"search"),
+                        YoutubeBox.getSearchYoutubeAPIVideoId(jsonObject,"search"),
                         YoutubeBox.getSEARCHYTBAPIVideoTitle(jsonObject),
                         YoutubeBox.getSEARCHYTBAPIVideoDescription(jsonObject),
                         YoutubeBox.getSEARCHYTBAPIVideoThumbnails(jsonObject)));
@@ -69,6 +123,7 @@ public final class YoutubeBox {
 
 
     /**
+     * @author Julien Elkaim
      *
      * @param requested string is the url video
      */
@@ -80,12 +135,25 @@ public final class YoutubeBox {
                 "&key=" + GlobalBox.API_KEY;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param listOfVideoid is a url-type string to represent list of video to send to google's API.
+     * @return url to contact google's API.
+     */
     public static String setGoogleApiVideoListDataRetriever (List<String> listOfVideoid){
         return "https://www.googleapis.com/youtube/v3/videos?" +
                 "part=snippet%2CcontentDetails%2Cstatistics" +
                 "&id="+ transformVideoIdListIntoVideoIdAPIListUrl(listOfVideoid) +
                 "&key=" + GlobalBox.API_KEY;
     }
+
+    /**
+     * @author Julien Elkaim
+     *
+     * @param listOfVideoId is list of video to transform for API purpose.
+     * @return url-escaped-style list of video for google API.
+     */
     private static String transformVideoIdListIntoVideoIdAPIListUrl( List<String> listOfVideoId){
         StringBuilder concatenator = new StringBuilder();
         for (int i =0 ;i < listOfVideoId.size();i++){
@@ -100,9 +168,12 @@ public final class YoutubeBox {
     }
 
 
-
-
-
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity activity to display the playlist.
+     * @param mPlaylist playlist to display.
+     */
     public static void sendPlaylistToYourChild(Activity activity, Playlist mPlaylist) {
         SharedPreferences mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = mPrefs.edit();
@@ -112,6 +183,12 @@ public final class YoutubeBox {
         prefsEditor.apply();
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @return the current playlist to display
+     */
     public static Playlist retrieveCurrentPlaylist(Activity activity) {
 
         SharedPreferences  mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
@@ -122,6 +199,13 @@ public final class YoutubeBox {
         return gson.fromJson(json, Playlist.class);
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @param playlist is the playlist updated to save.
+     * @param mPlaylistArrayList the list of playlist known, to update with updated playlist.
+     */
     public static void updateListOfPlaylist(Activity activity,Playlist playlist,  ArrayList<Playlist> mPlaylistArrayList){
         int idPl = playlist.getPlaylistId();
 
@@ -136,6 +220,12 @@ public final class YoutubeBox {
 
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @param mPlaylistArrayList is the new list of playlist to keep in memory.
+     */
     public static void saveListOfPlaylist(Activity activity, ArrayList<Playlist> mPlaylistArrayList) {
 
         SharedPreferences mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
@@ -147,6 +237,12 @@ public final class YoutubeBox {
 
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @return list of playlist kept in memory.
+     */
     public static ArrayList<Playlist> retrieveListOfPlaylist(Activity activity) {
 
         ArrayList<Playlist> playlists;
@@ -168,6 +264,13 @@ public final class YoutubeBox {
         return playlists;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @param id is the id of the playlist to retrieve.
+     * @return null if none is matching or the corresponding playlist.
+     */
     public static Playlist findPlaylistById(Activity activity, int id){
         Playlist playlist;
 
@@ -180,6 +283,13 @@ public final class YoutubeBox {
         return null;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @param id is the playlist id in memory.
+     * @param newVideoId is the video ID to add in the playlist.
+     */
     public static void modifyPlaylistListOfVideo(Activity activity, int id, String newVideoId){
         ArrayList<Playlist> lOfPlaylist = retrieveListOfPlaylist(activity);
         Playlist playlist;
@@ -198,13 +308,26 @@ public final class YoutubeBox {
 
     }
 
-
+    /**
+     * @author Julien Elkaim
+     *
+     * Provide a default list of playlist.
+     *
+     * @param playlists is the list of playlist to settle
+     */
     private static void defaultListOfPlaylists(ArrayList<Playlist> playlists) {
         playlists.add(new Playlist(0,"Jeux videos", "Permet aux enfants de découvrir l'univers des Jeux Videos", Arrays.asList("6ptRzgvBaAk", "SxLcKjfeaIw","6ptRzgvBaAk","6ptRzgvBaAk","Q3AilwYTvWM")));
         playlists.add(new Playlist(1,"Animaux", "Playlist sur le monde animal terreste, liste de vidéos courtes.", Arrays.asList("3EVJ0LOIdnY","_Ms-pnNQQ3k","zGR2W8tKXk0")));
         playlists.add(new Playlist(2,"Paysages du monde", "Une sélection de paysages pour découvrir les différents reliefs du monde.", Arrays.asList("xD_oxqq9omo","JK0NprMZ8iw","a5ryXI_6YwU","a5ryXI_6YwU")));
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @param playlistId is the id of video to destroy.
+     * @param playlistArrayList is the list of playlist stored.
+     */
     public static void destroyPlaylistById(Activity activity, int playlistId, ArrayList<Playlist> playlistArrayList) {
         for (int i =0; i< playlistArrayList.size(); i++){
             if (playlistArrayList.get(i).getPlaylistId() == playlistId) {
@@ -215,6 +338,12 @@ public final class YoutubeBox {
         saveListOfPlaylist(activity, playlistArrayList);
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @return an ID ensured to be unique in the system.
+     */
     public static int provideUniqueId(Activity activity) {
 
         ArrayList<Integer> lId = retrieveAllPlaylistId(activity);
@@ -225,6 +354,12 @@ public final class YoutubeBox {
         return i;
     }
 
+    /**
+     * @author Julien Elkaim
+     *
+     * @param activity is here for preferences purpose only.
+     * @return list of Playlists' ID present in memory.
+     */
     private static ArrayList<Integer> retrieveAllPlaylistId(Activity activity) {
         ArrayList<Playlist> lPlaylist = retrieveListOfPlaylist(activity);
         ArrayList <Integer> lId = new ArrayList<>();

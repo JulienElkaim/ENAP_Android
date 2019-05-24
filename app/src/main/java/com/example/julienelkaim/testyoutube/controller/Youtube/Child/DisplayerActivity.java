@@ -122,6 +122,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Link Views with activity params to handle them.
      */
     private void initializeLinksWithView() {
@@ -133,6 +135,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Set Click reaction for every Buttons on the view.
      */
     private void initializeButtonsOnView() {
@@ -173,6 +177,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Initialize the player with API and Player Params by default.
      */
     public void initializePlayer() {
@@ -182,6 +188,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Initialize Params for the Youtube Player
      */
     private void initializePlayerParams() {
@@ -195,6 +203,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Principal function to handle control buttons.
      *
      * @param order is the order description to execute.
@@ -215,6 +225,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Control Button action when we click it
      */
     public void switcherPlayPause() {
@@ -230,6 +242,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Load the previous video of the playlist.
      */
     private void goToPreviousVideo() {
@@ -240,6 +254,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Load the next video of the playlist.
      */
     private void goToNextVideo() {
@@ -249,6 +265,8 @@ public class DisplayerActivity extends YouTubeBaseActivity {
 
 
     /**
+     * @author Julien Elkaim
+     *
      * Handle the header to fit with playlist datas.
      */
     public void headerHandler(LinearLayout lt, VideoListManager vdHandler) {
