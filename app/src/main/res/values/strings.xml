@@ -12,4 +12,9 @@
     <string name="name">Name :</string>
     <string name="description">Description:</string>
     <string name="create">create</string>
+    <string name="email">Email ...</string>
+    <string name="nom_d_utilisateur">Nom d\'utilisateur ...</string>
+    <string name="mot_de_passe">Mot de passe ...</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="s_enregistrer">S\'enregistrer ...</string>
 </resources>
