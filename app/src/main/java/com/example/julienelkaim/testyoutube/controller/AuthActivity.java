@@ -29,7 +29,6 @@ public class AuthActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent registerIntent = new Intent(AuthActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
                 finish();
@@ -42,7 +41,6 @@ public class AuthActivity extends AppCompatActivity {
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent connexionIntent = new Intent(AuthActivity.this, LoginActivity.class);
                 startActivity(connexionIntent);
                 finish();

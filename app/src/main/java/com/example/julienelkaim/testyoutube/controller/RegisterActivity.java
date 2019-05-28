@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
@@ -18,17 +19,25 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.io.FileInputStream;
+import java.util.HashMap;
 import java.util.Objects;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    public TextInputLayout mDisplayName;
-    public TextInputLayout mEmail;
-    public TextInputLayout mPassword;
+    public EditText mDisplayName,mEmail,mPassword;
     public Button mSubmitAccount;
 
     private FirebaseAuth mAuth;
+    private DatabaseReference reference;
 
     private ProgressDialog mRegProgress;
 
@@ -44,6 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        //Linking ressources
         mDisplayName = findViewById(R.id.registerName);
         mEmail = findViewById(R.id.registerEmail);
         mPassword = findViewById(R.id.registerPassword);
@@ -55,20 +65,21 @@ public class RegisterActivity extends AppCompatActivity {
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Se connecter
+        // S'enregistrer
         mSubmitAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String display_name = Objects.requireNonNull(mDisplayName.getEditText()).getText().toString();
-                String email = Objects.requireNonNull(mEmail.getEditText()).getText().toString();
-                String password = Objects.requireNonNull(mPassword.getEditText()).getText().toString();
+                String display_name = Objects.requireNonNull(mDisplayName).getText().toString();
+                String email = Objects.requireNonNull(mEmail).getText().toString();
+                String password = Objects.requireNonNull(mPassword).getText().toString();
 
                 if ( !TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ){
                     mRegProgress.setTitle("Enregistrement de l'utilisateur");
                     mRegProgress.setMessage("Veuillez patienter ...");
                     mRegProgress.setCanceledOnTouchOutside(false);
                     mRegProgress.show();
+
                     registerUser(display_name, email, password);
                 }
             }
@@ -80,11 +91,41 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull final Task<AuthResult> task) {
 
                 if (task.isSuccessful()) {
 
                     mRegProgress.dismiss();
+
+                    final FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                    assert firebaseUser != null;
+                    String userId = firebaseUser.getUid();
+
+                    reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
+
+                    HashMap<String, String> hashMap = new HashMap<>();
+                    hashMap.put("id", userId);
+                    hashMap.put("username", display_name);
+                    hashMap.put("imageURL", "default");
+
+                    reference.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            if (task.isSuccessful()){
+                                Intent intent = new Intent(RegisterActivity.this, DispatcherActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                startActivity(intent);
+                                finish();
+                            }else{
+                                // A Compléter par la suite
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
                     Intent mainIntent = new Intent(RegisterActivity.this, DispatcherActivity.class);
                     startActivity(mainIntent);
