@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
@@ -23,8 +24,7 @@ import java.util.Objects;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private TextInputLayout mLoginEmail;
-    private TextInputLayout mLoginPassword;
+    private EditText mLoginEmail,mLoginPassword;
     private ProgressDialog mLoginProgress;
 
     @Override
@@ -47,14 +47,14 @@ public class LoginActivity extends AppCompatActivity {
         mLoginEmail = findViewById(R.id.insertEmail);
         mLoginPassword = findViewById(R.id.insertPassword);
 
-        Button connexionButton = findViewById(R.id.connexion_Button);
+        Button connexionButton = findViewById(R.id.connexionButton);
 
         connexionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String email = Objects.requireNonNull(mLoginEmail.getEditText()).getText().toString();
-                String password = Objects.requireNonNull(mLoginPassword.getEditText()).getText().toString();
+                String email = Objects.requireNonNull(mLoginEmail).getText().toString();
+                String password = Objects.requireNonNull(mLoginPassword).getText().toString();
 
                 if ( !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ){
 
