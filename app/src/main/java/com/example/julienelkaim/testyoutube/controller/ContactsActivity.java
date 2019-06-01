@@ -66,7 +66,6 @@ public class ContactsActivity extends AppCompatActivity {
                     mContactsNameList.add(ds.child("username").getValue().toString());
                     mUserIdList.add(ds.child("id").getValue().toString());
                 }
-                System.out.println("contacts chargés ici");
                 ContactsActivity.this.arrayAdapterListView(mContactsNameList);
                 mRegProgress.dismiss();
             }
@@ -76,8 +75,6 @@ public class ContactsActivity extends AppCompatActivity {
 
             }
         });
-
-
 
     }
 
