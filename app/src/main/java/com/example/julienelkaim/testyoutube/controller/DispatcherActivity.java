@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.User;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
@@ -22,15 +23,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 
 public class DispatcherActivity extends AppCompatActivity {
-
 
     private Button logOut;
 
     private FirebaseAuth mAuth;
-    private DatabaseReference reference;
     private FirebaseUser currentUser;
+
 
     @Override
     protected void onRestart() { super.onRestart(); }
@@ -103,9 +105,6 @@ public class DispatcherActivity extends AppCompatActivity {
                 startActivity(new Intent(DispatcherActivity.this,ContactsActivity.class));
             }
         });
-
-
-
 
     }
 
