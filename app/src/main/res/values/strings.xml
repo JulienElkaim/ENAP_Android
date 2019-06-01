@@ -19,4 +19,6 @@
     <string name="mail_icon">Mail Icon</string>
     <string name="wikipedia_icon">Wikipedia Icon</string>
     <string name="youtube_icon">Youtube Icon</string>
+    <string name="username">username</string>
+    <string name="contacts">Contacts</string>
 </resources>

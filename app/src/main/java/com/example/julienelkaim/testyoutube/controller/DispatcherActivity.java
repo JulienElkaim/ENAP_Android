@@ -56,14 +56,15 @@ public class DispatcherActivity extends AppCompatActivity {
 
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null){
-            //sendToStart();        /* REMETTRE QUAND ON EST EN PROD !*/
+            sendToStart();        /* REMETTRE QUAND ON EST EN PROD !*/
         }
+        //else : remettre la fonction pour afficher l'image et l'utilisateur, voir l'episode 4
+        // de Chap App with Firebase KOD Dev
+
     }
 
     public void sendToStart(){
-
-        Intent startIntent = new Intent(DispatcherActivity.this, AuthActivity.class);
-        startActivity(startIntent);
+        startActivity(new Intent(DispatcherActivity.this, AuthActivity.class));
         finish();
 
     }
@@ -91,6 +92,15 @@ public class DispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.chenapan.eu")));
+            }
+        });
+
+        //Message System Button
+        ImageButton messageButton = findViewById(R.id.Mail_Button);
+        messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(DispatcherActivity.this,ContactsActivity.class));
             }
         });
 
