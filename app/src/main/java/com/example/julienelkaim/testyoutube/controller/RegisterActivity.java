@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.model.User;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -74,7 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = Objects.requireNonNull(mEmail).getText().toString();
                 String password = Objects.requireNonNull(mPassword).getText().toString();
 
-                if ( !TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ){
+                if ( !TextUtils.isEmpty(display_name) || !TextUtils.isEmpty(email) || !TextUtils.isEmpty(password) ) {
                     mRegProgress.setTitle("Enregistrement de l'utilisateur");
                     mRegProgress.setMessage("Veuillez patienter ...");
                     mRegProgress.setCanceledOnTouchOutside(false);
@@ -87,7 +88,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void registerUser(final String display_name, String email, String password) {
+    private void registerUser(final String display_name, final String email, String password) {
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -101,35 +102,12 @@ public class RegisterActivity extends AppCompatActivity {
                     assert firebaseUser != null;
                     String userId = firebaseUser.getUid();
 
-                    reference = FirebaseDatabase.getInstance().getReference("Users").child(userId);
-
-                    HashMap<String, String> hashMap = new HashMap<>();
-                    hashMap.put("id", userId);
-                    hashMap.put("username", display_name);
-                    hashMap.put("imageURL", "default");
-
-                    reference.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            if (task.isSuccessful()){
-                                Intent intent = new Intent(RegisterActivity.this, DispatcherActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(intent);
-                                finish();
-                            }else{
-                                // A Compléter par la suite
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
+                    reference = FirebaseDatabase.getInstance().getReference("Users");
+                    reference.push().setValue(new User(userId,display_name,email));
 
                     Intent mainIntent = new Intent(RegisterActivity.this, DispatcherActivity.class);
                     startActivity(mainIntent);
-                    Toast.makeText(RegisterActivity.this, "Bievenue, "+display_name+" !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "Bienvenue, "+display_name+" !", Toast.LENGTH_SHORT).show();
                     finish();
 
                 } else {
