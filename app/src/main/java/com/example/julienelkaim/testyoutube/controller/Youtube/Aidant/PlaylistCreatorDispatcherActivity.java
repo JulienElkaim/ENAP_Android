@@ -23,6 +23,12 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        onBackPressed();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
 
@@ -35,7 +41,7 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Se connecter a l'activité lecteur youtube
-                Intent myGame = new Intent(PlaylistCreatorDispatcherActivity.this, PlaylistCreatorGetterActivity.class);
+                Intent myGame = new Intent(PlaylistCreatorDispatcherActivity.this, PlaylistCreatorActivity.class);
                 startActivity(myGame);
             }
         });
@@ -43,7 +49,7 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
         actualPlaylistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myPlaylists = new Intent(PlaylistCreatorDispatcherActivity.this, .class);
+                Intent myPlaylists = new Intent(PlaylistCreatorDispatcherActivity.this, PlaylistCreatorGetterActivity.class);
                 startActivity(myPlaylists);
 
             }

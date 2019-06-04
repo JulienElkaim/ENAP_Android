@@ -21,4 +21,6 @@
     <string name="youtube_icon">Youtube Icon</string>
     <string name="username">username</string>
     <string name="contacts">Contacts</string>
+    <string name="playlist_id">Playlist ID:</string>
+    <string name="playlist">Playlist</string>
 </resources>

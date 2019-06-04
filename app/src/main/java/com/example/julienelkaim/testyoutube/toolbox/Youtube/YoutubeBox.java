@@ -131,8 +131,26 @@ public final class YoutubeBox {
         return "https://www.googleapis.com/youtube/v3/search?" +
                 "part="+"snippet"+
                 "&maxResults="+ nbResults +
-                "&q="+ StringBox.escapeMyUrl(requested) +
+                "&&playlistId="+ StringBox.escapeMyUrl(requested) +
                 "&key=" + GlobalBox.API_KEY;
+    }
+    /**
+     * @author Julien Elkaim
+     *
+     * @param requested string is the url video
+     */
+    public static String setGoogleApiPlaylistitemUrl(String requested, int nbResults) {
+        return "https://www.googleapis.com/youtube/v3/playlistItems?" +
+                "part=" +
+                "snippet" +
+                "&fields=" +
+                "items%2Fsnippet(resourceId(videoId))" +
+                "&maxResults="+
+                nbResults +
+                "&playlistId=" +
+                requested+
+                "&key=" +
+                GlobalBox.API_KEY;
     }
 
     /**
