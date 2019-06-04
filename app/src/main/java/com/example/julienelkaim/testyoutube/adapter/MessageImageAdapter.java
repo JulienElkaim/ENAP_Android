@@ -11,65 +11,69 @@ import android.widget.TextView;
 
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.Chat;
+import com.example.julienelkaim.testyoutube.model.ChatImage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
+public class MessageImageAdapter extends RecyclerView.Adapter<MessageImageAdapter.ViewHolder> {
 
     public static final int MSG_TYPE_LEFT=0;
     public static final int MSG_TYPE_RIGHT = 1;
 
     private Context mContext;
-    private List<Chat> mChat;
+    private List<ChatImage> mChatImage;
     private FirebaseUser mUser;
 
-    public MessageAdapter(Context mContext, List<Chat> chat) {
+    public MessageImageAdapter(Context mContext, List<ChatImage> chatImage) {
         this.mContext = mContext;
-        this.mChat = chat;
-        
+        this.mChatImage = chatImage;
+
     }
-    public  MessageAdapter(){
+    public  MessageImageAdapter(){
 
     }
 
     @NonNull
     @Override
-    public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public MessageImageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         if (viewType == MSG_TYPE_RIGHT){
             View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_right,viewGroup,false);
-            return new MessageAdapter.ViewHolder(view);
+            return new MessageImageAdapter.ViewHolder(view);
         }else{
             View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_left,viewGroup,false);
-            return new MessageAdapter.ViewHolder(view);
+            return new MessageImageAdapter.ViewHolder(view);
         }
     }
 
 
-    public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull MessageImageAdapter.ViewHolder viewHolder, int position) {
 
-        Chat chat = mChat.get(position);
+        ChatImage chatImage = mChatImage.get(position);
 
-        viewHolder.show_message.setText(chat.getMessage());
+        // On utilise un 'long' pour les id image à cause de FireBase : il semblerait que firebase convertisse les ressources int du code en long (pour la transmission sur les serveurs du int, la taille est trop grande donc
+        // pour Firebase c'est un long alors que la memoire cache accordée a android studio est plus grande donc c'est un int pour android studio(/compilateur java)
+        // Le cast de long vers int fonctionne donc on prend comme valeur par défaut le long.
+        viewHolder.showImage.setImageResource((int) chatImage.getImageId());
     }
 
     @Override
     public int getItemCount() {
-        return mChat.size();
+        return mChatImage.size();
     }
 
 
     public  class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView show_message;
         public ImageView profile_image;
+        public ImageView showImage;
 
         public ViewHolder(View itemView){
             super(itemView);
 
-            show_message = itemView.findViewById(R.id.show_message);
             profile_image = itemView.findViewById(R.id.profileImage);
+            showImage = itemView.findViewById(R.id.showImage);
 
         }
     }
@@ -77,7 +81,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public int getItemViewType(int position) {
         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mChat.get(position).getSender().equals(mUser.getUid())){
+        if (mChatImage.get(position).getSender().equals(mUser.getUid())){
             return MSG_TYPE_RIGHT;
         }else {
             return MSG_TYPE_LEFT;

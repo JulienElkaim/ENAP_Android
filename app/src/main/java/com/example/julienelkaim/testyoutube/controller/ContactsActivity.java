@@ -62,6 +62,8 @@ public class ContactsActivity extends AppCompatActivity {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mUserIdList.clear();
+                mContactsNameList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     mContactsNameList.add(ds.child("username").getValue().toString());
                     mUserIdList.add(ds.child("id").getValue().toString());
@@ -75,10 +77,7 @@ public class ContactsActivity extends AppCompatActivity {
 
             }
         });
-
     }
-
-
 
     private void arrayAdapterListView(List<String> mContactsNameList){
 
