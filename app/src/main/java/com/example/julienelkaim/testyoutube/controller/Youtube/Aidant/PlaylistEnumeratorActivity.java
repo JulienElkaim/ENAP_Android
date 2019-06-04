@@ -56,7 +56,7 @@ public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
         launchCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlaylistEnumeratorActivity.this, PlaylistCreatorActivity.class));
+                startActivity(new Intent(PlaylistEnumeratorActivity.this, PlaylistCreatorDispatcherActivity.class));
             }
         });
 
