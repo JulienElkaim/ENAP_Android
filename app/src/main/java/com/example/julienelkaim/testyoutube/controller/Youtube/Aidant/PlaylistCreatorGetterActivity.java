@@ -25,18 +25,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlaylistCreatorGetterActivity extends AppCompatActivity {
-    EditText mEdit;
+    EditText mPlaylistId;
+    EditText mPlaylistTitle;
+    EditText mPlaylistDescription;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playlist_creator_getter);
 
-        mEdit = findViewById(R.id.playlist_create_id);
+        mPlaylistId = findViewById(R.id.playlist_create_id);
+        mPlaylistTitle = findViewById(R.id.playlist_create_title);
+        mPlaylistDescription = findViewById(R.id.playlist_create_description);
+
         Button mLaunch = findViewById(R.id.playlist_create_by_id_btn);
         mLaunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String playlistId = mEdit.getText().toString();
+                String playlistId = mPlaylistId.getText().toString();
                 launchVideosResearch(
                         YoutubeBox.setGoogleApiPlaylistitemUrl(playlistId,25)
                 );
@@ -53,7 +60,7 @@ public class PlaylistCreatorGetterActivity extends AppCompatActivity {
      * Initiate API request with the user's entry.
      */
     private void launchVideosResearch(String mSearchUrl) {
-        System.out.println("SUCCESS::: " + mSearchUrl);
+
         RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRqQueue = new StringRequest(
                 Request.Method.GET,
@@ -84,16 +91,18 @@ public class PlaylistCreatorGetterActivity extends AppCompatActivity {
                 JSONObject jsonObject = jArray.getJSONObject(i); // un snippet
 
                 //charger l'id de la video
-
-                System.out.println("SUCCESS::: "+jsonObject.toString());
                 String tmp = jsonObject.getJSONObject("snippet").getJSONObject("resourceId").getString("videoId");
-                System.out.println("SUCCESS::: "+tmp);
                 als.add(tmp);
             }
 
             ArrayList<Playlist> mesPlaylists = YoutubeBox.retrieveListOfPlaylist(PlaylistCreatorGetterActivity.this);
             mesPlaylists.add(
-                    new Playlist(YoutubeBox.provideUniqueId(PlaylistCreatorGetterActivity.this), "bobby","rammener la coupe a la maison", als )
+                    new Playlist(
+                            YoutubeBox.provideUniqueId(PlaylistCreatorGetterActivity.this),
+                            mPlaylistTitle.getText().toString(),
+                            mPlaylistDescription.getText().toString(),
+                            als
+                    )
             );
             YoutubeBox.saveListOfPlaylist(PlaylistCreatorGetterActivity.this ,mesPlaylists);
             onBackPressed();
