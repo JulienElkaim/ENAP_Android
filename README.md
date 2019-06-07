@@ -17,7 +17,7 @@ ____
 - Wikipédia [Voir plus](#Wikipédia)   
 - Youtube [Voir plus](#Youtube) 
 <br>
-____
+
 <br>  
 
 **Second objectif:** proposer un système de messagerie simplifié, adapté à des enfants non communicants. [Voir plus](#Mails)
@@ -33,10 +33,14 @@ Convention : *Author - email address : speciality*
 
 ### ENAP -v 1.0.0
 __________________________________
-<br>
+<br>  
+
 **Julien Elkaim**   - julienelk@gmail.com       : Youtube **[Nb: 3A Nancy 2019 - 2020]**  
+
 **Rayan Zaibet**    - rayananana@gmail.com      : Wikipédia  
+
 **Mathis Fouques**  - mathis@gmail.com          : Mails  
+
 <br>  
 
 __________________________________  
@@ -406,7 +410,7 @@ ou en créer une rapidement, soit à partir d'une playlist youtube existante, so
 <br>
 <br> 
 
-Si vous désirez des précisions, n'hésitez surtout pas à me contacter :  
+Si vous avez besoin de précision, n'hésitez surtout pas à me contacter :  
 
 ``` 
 julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
