@@ -130,7 +130,7 @@ public final class YoutubeBox {
      * @param requested string is the url video
      */
     public static String setGoogleApiSearchUrl(String requested, int nbResults) {
-        System.out.println("SUCCESS::: "+ requested );
+
         return "https://www.googleapis.com/youtube/v3/search?" +
                 "part="+"snippet"+
                 "&maxResults="+ nbResults +
