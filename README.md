@@ -219,24 +219,36 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
 ```
 <br>
 <br>
-Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter : ```julienelk@gmail.com```
-____
+Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter :  ```julienelk@gmail.com```
+<br>
+<br>  
+
+____  
+
 ### API Requests
-____
+____  
+
 ### Création des vues XML
-____
+____  
+
 ### Utilisation de Firebase
-____
+____  
+
 ### Youtube Librairie
-____
+____  
 
 
 
-## Focus par parties
 
-###Youtube
+## Focus par parties  
 
-###Mails
 
-###Wikipédia
+###Youtube  
+
+
+###Mails  
+
+
+###Wikipédia  
+
 
