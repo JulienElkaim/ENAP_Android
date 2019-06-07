@@ -366,11 +366,11 @@ ____
 
 
 
-## Focus par parties  
+## ENAP - Parties  
 
 
 
-###Youtube  
+### Youtube  
 
 La partie de l'application concernant youtube a comme objectif de retirer toutes les informations marketing du site :  
 
@@ -385,11 +385,13 @@ L'objectif est de supprimer le surplus : Les propositions de vidéo, les boutons
 La partie enfant est donc totalement limitée à un lecteur de vidéo, le choix des vidéos et le déclenchement des playlists est laissé à l'aidant.
 
 
-L'aidant doit pouvoir gérer plusieurs playlists en même temps. Il doit également pouvoir les modifier quand il le souhaite, ou en créer une rapidement, soit à partir d'une playlist youtube existante, soit en créer une depuis zéro. 
+L'aidant doit pouvoir gérer plusieurs playlists en même temps. Il doit également pouvoir les modifier quand il le souhaite, ou en créer une rapidement, soit à partir d'une playlist youtube existante, soit en créer une depuis zéro. Il doit pouvoir envoyer une playlist à n'importe quel enfant à sa charge
 
 ###Mails  
 
+/* MATHIS */
 
 ###Wikipédia  
 
 
+/* RAYANE */
