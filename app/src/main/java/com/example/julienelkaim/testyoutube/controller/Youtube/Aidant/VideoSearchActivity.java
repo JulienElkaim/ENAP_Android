@@ -104,8 +104,13 @@ public class VideoSearchActivity extends ThumbnailListDisplayerActivity {
         StringRequest stringRqQueue = new StringRequest(
                 Request.Method.GET,
                 mSearchUrl,
-                new Response.Listener<String>() {@Override public void onResponse(String response) { processRequestResponse(response) ; } },
-                new Response.ErrorListener() {@Override public void onErrorResponse(VolleyError error) { Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show(); } }
+                new Response.Listener<String>() {
+                    @Override public void onResponse(String response) {
+                        processRequestResponse(response); }
+                    },
+                new Response.ErrorListener() {@Override public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show(); }
+                }
         );
         rqQueue.add(stringRqQueue);
     }

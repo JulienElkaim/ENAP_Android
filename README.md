@@ -232,9 +232,10 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
 <br>
 <br> 
 
-Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter :  
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter : 
+ 
 ``` 
-julienelk@gmail.com 
+julienelk@gmail.com - 2018		//À mettre à jour tous les ans
 ```  
 
 <br>
@@ -244,21 +245,122 @@ ____
 
 ### API Requests  
 
-Les requêtes API REST se font à travers la librairie **volley**.
+Les requêtes sur API REST se font à travers la librairie **volley**. Le traitement d'une réponse en JSON se fait avec la librairie **gson**.
 
 ```gradle
 implementation 'com.android.volley:volley:1.1.1'
+implementation 'com.google.code.gson:gson:2.8.2'
+
+```  
+
+Volley traite les requêtes de manière asynchrone, c'est à dire que le programme n'attendra pas que l' API lui réponde pour éxécuter le reste du code.
+
+Pour lancer une requête il faut utiliser un objet **RequestQueue** auquel on passe un objet **strinRequest**. Ce dernier utilisera une fonction *(ici, fonctionPourTraiterLaReponseDeLApi)* pour traiter la réponse.
+
+```java
+	// Fonction a lancer depuis n'importe quel méthode d'une Activity
+	RequestQueue rqQueue = Volley.newRequestQueue(getApplicationContext());
+   // Définir les paramètres de requête et la manière de traiter
+   StringRequest stringRqQueue = new StringRequest(
+                Request.Method.GET,
+                mSearchUrl,
+                new Response.Listener<String>() {
+                    @Override public void onResponse(String response) {
+                        fonctionPourTraiterLaReponseDeLApi(response); }
+                    },
+                new Response.ErrorListener() {@Override public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(),error.getMessage(), Toast.LENGTH_LONG).show(); } 
+                }
+        );
+        rqQueue.add(stringRqQueue);
 ```
 
+Ensuite il suffit de traiter la réponse (en JSON si c'est une API REST) dans la fameuse fonction passée, *ici, fonctionPourTraiterLaReponseDeLApi*.  
+
+```java
+private void processRequestResponse(String response) {
+        try {
+            JSONArray jArray = new JSONObject(response).getJSONArray("items");
+            // JSONArray or JSONObject depending the JSON root : [] or {}
+            //Some stuff on the jArray object
+            
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+           //Or any strange way to handle errors on the JSON object.
+        }
+
+    }
+
+```
+<br>
+<br> 
+
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :  
+ 
+``` 
+julienelk@gmail.com - 2018 	//À mettre à jour tous les ans
+```  
+
+<br>
+<br>  
 ____  
 
 ### Création des vues XML
+
+La bonne pratique est de toujours construire une vue **avec** un controller. En effet, 90% du temps vos vues auront besoin d'un controller pour les générer, à moins que vous ne décidiez de faire des *partials*, ce qui est une utilisation avancée des vues.  
+
+Créer un duo View-Controller se fait en deux clicks grâce à Android Studio:  
+
+![alt text](img/view_controller.png)  
+
+Ils vont ensuite vous demander de nommer votre activity. Ici, suivez simplement la convention de nommage du projet.
+<br>
+<br> 
+
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :  
+
+``` 
+julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
+```  
+
+<br>
+<br>  
+
 ____  
 
 ### Utilisation de Firebase
+
+/* MATHIS */
 ____  
 
-### Youtube Librairie
+### Youtube Player - Lib
+
+[Téléchargez la librairie YouTubeAndroidPlayerApi-1](https://developers.google.com/youtube/android/player/downloads/YouTubeAndroidPlayerApi-1.2.2.zip). 
+
+**Pendant le téléchargement**, déplacez vous dans le dossier contenant le projet android (dedans vous trouverez des fichiers/dossiers tel que : app, gradle, build.gradle, etc...). Ici, créez un dossier APIaddedByMe (ou le nom qu'il vous plaira).
+
+**Après le téléchargement**, copiez-collez le dossier téléchargé (**dézippé**) dans APIaddedByMe (ou votre nom de dossier).  
+
+**Une fois le dossier déplacé**, ouvrez le build.gradle de l'application:  
+
+- Graphiquement : Le plus haut au niveau de l'arborescence du projet.  
+- Sur Android Studio: Dans la section Gradle Scripts, le fichier build.gradle (Module: app).  
+
+Android Studio vous demandera de réaliser une synchronisation du projet en haut à droite, **lancez la synchronisation**. Une fois terminée, vous êtes capable d'utiliser des objets Youtube Player !  
+<br>
+<br> 
+
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :  
+
+``` 
+julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
+```  
+
+<br>
+<br>  
+
 ____  
 
 
@@ -270,6 +372,20 @@ ____
 
 ###Youtube  
 
+La partie de l'application concernant youtube a comme objectif de retirer toutes les informations marketing du site :  
+
+![alt text](img/youtube_player_player.png) <-- Youtube | ENAP --> ![alt text](img/youtube_player_enap.png) 
+
+L'objectif est de supprimer le surplus : Les propositions de vidéo, les boutons d'interaction( partager, s'abonner, etc...), les publicités avant et pendant la lecture de vidéo. Le but est donc de proposer l'interface la plus minimaliste possible. Le choix a été fait de :  
+
+- Garder des boutons Play/Pause | Avant/Arrière
+- Afficher l'état d'avancement dans la playlist de lecture (pour coller à la méthode A.B.A)
+- Proposer un bouton "Retour en arrière" pour ne pas frustrer l'enfant de devoir rester sur cette page.
+
+La partie enfant est donc totalement limitée à un lecteur de vidéo, le choix des vidéos et le déclenchement des playlists est laissé à l'aidant.
+
+
+L'aidant doit pouvoir gérer plusieurs playlists en même temps. Il doit également pouvoir les modifier quand il le souhaite, ou en créer une rapidement, soit à partir d'une playlist youtube existante, soit en créer une depuis zéro. 
 
 ###Mails  
 
