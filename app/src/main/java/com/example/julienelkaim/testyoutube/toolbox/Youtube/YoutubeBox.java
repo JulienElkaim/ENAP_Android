@@ -214,7 +214,7 @@ public final class YoutubeBox {
      * @param activity is here for preferences purpose only.
      * @return the current playlist to display
      */
-    public static Playlist retrieveCurrentPlaylist(Activity activity) {
+    public static Playlist getCurrentPlaylist(Activity activity) {
 
         SharedPreferences  mPrefs = activity.getSharedPreferences(GlobalBox.YOUTUBE_SHARED_PREFERENCES,MODE_PRIVATE);
         Gson gson = new Gson();
@@ -232,10 +232,10 @@ public final class YoutubeBox {
      * @param mPlaylistArrayList the list of playlist known, to update with updated playlist.
      */
     public static void updateListOfPlaylist(Activity activity,Playlist playlist,  ArrayList<Playlist> mPlaylistArrayList){
-        int idPl = playlist.getPlaylistId();
+        int idPlaylist = playlist.getPlaylistId();
 
         for(int i = 0; i < mPlaylistArrayList.size(); i++){
-            if (idPl == mPlaylistArrayList.get(i).getPlaylistId()){
+            if (idPlaylist == mPlaylistArrayList.get(i).getPlaylistId()){
 
                 mPlaylistArrayList.set(i, playlist);
             }

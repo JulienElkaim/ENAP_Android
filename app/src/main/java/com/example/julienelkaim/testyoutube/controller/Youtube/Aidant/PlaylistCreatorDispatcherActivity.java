@@ -47,7 +47,7 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
         actualPlaylistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myPlaylists = new Intent(PlaylistCreatorDispatcherActivity.this, PlaylistCreatorGetterActivity.class);
+                Intent myPlaylists = new Intent(PlaylistCreatorDispatcherActivity.this, PlaylistCreatorFromYoutubeActivity.class);
                 startActivity(myPlaylists);
 
             }

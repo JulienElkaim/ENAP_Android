@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorGetterActivity"></activity>
+        <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorFromYoutubeActivity"></activity>
         <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorDispatcherActivity" />
         <activity
             android:name=".controller.ChatActivity"

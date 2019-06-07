@@ -108,7 +108,7 @@ public class VideoDisplayerActivity extends YouTubeBaseActivity {
         initializeLinksWithView();// Créer le lien avec les éléments graphique mutables.
         initializeButtonsOnView();// Initialise les comportements de click
 
-        Playlist mPlaylist = YoutubeBox.retrieveCurrentPlaylist(this);
+        Playlist mPlaylist = YoutubeBox.getCurrentPlaylist(this);
         List<String> videoList = mPlaylist.getVideoIdList();
 
 

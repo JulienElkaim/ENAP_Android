@@ -24,7 +24,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistCreatorGetterActivity extends AppCompatActivity {
+public class PlaylistCreatorFromYoutubeActivity extends AppCompatActivity {
     EditText mPlaylistId;
     EditText mPlaylistTitle;
     EditText mPlaylistDescription;
@@ -80,7 +80,7 @@ public class PlaylistCreatorGetterActivity extends AppCompatActivity {
      */
     private void processRequestResponse(String response) {
 
-        List<String> als = new ArrayList<>();
+        List<String> listOfVideos = new ArrayList<>();
         try {
 
             JSONArray jArray = new JSONObject(response).getJSONArray("items");
@@ -91,19 +91,19 @@ public class PlaylistCreatorGetterActivity extends AppCompatActivity {
 
                 //charger l'id de la video
                 String tmp = jsonObject.getJSONObject("snippet").getJSONObject("resourceId").getString("videoId");
-                als.add(tmp);
+                listOfVideos.add(tmp);
             }
 
-            ArrayList<Playlist> mesPlaylists = YoutubeBox.retrieveListOfPlaylist(PlaylistCreatorGetterActivity.this);
+            ArrayList<Playlist> mesPlaylists = YoutubeBox.retrieveListOfPlaylist(PlaylistCreatorFromYoutubeActivity.this);
             mesPlaylists.add(
                     new Playlist(
-                            YoutubeBox.provideUniqueId(PlaylistCreatorGetterActivity.this),
+                            YoutubeBox.provideUniqueId(PlaylistCreatorFromYoutubeActivity.this),
                             mPlaylistTitle.getText().toString(),
                             mPlaylistDescription.getText().toString(),
-                            als
+                            listOfVideos
                     )
             );
-            YoutubeBox.saveListOfPlaylist(PlaylistCreatorGetterActivity.this ,mesPlaylists);
+            YoutubeBox.saveListOfPlaylist(PlaylistCreatorFromYoutubeActivity.this ,mesPlaylists);
             onBackPressed();
 
 
