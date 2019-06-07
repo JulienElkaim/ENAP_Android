@@ -2,34 +2,24 @@ package com.example.julienelkaim.testyoutube.controller;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.model.User;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.List;
-
-
+/**
+ *
+ *  MAIN activity of ENAP project.
+ */
 public class DispatcherActivity extends AppCompatActivity {
 
     private Button logOut;
-
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
 
@@ -52,20 +42,24 @@ public class DispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                sendToStart();
+                RequestForAuth();
             }
         });
 
         currentUser = mAuth.getCurrentUser();
         if (currentUser == null){
-            sendToStart();        /* REMETTRE QUAND ON EST EN PROD !*/
+            RequestForAuth();
         }
         //else : remettre la fonction pour afficher l'image et l'utilisateur, voir l'episode 4
         // de Chap App with Firebase KOD Dev
 
     }
 
-    public void sendToStart(){
+    /**
+     * No Auth recognized, request for authentication
+     *
+     */
+    public void RequestForAuth(){
         startActivity(new Intent(DispatcherActivity.this, AuthActivity.class));
         finish();
 
@@ -88,7 +82,7 @@ public class DispatcherActivity extends AppCompatActivity {
             }
         });
 
-        //Site chenapan Button
+        //Site web chENAPan Button
         ImageButton chenapanButton = findViewById(R.id.Chenapan_Button);
         chenapanButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +91,8 @@ public class DispatcherActivity extends AppCompatActivity {
             }
         });
 
-        //Message System Button
+
+        //Message Button
         ImageButton messageButton = findViewById(R.id.Mail_Button);
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override

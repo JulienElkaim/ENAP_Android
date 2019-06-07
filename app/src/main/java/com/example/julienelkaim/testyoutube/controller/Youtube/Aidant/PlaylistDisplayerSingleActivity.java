@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 
 
-public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActivity {
+public class PlaylistDisplayerSingleActivity extends ThumbnailListDisplayerActivity {
 
     private Playlist mPlaylist;
     private ListView mListDisplayer;
@@ -52,7 +52,7 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
 
         @Override
     protected void onCreate(Bundle savedInstanceState) {
-        mIsListModifiable = true;
+        mViewMod = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_controlyoutube_single_playlist_displayer);
         mPlaylist = (Playlist) getIntent().getSerializableExtra(GlobalBox.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST);
@@ -90,7 +90,7 @@ public class SinglePlaylistDisplayerActivity extends ThumbnailListDisplayerActiv
             public void onClick(View v) {
 
                 GlobalBox.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION = mPlaylist.getPlaylistId();
-                Intent i = new Intent( SinglePlaylistDisplayerActivity.this , PlaylistResearchActivity.class);
+                Intent i = new Intent( PlaylistDisplayerSingleActivity.this , VideoSearchActivity.class);
                 startActivity(i);
             }
         });

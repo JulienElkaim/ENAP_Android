@@ -12,7 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.ThumbnailListDisplayerActivity;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlayListDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.VideoDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Youtube.Video;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.squareup.picasso.Picasso;
@@ -81,11 +81,25 @@ public class VideoListAdapter extends BaseAdapter {
     @Override
     public View getView(int position,  View convertView, ViewGroup parent) {
 
+        //Default params set.
         if(mLayoutInflater==null){  mLayoutInflater = mActivity.getLayoutInflater();    }
         if(convertView == null){    convertView = mLayoutInflater.inflate(R.layout.custom_video_item,null); }
 
 
+        //Matching between Adapter's object list and Videos in the Arraylist
         final Video video = mVideoArrayList.get(position);
+        return customizeObject(video, convertView);
+
+    }
+
+    /**
+     * Customize the convertView according to the video passed.
+     *
+     * @param video represents a Youtube Video object with thumbnail, id , title and description.
+     * @param convertView represents a blank video card to customize.
+     * @return the customized video card.
+     */
+    private View customizeObject(Video video, View convertView){
 
         ImageView imageView = convertView.findViewById(R.id.thumbnailsImageView);
         Picasso.get().load(video.getUrl()).into(imageView);
@@ -98,11 +112,10 @@ public class VideoListAdapter extends BaseAdapter {
 
         LinearLayout linearLayout = convertView.findViewById(R.id.root);
 
-        final Intent i = new Intent(mActivity, PlayListDisplayerActivity.class);
+        final Intent i = new Intent(mActivity, VideoDisplayerActivity.class);
         i.putExtra(GlobalBox.YOUTUBE_VIDEO_ID_FROM_RESEARCH, video.getVideoId());
 
-        if(mActivity.mIsListModifiable){
-            //Single playlist display part    =================== DIFFERENT INTENT QUE DANS LE ELSE !!
+        if(mActivity.mViewMod){
             addASupprButton(mActivity,convertView, video);
             linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
                 @Override
@@ -123,8 +136,10 @@ public class VideoListAdapter extends BaseAdapter {
         }
 
         mActivity.incrementCountVideoDisplayed(); // Can be used as we want to add new behavior for a specific video... For instance, load further videos at the last position
+
         return convertView;
     }
+
 
     /**
      * @author Julien Elkaim
@@ -134,7 +149,6 @@ public class VideoListAdapter extends BaseAdapter {
      * @param video is the video relative to the convertView.
      */
     private void addASupprButton(final ThumbnailListDisplayerActivity activity, View convertView, final Video video) {
-
 
         ImageButton supprBtn = new ImageButton(activity);
         supprBtn.setLayoutParams(new ViewGroup.LayoutParams(50,50));

@@ -19,7 +19,7 @@ import java.util.List;
 
 
 
-public class DisplayerActivity extends YouTubeBaseActivity {
+public class VideoDisplayerActivity extends YouTubeBaseActivity {
 
     //================================ Params ================================
     private YouTubePlayer mYouTubePlayer; // YouTube Player.
@@ -169,7 +169,7 @@ public class DisplayerActivity extends YouTubeBaseActivity {
         buttonMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myGame = new Intent(DisplayerActivity.this, DispatcherActivity.class);
+                Intent myGame = new Intent(VideoDisplayerActivity.this, DispatcherActivity.class);
                 startActivity(myGame);
             }
         });

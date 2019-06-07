@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Child.DisplayerActivity;
-import com.example.julienelkaim.testyoutube.controller.Youtube.DispatcherActivity;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 
 public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {

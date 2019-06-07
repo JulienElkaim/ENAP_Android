@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 
 
-public class PlaylistResearchActivity extends ThumbnailListDisplayerActivity {
+public class VideoSearchActivity extends ThumbnailListDisplayerActivity {
 
 
     EditText mInputArea;

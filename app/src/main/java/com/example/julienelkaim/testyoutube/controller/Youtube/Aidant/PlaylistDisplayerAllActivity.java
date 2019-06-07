@@ -17,7 +17,7 @@ import com.example.julienelkaim.testyoutube.toolbox.Youtube.YoutubeBox;
 
 import java.util.ArrayList;
 
-public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
+public class PlaylistDisplayerAllActivity extends PlaylistListDisplayerActivity {
 
 
     ListView mListView;
@@ -56,7 +56,7 @@ public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
         launchCreate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PlaylistEnumeratorActivity.this, PlaylistCreatorDispatcherActivity.class));
+                startActivity(new Intent(PlaylistDisplayerAllActivity.this, PlaylistCreatorDispatcherActivity.class));
             }
         });
 
@@ -86,7 +86,6 @@ public class PlaylistEnumeratorActivity extends PlaylistListDisplayerActivity {
 
         TextView emptyText = findViewById(android.R.id.empty);
         if (emptyText != null) {
-            System.out.println("DEBUGGO::: On a vu que la liste de playlist pas null");
             mListView.setEmptyView(emptyText);
             if (mPlaylistArrayList.size() != 0){ ((ViewGroup) emptyText.getParent()).removeView(emptyText); }
         }

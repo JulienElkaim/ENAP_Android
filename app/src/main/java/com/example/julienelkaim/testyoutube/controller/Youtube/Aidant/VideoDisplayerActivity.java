@@ -14,11 +14,12 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 
-public class PlayListDisplayerActivity extends YouTubeBaseActivity {
+public class VideoDisplayerActivity extends YouTubeBaseActivity {
     private YouTubePlayerView mYouTubePlayerView; // View encapsulating YouTube Player.
     private String mVideoId;
 
     //================================ LISTENER -> YouTubePlayer: Initialisation ================================
+
     private YouTubePlayer.OnInitializedListener mPlayerInitializedListener = new YouTubePlayer.OnInitializedListener() {
         @Override
         public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
@@ -54,8 +55,8 @@ public class PlayListDisplayerActivity extends YouTubeBaseActivity {
             @Override
             public void onClick(View v) {
 
-                YoutubeBox.modifyPlaylistListOfVideo(PlayListDisplayerActivity.this, GlobalBox.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION, mVideoId);
-                Toast.makeText(PlayListDisplayerActivity.this, "Video ajoutée à la playlist!", Toast.LENGTH_SHORT).show();
+                YoutubeBox.modifyPlaylistListOfVideo(VideoDisplayerActivity.this, GlobalBox.YOUTUBE_PLAYLIST_ID_IN_MODIFICATION, mVideoId);
+                Toast.makeText(VideoDisplayerActivity.this, "Video ajoutée à la playlist!", Toast.LENGTH_SHORT).show();
                 onBackPressed();
 
             }

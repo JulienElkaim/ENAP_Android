@@ -125,6 +125,8 @@ public final class YoutubeBox {
     /**
      * @author Julien Elkaim
      *
+     * Adapted to a Video request to the API
+     *
      * @param requested string is the url video
      */
     public static String setGoogleApiSearchUrl(String requested, int nbResults) {
@@ -134,8 +136,12 @@ public final class YoutubeBox {
                 "&&playlistId="+ StringBox.escapeMyUrl(requested) +
                 "&key=" + GlobalBox.API_KEY;
     }
+
+
     /**
      * @author Julien Elkaim
+     *
+     * Adapt to a Playlist request to the API
      *
      * @param requested string is the url video
      */

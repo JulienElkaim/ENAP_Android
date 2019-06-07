@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.SinglePlaylistDisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlaylistDisplayerSingleActivity;
 import com.example.julienelkaim.testyoutube.controller.Youtube.MotherActivity.PlaylistListDisplayerActivity;
 import com.example.julienelkaim.testyoutube.model.Youtube.Playlist;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
@@ -90,54 +90,65 @@ public class PlaylistListAdapter extends BaseAdapter {
         }
 
         final Playlist mPlaylist = mPlaylistArrayList.get(position);
+        return customizeObject(mPlaylist, convertView);
 
-        TextView textView = convertView.findViewById(R.id.video_title);
-        textView.setText(mPlaylist.getTitle());
+    }
 
-        TextView secondTextView = convertView.findViewById(R.id.video_description);
-        secondTextView.setText((mPlaylist.getDescription().equals(""))? secondTextView.getText(): mPlaylist.getDescription());
+    /**
+     * Customize the convertView according to the video passed.
+     *
+     * @param mPlaylist represents an ENAP playlist object with title, description , VideoList.
+     * @param convertView represents a blank playlist card to customize.
+     * @return the customized playlist card.
+     */
+    private View customizeObject(final Playlist mPlaylist, View convertView){
+            TextView textView = convertView.findViewById(R.id.video_title);
+            textView.setText(mPlaylist.getTitle());
 
-        LinearLayout linearLayout = convertView.findViewById(R.id.root);
-        linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
-            @Override
-            public void onClick(View v) {
+            TextView secondTextView = convertView.findViewById(R.id.video_description);
+            secondTextView.setText((mPlaylist.getDescription().equals(""))? secondTextView.getText(): mPlaylist.getDescription());
+
+            LinearLayout linearLayout = convertView.findViewById(R.id.root);
+            linearLayout.setOnClickListener(new LinearLayout.OnClickListener() {
+                @RequiresApi(api = Build.VERSION_CODES.O)
+                @Override
+                public void onClick(View v) {
 
 
-                Intent displayThisPlaylist = new Intent(mActivity, SinglePlaylistDisplayerActivity.class) ;
-                displayThisPlaylist.putExtra(GlobalBox.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
-                mActivity.startActivity(displayThisPlaylist);
+                    Intent displayThisPlaylist = new Intent(mActivity, PlaylistDisplayerSingleActivity.class) ;
+                    displayThisPlaylist.putExtra(GlobalBox.YOUTUBE_ACTUAL_MODIFIED_PLAYLIST , mPlaylist);
+                    mActivity.startActivity(displayThisPlaylist);
 
-            }
-        });
+                }
+            });
 
-        final TextView nbVideo = convertView.findViewById(R.id.nb_video_in_playlist);
-        nbVideo.setText( String.valueOf(mPlaylist.getNumberOfVideos()) );
+            final TextView nbVideo = convertView.findViewById(R.id.nb_video_in_playlist);
+            nbVideo.setText( String.valueOf(mPlaylist.getNumberOfVideos()) );
 
-        ImageButton sendButton = convertView.findViewById(R.id.send_button_playlist);
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Save my playlist in preferences as the current playlist
-                YoutubeBox.sendPlaylistToYourChild(mActivity,mPlaylist);
-                Toast.makeText(mActivity, "Playlist envoyée à l'enfant!", Toast.LENGTH_SHORT).show();
+            ImageButton sendButton = convertView.findViewById(R.id.send_button_playlist);
+            sendButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Save my playlist in preferences as the current playlist
+                    YoutubeBox.sendPlaylistToYourChild(mActivity,mPlaylist);
+                    Toast.makeText(mActivity, "Playlist envoyée à l'enfant!", Toast.LENGTH_SHORT).show();
 
-            }
-        });
+                }
+            });
 
-        ImageButton supprButton = convertView.findViewById(R.id.suprr_button_playlist);
-        supprButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Save my playlist in preferences as the current playlist, and update listview
-                YoutubeBox.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
-                mActivity.finish();
-                mActivity.startActivity(mActivity.getIntent());
+            ImageButton supprButton = convertView.findViewById(R.id.suprr_button_playlist);
+            supprButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Save my playlist in preferences as the current playlist, and update listview
+                    YoutubeBox.destroyPlaylistById(mActivity, mPlaylist.getPlaylistId(), mPlaylistArrayList);
+                    mActivity.finish();
+                    mActivity.startActivity(mActivity.getIntent());
 
-            }
-        });
+                }
+            });
 
-        return convertView;
+            return convertView;
     }
 
 }

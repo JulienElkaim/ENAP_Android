@@ -76,7 +76,6 @@ public class PlaylistCreatorGetterActivity extends AppCompatActivity {
      * @author Julien Elkaim
      *
      * Handle API's answers to display videos matching to our requests.
-     *
      * @param response is the request' answer of the Youtube Data API.
      */
     private void processRequestResponse(String response) {
