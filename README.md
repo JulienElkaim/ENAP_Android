@@ -1,6 +1,7 @@
 # Projet Android ENAP: V 1.0.0
 <br>
-<br>
+<br>  
+
 ## Contexte et objectifs du projet
 
 L'application a pour objectif de permettre aux autistes de profiter des ressources d'internet dans le cadre d'un apprentissage encadré. ses objectifs sont : 
@@ -8,20 +9,24 @@ L'application a pour objectif de permettre aux autistes de profiter des ressourc
 <br>
 
 ____
-<br>
+<br>  
+
 **Premier objectif:** simplifier les interfaces des sites internets les plus visités pour éviter aux enfants de souffrir de la surcharge d'information que l'on trouve sur les sites d'information.  
+ 
 **Sites traités en v1.0.0:**  
 - Wikipédia [Voir plus](###Wikipédia)   
 - Youtube [Voir plus](#Youtube) 
 <br>
 ____
-<br>
+<br>  
+
 **Second objectif:** proposer un système de messagerie simplifié, adapté à des enfants non communicants. [Voir plus](#Mails_Part)
 <br>
 ____
 
 <br>
-<br>
+<br>  
+
 ## Auteurs
 
 Convention : *Author - email address : speciality*
@@ -32,12 +37,16 @@ __________________________________
 **Julien Elkaim**   - julienelk@gmail.com       : Youtube **[Nb: 3A Nancy 2019 - 2020]**  
 **Rayan Zaibet**    - rayananana@gmail.com      : Wikipédia  
 **Mathis Fouques**  - mathis@gmail.com          : Mails  
-<br>
-__________________________________
+<br>  
+
+__________________________________  
+
 <br>
 v 2.X.X - 2A en 		*2019 - 2020*  
-<br>
-__________________________________
+<br>  
+
+__________________________________  
+
 
 
 <br>
@@ -73,12 +82,15 @@ __________________________________
 	private int squareIt(int nb){
 		return nb*nb;
 	}
-```
+```  
+
 
 ## Tutorials  
 
 
-###<a name="mvc_tutorial"></a> Architecture MVC
+
+###Architecture MVC  
+
 
 L'architecture MVC est très utilisé dans les applications web et mobile. Elle part du principe que le code est beaucoup plus maintenable si les différentes fonctions de l'application sont divisés entre différents objets (Ici, des simples classes Java, ou des fichiers xml):  
 
@@ -219,7 +231,9 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
 ```
 <br>
 <br>
-Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter :  ```julienelk@gmail.com```
+Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter :  
+```julienelk@gmail.com```  
+
 <br>
 <br>  
 
