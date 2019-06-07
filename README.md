@@ -43,7 +43,7 @@ __________________________________
 
 <br>  
 
-### ENAP -v 1.0.0  
+### ENAP -v 2.0.0  
 
 __________________________________  
 
@@ -59,11 +59,14 @@ __________________________________
 
 
 <br>
-<br>
-## Conventions du projet
+<br>  
 
-<br>
-**Architecture**: L'architecture des projets Android est directement inspirée de l'architecture MVC. Pour en savoir plus sur la MVC, [Cliquez ici](#mvc_tutorial)  
+## Conventions du projet  
+
+
+<br>  
+
+**Architecture** : L'architecture des projets Android est directement inspirée de l'architecture MVC. Pour en savoir plus sur la MVC, [Cliquez ici](#Architecture-MVC)  
 
 **D.R.Y** : Don't Repeat Yourself. Si des classes partagent leur logique (Exemple: Deux activités destinées à afficher une liste de vidéos), il vaut mieux créer une classe mère dans le plus de décliner les méthodes, quitte à faire des *overrides*. Pour plus de fluidité dans le parcours des classes, encapsulez ces classes mères dans un sous package **MotherActivity**.
 
@@ -98,7 +101,7 @@ __________________________________
 
 
 
-###Architecture MVC  
+### Architecture MVC  
 
 
 L'architecture MVC est très utilisé dans les applications web et mobile. Elle part du principe que le code est beaucoup plus maintenable si les différentes fonctions de l'application sont divisés entre différents objets (Ici, des simples classes Java, ou des fichiers xml):  
