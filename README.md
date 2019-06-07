@@ -14,13 +14,13 @@ ____
 **Premier objectif:** simplifier les interfaces des sites internets les plus visités pour éviter aux enfants de souffrir de la surcharge d'information que l'on trouve sur les sites d'information.  
  
 **Sites traités en v1.0.0:**  
-- Wikipédia [Voir plus](###Wikipédia)   
+- Wikipédia [Voir plus](#Wikipédia)   
 - Youtube [Voir plus](#Youtube) 
 <br>
 ____
 <br>  
 
-**Second objectif:** proposer un système de messagerie simplifié, adapté à des enfants non communicants. [Voir plus](#Mails_Part)
+**Second objectif:** proposer un système de messagerie simplifié, adapté à des enfants non communicants. [Voir plus](#Mails)
 <br>
 ____
 
@@ -370,11 +370,15 @@ ____
 
 
 
-### Youtube  
+### Youtube 
+ 
+
+#### Partie Enfant  
 
 La partie de l'application concernant youtube a comme objectif de retirer toutes les informations marketing du site :  
 
 ![alt text](img/youtube_player_player.png) <-- Youtube | ENAP --> ![alt text](img/youtube_player_enap.png) 
+
 
 L'objectif est de supprimer le surplus : Les propositions de vidéo, les boutons d'interaction( partager, s'abonner, etc...), les publicités avant et pendant la lecture de vidéo. Le but est donc de proposer l'interface la plus minimaliste possible. Le choix a été fait de :  
 
@@ -384,14 +388,48 @@ L'objectif est de supprimer le surplus : Les propositions de vidéo, les boutons
 
 La partie enfant est donc totalement limitée à un lecteur de vidéo, le choix des vidéos et le déclenchement des playlists est laissé à l'aidant.
 
+#### Partie Aidant  
 
-L'aidant doit pouvoir gérer plusieurs playlists en même temps. Il doit également pouvoir les modifier quand il le souhaite, ou en créer une rapidement, soit à partir d'une playlist youtube existante, soit en créer une depuis zéro. Il doit pouvoir envoyer une playlist à n'importe quel enfant à sa charge
+L'aidant doit pouvoir gérer plusieurs playlists en même temps. Il doit pouvoir envoyer une playlist à n'importe quel enfant à sa charge.
 
-###Mails  
+![alt text](img/youtube_aidant_all_playlist.png)  | ![alt text](img/youtube_aidant_playlist_sent.png)  
+
+Il doit également pouvoir les modifier quand il le souhaite,  
+
+![alt text](img/youtube_aidant_single_playlist.png)  | ![alt text](img/youtube_aidant_search_video.png) | ![alt text](img/youtube_aidant_player.png)   
+
+ou en créer une rapidement, soit à partir d'une playlist youtube existante, soit en créer une depuis zéro.  
+
+![alt text](img/youtube_aidant_add_playlist.png)  | ![alt text](img/youtube_aidant_add_playlist_new.png) | ![alt text](img/youtube_aidant_add_playlist_with_id.png)  
+
+<br>
+<br>
+<br> 
+
+Si vous désirez des précisions, n'hésitez surtout pas à me contacter :  
+
+``` 
+julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
+```  
+
+<br>
+<br>  
+<br>
+
+**Reste à faire sur Youtube pour la v 2.0.0 :**
+_____________________  
+
+- Possibilité pour un aidant de gérer sa liste d'enfants à charge.
+- Envoie par Firebase d'une playlist à un enfant à charge.
+
+_____________________  
+
+
+### Mails  
 
 /* MATHIS */
 
-###Wikipédia  
+### Wikipédia  
 
 
 /* RAYANE */
