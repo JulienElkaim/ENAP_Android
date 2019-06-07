@@ -230,16 +230,26 @@ public class PlaylistCreatorDispatcherActivity extends AppCompatActivity {
 
 ```
 <br>
-<br>
+<br> 
+
 Si ce tutoriel n'est pas assez claire, n'hésitez pas à me contacter :  
-```julienelk@gmail.com```  
+``` 
+julienelk@gmail.com 
+```  
 
 <br>
 <br>  
 
 ____  
 
-### API Requests
+### API Requests  
+
+Les requêtes API REST se font à travers la librairie **volley**.
+
+```gradle
+implementation 'com.android.volley:volley:1.1.1'
+```
+
 ____  
 
 ### Création des vues XML
