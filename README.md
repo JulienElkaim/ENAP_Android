@@ -445,11 +445,14 @@ _____________________
 
 ### Contacts
 
-![alt_text](img/62215792_2342080049451800_8225187964720775168_n.png) 
+![alt_text](img/messagerie_screen_contacts.png) 
 
 Voici la fenetre de contacts. 
 Les utilisateurs sont ajoutés à la base de données en temps réel firebase au fur et à mesure qu'ils s'enregistrent.
 Ces données sont lues et ajoutées à une ArrayList. 
+
+Ensuite ils sontdisposés grâce à une ListView et un adapter.
+Cette partie pourra gagner en visibilité par le futur en ajoutant des images de profil pour les utilisateurs ( --> proposer à l'inscription de choisir parmi un certain nombre d'images de profil) 
 
 #### Chat 
 
@@ -476,8 +479,8 @@ maths.fouques@gmail.com - 2018  	//À mettre à jour tous les ans.
 **Reste à faire sur la messagerie pour la v 2.0.0 :**
 _____________________  
 
-- Possibilité pour un aidant de gérer sa liste d'enfants à charge.
-- Envoie par Firebase d'une playlist à un enfant à charge.
+- 
+
 
 _____________________  
 
