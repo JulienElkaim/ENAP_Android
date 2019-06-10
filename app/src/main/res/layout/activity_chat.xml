@@ -14,16 +14,13 @@
         android:layout_above="@id/root_view"
         android:layout_height="match_parent"/>
 
-
-
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:padding="5dp"
         android:id="@+id/root_view"
         android:background="@color/colorBackground"
         android:layout_alignParentBottom="true"
-        android:layout_height="100dp">
+        android:layout_height="70dp">
 
             <ImageView
                 android:id="@+id/emoji_btn"
