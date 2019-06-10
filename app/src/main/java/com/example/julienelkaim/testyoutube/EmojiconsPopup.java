@@ -16,8 +16,6 @@
 
 package com.example.julienelkaim.testyoutube;
 
-
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -41,8 +39,6 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
-import com.example.julienelkaim.testyoutube.EmojiconRecents;
-import com.example.julienelkaim.testyoutube.EmojiconRecentsManager;
 import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 import com.example.julienelkaim.testyoutube.emoji.Nature;
 import com.example.julienelkaim.testyoutube.emoji.Objects;
@@ -66,7 +62,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 	private Boolean pendingOpen = false;
 	private Boolean isOpened = false;
 	EmojiconGridView.OnEmojiconClickedListener onEmojiconClickedListener;
-	OnEmojiconBackspaceClickedListener onEmojiconBackspaceClickedListener; 
+	OnEmojiconBackspaceClickedListener onEmojiconBackspaceClickedListener;
 	OnSoftKeyboardOpenCloseListener onSoftKeyboardOpenCloseListener;
 	View rootView;
 	Context mContext;
@@ -84,14 +80,14 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 		View customView = createCustomView();
 		setContentView(customView);
 		setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-		//default size 
+		//default size
 		setSize((int) mContext.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
 	}
 	/**
 	 * Set the listener for the event of keyboard opening or closing.
 	 */
 	public void setOnSoftKeyboardOpenCloseListener(OnSoftKeyboardOpenCloseListener listener){
-		this.onSoftKeyboardOpenCloseListener = listener; 
+		this.onSoftKeyboardOpenCloseListener = listener;
 	}
 
 	/**
@@ -110,20 +106,20 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 
 	/**
 	 * Use this function to show the emoji popup.
-	 * NOTE: Since, the soft keyboard sizes are variable on different android devices, the 
+	 * NOTE: Since, the soft keyboard sizes are variable on different android devices, the
 	 * library needs you to open the soft keyboard atleast once before calling this function.
 	 * If that is not possible see showAtBottomPending() function.
-	 * 
+	 *
 	 */
 	public void showAtBottom(){
 		showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
 	}
 	/**
-	 * Use this function when the soft keyboard has not been opened yet. This 
+	 * Use this function when the soft keyboard has not been opened yet. This
 	 * will show the emoji popup after the keyboard is up next time.
-	 * Generally, you will be calling InputMethodManager.showSoftInput function after 
+	 * Generally, you will be calling InputMethodManager.showSoftInput function after
 	 * calling this function.
-	 */ 
+	 */
 	public void showAtBottomPending(){
 		if(isKeyBoardOpen())
 			showAtBottom();
@@ -132,7 +128,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 	}
 
 	/**
-	 * 
+	 *
 	 * @return Returns true if the soft keyboard is open, false otherwise.
 	 */
 	public Boolean isKeyBoardOpen(){
@@ -146,7 +142,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 	public void dismiss() {
 		super.dismiss();
 		EmojiconRecentsManager
-		.getInstance(mContext).saveRecents();
+				.getInstance(mContext).saveRecents();
 	}
 
 	/**
@@ -189,20 +185,20 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 				}
 			}
 		});
-	}	
+	}
 
-	private int getUsableScreenHeight() {	    
-	    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-	    	DisplayMetrics metrics = new DisplayMetrics();
-	    	
-	    	WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-	        windowManager.getDefaultDisplay().getMetrics(metrics);	 
-	        
-	        return metrics.heightPixels;
-	        
-	    } else {
-	    	return rootView.getRootView().getHeight();
-	    }
+	private int getUsableScreenHeight() {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+			DisplayMetrics metrics = new DisplayMetrics();
+
+			WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+			windowManager.getDefaultDisplay().getMetrics(metrics);
+
+			return metrics.heightPixels;
+
+		} else {
+			return rootView.getRootView().getHeight();
+		}
 	}
 
 	/**
@@ -229,8 +225,8 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 						new EmojiconGridView(mContext, Objects.DATA, recents, this),
 						new EmojiconGridView(mContext, Places.DATA, recents, this),
 						new EmojiconGridView(mContext, Symbols.DATA, recents, this)
-						)
-				);
+				)
+		);
 		emojisPager.setAdapter(mEmojisAdapter);
 		mEmojiTabs = new View[6];
 		mEmojiTabs[0] = view.findViewById(R.id.emojis_tab_0_recents);
@@ -239,7 +235,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 		mEmojiTabs[3] = view.findViewById(R.id.emojis_tab_3_objects);
 		mEmojiTabs[4] = view.findViewById(R.id.emojis_tab_4_cars);
 		mEmojiTabs[5] = view.findViewById(R.id.emojis_tab_5_punctuation);
-		for (int i = 0; i < mEmojiTabs.length; i++){
+		for (int i = 0; i < mEmojiTabs.length; i++) {
 			final int position = i;
 			mEmojiTabs[i].setOnClickListener(new View.OnClickListener() {
 				@Override
@@ -292,19 +288,19 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 			return;
 		}
 		switch (i) {
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 5:
-			if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
-				mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
-			}
-			mEmojiTabs[i].setSelected(true);
-			mEmojiTabLastSelectedIndex = i;
-			mRecentsManager.setRecentPage(i);
-			break;
+			case 0:
+			case 1:
+			case 2:
+			case 3:
+			case 4:
+			case 5:
+				if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
+					mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
+				}
+				mEmojiTabs[i].setSelected(true);
+				mEmojiTabLastSelectedIndex = i;
+				mRecentsManager.setRecentPage(i);
+				break;
 		}
 	}
 
@@ -401,18 +397,18 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 
 		public boolean onTouch(View view, MotionEvent motionEvent) {
 			switch (motionEvent.getAction()) {
-			case MotionEvent.ACTION_DOWN:
-				downView = view;
-				handler.removeCallbacks(handlerRunnable);
-				handler.postAtTime(handlerRunnable, downView, SystemClock.uptimeMillis() + initialInterval);
-				clickListener.onClick(view);
-				return true;
-			case MotionEvent.ACTION_UP:
-			case MotionEvent.ACTION_CANCEL:
-			case MotionEvent.ACTION_OUTSIDE:
-				handler.removeCallbacksAndMessages(downView);
-				downView = null;
-				return true;
+				case MotionEvent.ACTION_DOWN:
+					downView = view;
+					handler.removeCallbacks(handlerRunnable);
+					handler.postAtTime(handlerRunnable, downView, SystemClock.uptimeMillis() + initialInterval);
+					clickListener.onClick(view);
+					return true;
+				case MotionEvent.ACTION_UP:
+				case MotionEvent.ACTION_CANCEL:
+				case MotionEvent.ACTION_OUTSIDE:
+					handler.removeCallbacksAndMessages(downView);
+					downView = null;
+					return true;
 			}
 			return false;
 		}

@@ -2,6 +2,7 @@ package com.example.julienelkaim.testyoutube.controller;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.widget.PopupWindow;
 
 import com.example.julienelkaim.testyoutube.EmojiconEditText;
 import com.example.julienelkaim.testyoutube.EmojiconGridView;
+import com.example.julienelkaim.testyoutube.EmojiconTextView;
 import com.example.julienelkaim.testyoutube.EmojiconsPopup;
 import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
@@ -40,8 +42,6 @@ import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
 
-
-    Button envoiTestImage;
     RecyclerView recyclerView;
 
     MessageAdapter messageAdapter;
@@ -114,9 +114,6 @@ public class ChatActivity extends AppCompatActivity {
          *  EMOJICON
          */
 
-        //ListView lv = findViewById(R.id.lv);
-        //final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
-        //lv.setAdapter(mAdapter);
         final EmojiconEditText emojiconEditText = (EmojiconEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
         final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
@@ -219,20 +216,23 @@ public class ChatActivity extends AppCompatActivity {
 
         //On submit, add the edittext text to listview and clear the edittext
         submitButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 String newText = emojiconEditText.getText().toString();
                 emojiconEditText.getText().clear();
-                //mAdapter.add(newText);
-                //mAdapter.notifyDataSetChanged();
-
                 sendMessage(mUserId,mOtherUserId,newText);
 
             }
         });
-
-
     }
+
+    private void changeEmojiKeyboardIcon(ImageView iconToBeChanged, int drawableResourceId){
+        iconToBeChanged.setImageResource(drawableResourceId);
+    }
+
+
+
 
         // TEXTE ET EMOJIS
         protected void sendMessage(String sender,String receiver,String message){
@@ -277,62 +277,11 @@ public class ChatActivity extends AppCompatActivity {
 
         }
 
-
-    ////---------------- IMAGES ----------------.
-    /*
-    public void sendImageMessage(String sender,String receiver,int imageId){
-
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("sender",sender);
-        hashMap.put("receiver",receiver);
-        hashMap.put("imageId",imageId);
-
-        ChatImage chatImage = new ChatImage(sender,receiver,imageId);
-
-        reference.child("ChatImage").push().setValue(chatImage);
-    }
-
-
-    protected void readImageMessage(final String myId, final String userId){
-
-        DatabaseReference referenceImage = reference.child("ChatImage");
-        referenceImage.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mChatImage.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-
-                    HashMap<String,Object> hashMapTemp = (HashMap) ds.getValue();
-                    ChatImage chatImage =  new ChatImage((String) hashMapTemp.get("sender"),(String) hashMapTemp.get("receiver"),(long) hashMapTemp.get("imageId"));
-
-                    if (chatImage.getReceiver().equals(myId) && chatImage.getSender().equals(userId) ||
-                            chatImage.getReceiver().equals(userId) && chatImage.getSender().equals(myId)) {
-                        mChatImage.add(chatImage);
-                    }
-                    messageImageAdapter = new MessageImageAdapter(ChatActivity.this,mChatImage) ;
-                    recyclerView.setAdapter(messageImageAdapter);
-                    LinearLayoutManager linearLayoutManagerImage = new LinearLayoutManager(getApplicationContext());
-                    linearLayoutManagerImage.setStackFromEnd(true);
-                    recyclerView.setLayoutManager(linearLayoutManagerImage);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-    }*/
-
-    private void changeEmojiKeyboardIcon(ImageView iconToBeChanged, int drawableResourceId){
-        iconToBeChanged.setImageResource(drawableResourceId);
-
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-        GlobalBox.windowAndSystemSettings(this);
+
+        //GlobalBox.windowAndSystemSettings(this);
 
     }
 }

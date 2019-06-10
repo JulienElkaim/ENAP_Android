@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             emojicon:emojiconSize="28sp"
             android:textColor="@color/colorBlack"
-            android:layout_toStartOf="@id/profileImage">
+            android:layout_toStartOf="@id/profileImage"
+            android:background="@drawable/background_right">
 
         </com.example.julienelkaim.testyoutube.EmojiconTextView>
 

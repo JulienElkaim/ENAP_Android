@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/colorBackground"
@@ -7,29 +7,44 @@
     android:layout_height="match_parent"
     tools:context=".controller.AuthActivity">
 
-    <Button
-        android:id="@+id/registerButton"
+    <ImageView
+        android:id="@+id/imageConnexion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CREER UN COMPTE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/seconnecter_2_bonne_taille"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/connexionButton"/>
+
 
     <Button
         android:id="@+id/connexionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SE CONNECTER"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.292" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="80dp"
+        android:layout_above="@id/imageCreationCompte"
+        android:text="@string/se_connecter"/>
+
+    <ImageView
+        android:id="@+id/imageCreationCompte"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/registerButton"
+        android:layout_marginBottom="20dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/creercompte_3_bonne_taille" />
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:text="@string/s_enregistrer"/>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
+

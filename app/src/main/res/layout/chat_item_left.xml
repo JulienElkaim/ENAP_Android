@@ -12,12 +12,13 @@
         android:src="@mipmap/ic_launcher_round"/>
 
     <com.example.julienelkaim.testyoutube.EmojiconTextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:id="@+id/emojiTextView"
         android:layout_height="wrap_content"
         android:textSize="28sp"
         android:textColor="@color/colorBlack"
-        emojicon:emojiconSize="28sp">
+        emojicon:emojiconSize="28sp"
+        android:background="@drawable/background_left">
 
     </com.example.julienelkaim.testyoutube.EmojiconTextView>
 

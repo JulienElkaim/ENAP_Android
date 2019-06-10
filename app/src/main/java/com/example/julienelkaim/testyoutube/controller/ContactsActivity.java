@@ -79,7 +79,7 @@ public class ContactsActivity extends AppCompatActivity {
 
                     if (mCurrentUser.getUid().equals(ds.child("id").getValue())){
                         textCurrentUser = findViewById(R.id.textCurrentUser);
-                        textCurrentUser.setText(ds.child("username").getValue().toString());
+                        textCurrentUser.setText("Bienvenue " + ds.child("username").getValue().toString());
                     }else {
                         System.out.println("pas cette fois");
                     }
