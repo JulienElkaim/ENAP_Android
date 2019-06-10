@@ -14,17 +14,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorFromYoutubeActivity"></activity>
+        <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorDispatcherActivity" />
         <activity
             android:name=".controller.ChatActivity"
-            android:theme="@style/NoActionBar"/>
+            android:theme="@style/NoActionBar" />
         <activity android:name=".controller.ContactsActivity" />
         <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorActivity" />
-        <activity android:name=".controller.Youtube.Aidant.SinglePlaylistDisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlaylistDisplayerSingleActivity" />
         <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.RegisterActivity" />
         <activity android:name=".controller.AuthActivity" />
-        <activity android:name=".controller.Youtube.Child.DisplayerActivity" />
-        <activity android:name=".controller.Youtube.Aidant.PlaylistEnumeratorActivity" />
+        <activity android:name=".controller.Youtube.Child.VideoDisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.PlaylistDisplayerAllActivity" />
         <activity android:name=".controller.DispatcherActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +34,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.Youtube.Aidant.PlaylistResearchActivity" />
-        <activity android:name=".controller.Youtube.Aidant.PlayListDisplayerActivity" />
+        <activity android:name=".controller.Youtube.Aidant.VideoSearchActivity" />
+        <activity android:name=".controller.Youtube.Aidant.VideoDisplayerActivity" />
         <activity
             android:name=".controller.Youtube.DispatcherActivity"
             android:label="@string/title_activity_youtube_dispatcher"

@@ -4,7 +4,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Child.DisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Child.VideoDisplayerActivity;
 
 import java.util.List;
 
@@ -71,7 +71,7 @@ public class VideoListManager {
      * @param context is the view where video cards are displayed.
      * @return a video card to add at the context.
      */
-    public ImageView createPlaylistHeader(String color, DisplayerActivity context) {
+    public ImageView createPlaylistHeader(String color, VideoDisplayerActivity context) {
         ImageView addedChild = new ImageView(context);
 
         LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controller.Youtube.Child.DisplayerActivity"
+    tools:context=".controller.Youtube.Child.VideoDisplayerActivity"
     android:background="@color/colorBackground">
 
     <LinearLayout

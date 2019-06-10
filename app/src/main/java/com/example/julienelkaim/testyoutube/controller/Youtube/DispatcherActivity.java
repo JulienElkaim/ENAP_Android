@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlaylistEnumeratorActivity;
-import com.example.julienelkaim.testyoutube.controller.Youtube.Child.DisplayerActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Aidant.PlaylistDisplayerAllActivity;
+import com.example.julienelkaim.testyoutube.controller.Youtube.Child.VideoDisplayerActivity;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 
 public class DispatcherActivity extends AppCompatActivity {
@@ -34,7 +34,7 @@ public class DispatcherActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Se connecter a l'activité lecteur youtube
-                Intent myGame = new Intent(DispatcherActivity.this, DisplayerActivity.class);
+                Intent myGame = new Intent(DispatcherActivity.this, VideoDisplayerActivity.class);
                 startActivity(myGame);
             }
         });
@@ -42,7 +42,7 @@ public class DispatcherActivity extends AppCompatActivity {
         YtbePlaylistsrchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myPlaylists = new Intent(DispatcherActivity.this, PlaylistEnumeratorActivity.class);
+                Intent myPlaylists = new Intent(DispatcherActivity.this, PlaylistDisplayerAllActivity.class);
                 startActivity(myPlaylists);
 
             }
