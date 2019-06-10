@@ -1,27 +1,31 @@
 package com.example.julienelkaim.testyoutube.controller;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.ImageButton;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 
+import com.example.julienelkaim.testyoutube.EmojiconEditText;
+import com.example.julienelkaim.testyoutube.EmojiconGridView;
+import com.example.julienelkaim.testyoutube.EmojiconsPopup;
 import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
+
 import com.example.julienelkaim.testyoutube.adapter.MessageAdapter;
-import com.example.julienelkaim.testyoutube.adapter.MessageImageAdapter;
-import com.example.julienelkaim.testyoutube.adapter.PictogrammesAdapter;
+import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 import com.example.julienelkaim.testyoutube.model.Chat;
 import com.example.julienelkaim.testyoutube.model.ChatImage;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,9 +43,8 @@ public class ChatActivity extends AppCompatActivity {
 
     Button envoiTestImage;
     RecyclerView recyclerView;
-    GridView gridView;
 
-    MessageImageAdapter messageImageAdapter;
+    MessageAdapter messageAdapter;
     List<Chat> mChat;
     List<ChatImage> mChatImage;
 
@@ -60,8 +63,6 @@ public class ChatActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chat);
 
         //Ressources
-        envoiTestImage = findViewById(R.id.envoiTest);
-        gridView = findViewById(R.id.gridView);
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
@@ -74,42 +75,14 @@ public class ChatActivity extends AppCompatActivity {
         //Firebase
         mAuth = FirebaseAuth.getInstance();
         mUser = mAuth.getCurrentUser();
-        if (mUser == null){
-            startActivity(new Intent(ChatActivity.this,AuthActivity.class));
+        if (mUser == null) {
+            startActivity(new Intent(ChatActivity.this, AuthActivity.class));
         }
         mUserId = mUser.getUid();
         reference = FirebaseDatabase.getInstance().getReference();
 
         //Récupération de l'intent: la position du contact cliqué --> son id..
-        final String mOtherUserId = mUserIdList.get(ChatActivity.this.getIntent().getIntExtra("position",0));
-
-        envoiTestImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendImageMessage(mUserId,mOtherUserId,R.drawable.add_button);
-            }
-        });
-
-        /**
-         * Ce qui concerne l'affichage du panneau de commande pour les smileys
-         */
-
-        final ArrayList<Integer> resourceList = new ArrayList<>();
-        resourceList.add(R.drawable.add_button);
-        resourceList.add(R.drawable.logo_chenapan);
-
-        PictogrammesAdapter pictogrammesAdapter = new PictogrammesAdapter(ChatActivity.this,resourceList);
-        gridView.setAdapter(pictogrammesAdapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ChatActivity.this, "Vous avez cliqué en " + position + "eme position", Toast.LENGTH_LONG).show();
-
-                System.out.println("C'est cliqué");
-                //sendImageMessage(mUserId,mOtherUserId,resourceList.get(position));
-            }
-        });
+        final String mOtherUserId = mUserIdList.get(ChatActivity.this.getIntent().getIntExtra("position", 0));
 
         /**
          * Ce qui concerne la lecture/ ecriture de message
@@ -119,15 +92,15 @@ public class ChatActivity extends AppCompatActivity {
          */
         final ProgressDialog mRegProgress;
         // Progress Dialog
-        mRegProgress= new ProgressDialog(this);
+        mRegProgress = new ProgressDialog(this);
         mRegProgress.setTitle("Chargement des messages");
         mRegProgress.setCanceledOnTouchOutside(false);
         mRegProgress.show();
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                /*readMessage(mUserId,mOtherUserId);*/
-                readImageMessage(mUserId,mOtherUserId);
+                //readImageMessage(mUserId, mOtherUserId);
+                readMessage(mUserId,mOtherUserId);
                 mRegProgress.dismiss();
             }
 
@@ -137,53 +110,176 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         *  EMOJICON
+         */
 
-    }
-/*
-    protected void sendMessage(String sender,String receiver,String message){
+        //ListView lv = findViewById(R.id.lv);
+        //final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
+        //lv.setAdapter(mAdapter);
+        final EmojiconEditText emojiconEditText = (EmojiconEditText) findViewById(R.id.emojicon_edit_text);
+        final View rootView = findViewById(R.id.root_view);
+        final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
+        final ImageView submitButton = (ImageView) findViewById(R.id.submit_btn);
 
-        HashMap<String,Object> hashMap = new HashMap<>();
-        hashMap.put("sender",sender);
-        hashMap.put("receiver",receiver);
-        hashMap.put("message",message);
+        // Give the topmost view of your activity layout hierarchy. This will be used to measure soft keyboard height
+        final EmojiconsPopup popup = new EmojiconsPopup(rootView, this);
 
-        reference.child("Chats").push().setValue(hashMap);
-    }
+        //Will automatically set size according to the soft keyboard size
+        popup.setSizeForSoftKeyboard();
 
-    protected void readMessage(final String myId, final String userId){
+        //If the emoji popup is dismissed, change emojiButton to smiley icon
+        popup.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
-        reference.child("Chats").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                mChat.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+            public void onDismiss() {
+                changeEmojiKeyboardIcon(emojiButton, R.drawable.smiley);
+            }
+        });
 
-                    HashMap<String,String> hashMapTemp = (HashMap) ds.getValue();
-                    Chat chat =  new Chat(hashMapTemp.get("sender"),hashMapTemp.get("receiver"),hashMapTemp.get("message"));
+        //If the text keyboard closes, also dismiss the emoji popup
+        popup.setOnSoftKeyboardOpenCloseListener(new EmojiconsPopup.OnSoftKeyboardOpenCloseListener() {
 
-                    if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
-                            chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
-                        mChat.add(chat);
-                        }
-                    messageAdapter = new MessageAdapter(ChatActivity.this,mChat) ;
-                    recyclerView.setAdapter(messageAdapter);
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-                    linearLayoutManager.setStackFromEnd(true);
-                    recyclerView.setLayoutManager(linearLayoutManager);
+            @Override
+            public void onKeyboardOpen(int keyBoardHeight) {
 
-                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onKeyboardClose() {
+                if(popup.isShowing())
+                    popup.dismiss();
+            }
+        });
+
+        //On emoji clicked, add it to edittext
+        popup.setOnEmojiconClickedListener(new EmojiconGridView.OnEmojiconClickedListener() {
+
+            @Override
+            public void onEmojiconClicked(Emojicon emojicon) {
+                if (emojiconEditText == null || emojicon == null) {
+                    return;
+                }
+
+                int start = emojiconEditText.getSelectionStart();
+                int end = emojiconEditText.getSelectionEnd();
+                if (start < 0) {
+                    emojiconEditText.append(emojicon.getEmoji());
+                } else {
+                    emojiconEditText.getText().replace(Math.min(start, end),
+                            Math.max(start, end), emojicon.getEmoji(), 0,
+                            emojicon.getEmoji().length());
+                }
+            }
+        });
+
+        //On backspace clicked, emulate the KEYCODE_DEL key event
+        popup.setOnEmojiconBackspaceClickedListener(new EmojiconsPopup.OnEmojiconBackspaceClickedListener() {
+
+            @Override
+            public void onEmojiconBackspaceClicked(View v) {
+                KeyEvent event = new KeyEvent(
+                        0, 0, 0, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.KEYCODE_ENDCALL);
+                emojiconEditText.dispatchKeyEvent(event);
+            }
+        });
+
+        // To toggle between text keyboard and emoji keyboard keyboard(Popup)
+        emojiButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                //If popup is not showing => emoji keyboard is not visible, we need to show it
+                if(!popup.isShowing()){
+
+                    //If keyboard is visible, simply show the emoji popup
+                    if(popup.isKeyBoardOpen()){
+                        popup.showAtBottom();
+                        changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_action_keyboard);
+                    }
+
+                    //else, open the text keyboard first and immediately after that show the emoji popup
+                    else{
+                        emojiconEditText.setFocusableInTouchMode(true);
+                        emojiconEditText.requestFocus();
+                        popup.showAtBottomPending();
+                        final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.showSoftInput(emojiconEditText, InputMethodManager.SHOW_IMPLICIT);
+                        changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_action_keyboard);
+                    }
+                }
+
+                //If popup is showing, simply dismiss it to show the undelying text keyboard
+                else{
+                    popup.dismiss();
+                }
+            }
+        });
+
+        //On submit, add the edittext text to listview and clear the edittext
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String newText = emojiconEditText.getText().toString();
+                emojiconEditText.getText().clear();
+                //mAdapter.add(newText);
+                //mAdapter.notifyDataSetChanged();
+
+                sendMessage(mUserId,mOtherUserId,newText);
 
             }
         });
 
-    }*/
+
+    }
+
+        // TEXTE ET EMOJIS
+        protected void sendMessage(String sender,String receiver,String message){
+
+            HashMap<String,Object> hashMap = new HashMap<>();
+            hashMap.put("sender",sender);
+            hashMap.put("receiver",receiver);
+            hashMap.put("message",message);
+
+            reference.child("Chats").push().setValue(hashMap);
+        }
+
+        protected void readMessage(final String myId, final String userId){
+
+            reference.child("Chats").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    mChat.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+
+                        HashMap<String,String> hashMapTemp = (HashMap) ds.getValue();
+                        Chat chat =  new Chat(hashMapTemp.get("sender"),hashMapTemp.get("receiver"),hashMapTemp.get("message"));
+
+                        if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
+                                chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
+                            mChat.add(chat);
+                            }
+                        messageAdapter = new MessageAdapter(ChatActivity.this,mChat) ;
+                        recyclerView.setAdapter(messageAdapter);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        linearLayoutManager.setStackFromEnd(true);
+                        recyclerView.setLayoutManager(linearLayoutManager);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
 
 
-    ////---------------- IMAGES ----------------
+    ////---------------- IMAGES ----------------.
+    /*
     public void sendImageMessage(String sender,String receiver,int imageId){
 
         HashMap<String,Object> hashMap = new HashMap<>();
@@ -226,6 +322,17 @@ public class ChatActivity extends AppCompatActivity {
 
             }
         });
+    }*/
+
+    private void changeEmojiKeyboardIcon(ImageView iconToBeChanged, int drawableResourceId){
+        iconToBeChanged.setImageResource(drawableResourceId);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        GlobalBox.windowAndSystemSettings(this);
 
     }
 }

@@ -10,10 +10,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.User;
+import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -29,9 +31,12 @@ import java.util.List;
 public class ContactsActivity extends AppCompatActivity {
 
     private ListView listView;
+    private TextView textCurrentUser;
+
     List<String> mContactsNameList;
     List<String> mUserIdList;
     private DatabaseReference reference;
+    private FirebaseUser mCurrentUser;
 
     private ProgressDialog mRegProgress;
 
@@ -50,6 +55,8 @@ public class ContactsActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        GlobalBox.windowAndSystemSettings(this);
+
         // Progress Dialog
         mRegProgress= new ProgressDialog(this);
         mRegProgress.setTitle("Chargement des contacts");
@@ -58,6 +65,8 @@ public class ContactsActivity extends AppCompatActivity {
 
         //Firebase
         reference = FirebaseDatabase.getInstance().getReference("Users");
+        mCurrentUser = FirebaseAuth.getInstance().getCurrentUser();
+
         // Chargement des contacts
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -67,8 +76,17 @@ public class ContactsActivity extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     mContactsNameList.add(ds.child("username").getValue().toString());
                     mUserIdList.add(ds.child("id").getValue().toString());
+
+                    if (mCurrentUser.getUid().equals(ds.child("id").getValue())){
+                        textCurrentUser = findViewById(R.id.textCurrentUser);
+                        textCurrentUser.setText(ds.child("username").getValue().toString());
+                    }else {
+                        System.out.println("pas cette fois");
+                    }
                 }
                 ContactsActivity.this.arrayAdapterListView(mContactsNameList);
+
+
                 mRegProgress.dismiss();
             }
 
