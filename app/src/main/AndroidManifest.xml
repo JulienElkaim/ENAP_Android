@@ -39,7 +39,11 @@
         <activity
             android:name=".controller.Youtube.DispatcherActivity"
             android:label="@string/title_activity_youtube_dispatcher"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/YoutubeTheme" />
+        <activity android:name=".controller.Wikipedia.WikiMenu"
+            android:theme="@style/AppTheme.NoActionBar" />/>
+        <activity android:name=".controller.Wikipedia.WikiAffichage"
+            android:theme="@style/AppTheme.NoActionBar" />/>
     </application>
 
 </manifest>

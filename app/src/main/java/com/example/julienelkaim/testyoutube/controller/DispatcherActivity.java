@@ -82,6 +82,16 @@ public class DispatcherActivity extends AppCompatActivity {
             }
         });
 
+        //Wikipedia Button
+        ImageButton wikiButton = findViewById(R.id.Wiki_Button);
+        wikiButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent myGame = new Intent(DispatcherActivity.this, com.example.julienelkaim.testyoutube.controller.Wikipedia.WikiMenu.class);
+                startActivity(myGame);
+            }
+        });
+
         //Site web chENAPan Button
         ImageButton chenapanButton = findViewById(R.id.Chenapan_Button);
         chenapanButton.setOnClickListener(new View.OnClickListener() {
