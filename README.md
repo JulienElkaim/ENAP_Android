@@ -554,7 +554,7 @@ Cette partie pourra gagner en visibilité par le futur en ajoutant des images de
 
 L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer des pictogrammes entre les différents enfants. Le besoin était porté sur une communication par le biais d'images dans le but de faciliter la compréhension de l'enfant. En s'inscrivant dans une démarche globale de l'application, cette partie avait aussi pour but d'épurer l'interface de communication. Ici on peut voir comment cette interface a pu être épurée sans perdre en capacité de communication.
 
-![alt text](img/messagerie_screen_messenger.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messengerieENAPgit .png)
+![alt text](img/messagerie_screen_messenger.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messengerieENAP.png)
 
 Pour cette interface, on utilise une fenetre popup, ouverte grâce à l'appui sur un pictogramme en bas à gauche de l'écran, pour pouvoir sélectionner les pictogrammes à envoyer. Ces émôticones sont ensuite disposés dans un editText, et envoyés grâce à l'appui sur un pictogramme symbolisant l'envoi.
 
