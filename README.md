@@ -697,10 +697,9 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 
 
-
+<body>
 <div align="justify">
-	<img style=" width: 10%; " src="img/wikipedia_screen3.png" width = "300px" align="right">
-	<img style=" width: 10%; " src="img/wikipedia_screen4.png" width = "300px" align="right">
+	<img style=" width: 10%; " src="img/wikipedia_screen2.png" width = "300px" align="right">	
 	<h4>
 		Résultats de recherche
 	</h4>
@@ -709,6 +708,8 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 <br>
 	 Il suffit alors de cliquer sur un résultat pour voir l'article qui lui est associé.
 	</div>
+	</body>
+	
 <br>
 <br>
 <br>
