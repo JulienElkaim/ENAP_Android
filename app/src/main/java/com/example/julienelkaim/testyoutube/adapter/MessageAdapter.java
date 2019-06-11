@@ -7,8 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
+import com.example.julienelkaim.testyoutube.controller.Message.EmojiconTextView;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.Chat;
 import com.google.firebase.auth.FirebaseAuth;
@@ -28,9 +28,9 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public MessageAdapter(Context mContext, List<Chat> chat) {
         this.mContext = mContext;
         this.mChat = chat;
-        
+
     }
-    public  MessageAdapter(){
+    public MessageAdapter(){
 
     }
 
@@ -50,8 +50,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder viewHolder, int position) {
 
         Chat chat = mChat.get(position);
-
-        viewHolder.show_message.setText(chat.getMessage());
+        //viewHolder.emojiTextView.setText((String) chat.getMessage());
+        viewHolder.showText.setText((String) chat.getMessage());
     }
 
     @Override
@@ -62,14 +62,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public  class ViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView show_message;
         public ImageView profile_image;
+        public EmojiconTextView showText;
 
         public ViewHolder(View itemView){
             super(itemView);
 
-            show_message = itemView.findViewById(R.id.show_message);
+
+
             profile_image = itemView.findViewById(R.id.profileImage);
+            showText = itemView.findViewById(R.id.emojiTextView);
 
         }
     }

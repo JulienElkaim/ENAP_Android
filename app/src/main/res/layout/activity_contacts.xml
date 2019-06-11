@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:theme="@style/AppTheme"
-    tools:context=".controller.ContactsActivity">
+    tools:context=".controller.Message.ContactsActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -15,18 +15,26 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:id="@+id/textCurrentUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bienvenue"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView"/>
 
     <ListView
         android:id="@+id/listViewContacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/textCurrentUser"
         android:layout_marginTop="30dp">
 
-
     </ListView>
-
-
 
 </RelativeLayout>
