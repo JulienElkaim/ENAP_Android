@@ -20,7 +20,7 @@ ____
 
 <br>  
 
-**Second objectif:** proposer un système de messagerie simplifié, adapté à des enfants non communicants. [Voir plus](#Mails)
+**Second objectif:** proposer un système de messagerie, adapté à des enfants non communicants. [Voir plus](#Messagerie)
 <br>
 ____
 
@@ -437,9 +437,54 @@ _____________________
 _____________________  
 
 
-### Mails  
+### Messagerie  
 
-/* MATHIS */
+#### Authentification   
+ 
+
+
+### Contacts
+
+![alt_text](img/messagerie_screen_contacts.png) 
+
+Voici la fenetre de contacts. 
+Les utilisateurs sont ajoutés à la base de données en temps réel firebase au fur et à mesure qu'ils s'enregistrent.
+Ces données sont lues et ajoutées à une ArrayList. 
+
+Ensuite ils sontdisposés grâce à une ListView et un adapter.
+Cette partie pourra gagner en visibilité par le futur en ajoutant des images de profil pour les utilisateurs ( --> proposer à l'inscription de choisir parmi un certain nombre d'images de profil) 
+
+#### Chat 
+
+L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer des pictogrammes entre les différents enfants. Le besoin était porté sur une communication par le biais d'images dans le but de faciliter la compréhension de l'enfant. En s'inscrivant dans une démarche globale de l'application, cette partie avait aussi pour but d'épurer l'interface de communication. Ici on peut voir comment cette interface a pu être épurée sans perdre en capacité de communication.
+
+![alt text](img/messagerie_screen_messagerieENAP.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messenger.png) 
+
+Pour cette interface, on utilise une fenetre popup, ouverte grâce à l'appui sur un pictogramme en bas à gauche de l'écran, pour pouvoir sélectionner les pictogrammes à envoyer. Ces émôticones sont ensuite disposés dans un editText, et envoyés grâce à l'appui sur un pictogramme symbolisant l'envoi.
+
+<br>
+<br>
+<br> 
+
+Si vous avez besoin de précision, n'hésitez surtout pas à me contacter :  
+
+``` 
+maths.fouques@gmail.com - 2018  	//À mettre à jour tous les ans.
+```  
+
+<br>
+<br>  
+<br>
+
+**Reste à faire sur la messagerie pour la v 2.0.0 :**
+_____________________  
+
+- 
+
+
+_____________________  
+
+
 
 ### Wikipédia  
 
