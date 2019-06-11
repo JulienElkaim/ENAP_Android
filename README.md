@@ -446,6 +446,7 @@ _____________________
 Ici on a deux possibilités, soit ona déjà un compte et on se connecte,soit on s'enregistre avec un nouveau compte.
 A noter : L'authentification n'est pas quelquechose de très simple à épurer au niveau graphique pour un enfant atteint du trouble autistique. Ainsi l'idée est de laisser l'aidant connecter chaue enfant dans un premier temps. Dans un second temps, on pourra tenter dans ls prochaines versions de faciliter la connexion grâce aux images de profil, qu'il faudrait alors rendre unique à chaque utilisateur.
 
+Voir la partie sur Firebase
 ### Contacts
 
 ![alt_text](img/messagerie_screen_contacts.png) 
@@ -461,7 +462,7 @@ Cette partie pourra gagner en visibilité par le futur en ajoutant des images de
 
 L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer des pictogrammes entre les différents enfants. Le besoin était porté sur une communication par le biais d'images dans le but de faciliter la compréhension de l'enfant. En s'inscrivant dans une démarche globale de l'application, cette partie avait aussi pour but d'épurer l'interface de communication. Ici on peut voir comment cette interface a pu être épurée sans perdre en capacité de communication.
 
-![alt text](img/messagerie_screen_messagerieENAP.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messenger.png) 
+![alt text](img/messagerie_screen_messenger.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messengerieENAP.png)
 
 Pour cette interface, on utilise une fenetre popup, ouverte grâce à l'appui sur un pictogramme en bas à gauche de l'écran, pour pouvoir sélectionner les pictogrammes à envoyer. Ces émôticones sont ensuite disposés dans un editText, et envoyés grâce à l'appui sur un pictogramme symbolisant l'envoi.
 
