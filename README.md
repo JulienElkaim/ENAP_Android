@@ -439,9 +439,12 @@ _____________________
 
 ### Messagerie  
 
-#### Authentification   
+### Authentification
  
+![alt_text](img/messagerie_screen_seconnecter.png) ![alt_text](img/messagerie_screen_senregistrer.png)
 
+Ici on a deux possibilités, soit ona déjà un compte et on se connecte,soit on s'enregistre avec un nouveau compte.
+A noter : L'authentification n'est pas quelquechose de très simple à épurer au niveau graphique pour un enfant atteint du trouble autistique. Ainsi l'idée est de laisser l'aidant connecter chaue enfant dans un premier temps. Dans un second temps, on pourra tenter dans ls prochaines versions de faciliter la connexion grâce
 
 ### Contacts
 
@@ -454,7 +457,7 @@ Ces données sont lues et ajoutées à une ArrayList.
 Ensuite ils sontdisposés grâce à une ListView et un adapter.
 Cette partie pourra gagner en visibilité par le futur en ajoutant des images de profil pour les utilisateurs ( --> proposer à l'inscription de choisir parmi un certain nombre d'images de profil) 
 
-#### Chat 
+### Chat
 
 L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer des pictogrammes entre les différents enfants. Le besoin était porté sur une communication par le biais d'images dans le but de faciliter la compréhension de l'enfant. En s'inscrivant dans une démarche globale de l'application, cette partie avait aussi pour but d'épurer l'interface de communication. Ici on peut voir comment cette interface a pu être épurée sans perdre en capacité de communication.
 
