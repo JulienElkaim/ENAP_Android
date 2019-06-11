@@ -444,7 +444,7 @@ _____________________
 ![alt_text](img/messagerie_screen_seconnecter.png) ![alt_text](img/messagerie_screen_senregistrer.png)
 
 Ici on a deux possibilités, soit ona déjà un compte et on se connecte,soit on s'enregistre avec un nouveau compte.
-A noter : L'authentification n'est pas quelquechose de très simple à épurer au niveau graphique pour un enfant atteint du trouble autistique. Ainsi l'idée est de laisser l'aidant connecter chaue enfant dans un premier temps. Dans un second temps, on pourra tenter dans ls prochaines versions de faciliter la connexion grâce
+A noter : L'authentification n'est pas quelquechose de très simple à épurer au niveau graphique pour un enfant atteint du trouble autistique. Ainsi l'idée est de laisser l'aidant connecter chaue enfant dans un premier temps. Dans un second temps, on pourra tenter dans ls prochaines versions de faciliter la connexion grâce aux images de profil, qu'il faudrait alors rendre unique à chaque utilisateur.
 
 ### Contacts
 
