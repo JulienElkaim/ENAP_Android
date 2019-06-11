@@ -344,7 +344,99 @@ ____
 
 ### Utilisation de Firebase
 
-/* MATHIS */
+
+Firebase a été principalement utilisé lors de la partie sur la messagerie.
+
+Firebase est un service proposé par google qui permet de disposer d'un serveur clé-en-main pour les applications mais également les sites internet par exemple.
+L'idée de google est de proposer un système simple permettant aux développeurs d'utiliser un serveur.
+
+Sur deux aspects :
+
+ - L'authentification :
+
+ Firebase prend tout en main avec la fonction "CreateAccountWithEmailAndPassword que vous pourrez retrouver dans l'activité RegisterActivity.
+ Cependant, il a fallu en amont importer la bibliothèque firebase, google vous demandera de l'updater. Voir la partie sur le gradle pour comprendre les dépendances.
+
+ <br>
+ <br>
+ private void registerUser(final String display_name, final String email, String password) {
+
+         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+             @Override
+             public void onComplete(@NonNull final Task<AuthResult> task) {
+
+                 if (task.isSuccessful()) {
+
+                     mRegProgress.dismiss();
+
+                     final FirebaseUser firebaseUser = mAuth.getCurrentUser();
+                     assert firebaseUser != null;
+                     String userId = firebaseUser.getUid();
+
+                     reference = FirebaseDatabase.getInstance().getReference("Users");
+                     reference.push().setValue(new User(userId,display_name,email));
+
+                     Intent mainIntent = new Intent(RegisterActivity.this, DispatcherActivity.class);
+                     startActivity(mainIntent);
+                     Toast.makeText(RegisterActivity.this, "Bienvenue, "+display_name+" !", Toast.LENGTH_SHORT).show();
+                     finish();
+
+                 } else {
+
+                     mRegProgress.dismiss();
+                     Toast.makeText(RegisterActivity.this, "Erreur", Toast.LENGTH_LONG).show();
+                     Log.w("RegisterActivity", "createUserWithEmail:failure", task.getException());
+
+                 }
+             }
+         });
+     }
+
+ <br>
+ <br>
+
+ - La base de données en temps réel :
+
+A chaque authentification on ajouteà la base de données les coordonnées de l'utilisateur pour pouvoir l'utiliser dans le code par la suite. D'autrepart la Database est essentielle pour pouvoir échanger des messages entre utilisateurs.
+Une fonction importante :
+addValueEventListener() : Vous allez voir une utilisation ci dessous de cette fonction. Son principe est de lire à tout instant la base de donées et de pouvoir effectuer des actions lorsque les données de la base de données ont changé.
+Ceci est tiré de la fonction OnCreate() de la ChatActivity
+
+<br>
+<br>
+
+//Lecture de la base de données pour pouvoir lire les messages
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                //readImageMessage(mUserId, mOtherUserId);
+                readMessage(mUserId,mOtherUserId);
+                mRegProgress.dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+<br>
+<br>
+
+
+
+<br>
+<br>
+
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :
+
+```
+maths.fouques@gmail.com - 2018  	//À mettre à jour tous les ans.
+```
+
+<br>
+<br>
+
 ____  
 
 ### Youtube Player - Lib
@@ -462,7 +554,7 @@ Cette partie pourra gagner en visibilité par le futur en ajoutant des images de
 
 L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer des pictogrammes entre les différents enfants. Le besoin était porté sur une communication par le biais d'images dans le but de faciliter la compréhension de l'enfant. En s'inscrivant dans une démarche globale de l'application, cette partie avait aussi pour but d'épurer l'interface de communication. Ici on peut voir comment cette interface a pu être épurée sans perdre en capacité de communication.
 
-![alt text](img/messagerie_screen_messenger.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messengerieENAP.png)
+![alt text](img/messagerie_screen_messenger.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messengerieENAPgit .png)
 
 Pour cette interface, on utilise une fenetre popup, ouverte grâce à l'appui sur un pictogramme en bas à gauche de l'écran, pour pouvoir sélectionner les pictogrammes à envoyer. Ces émôticones sont ensuite disposés dans un editText, et envoyés grâce à l'appui sur un pictogramme symbolisant l'envoi.
 
@@ -557,8 +649,8 @@ maths.fouques@gmail.com - 2018  	//À mettre à jour tous les ans.
 **Reste à faire sur la messagerie pour la v 2.0.0 :**
 _____________________  
 
-- 
-
+- Ajout d'images de profil : proposition à l'inscription et possibilité de se connecter de manière simplifiée grâce àces images.
+- Ajout de pictogrammes pour remplir un peu plus la bibliothèque de pictogrammes.
 
 _____________________  
 

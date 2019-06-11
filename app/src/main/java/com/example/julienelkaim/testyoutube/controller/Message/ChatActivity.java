@@ -89,6 +89,8 @@ public class ChatActivity extends AppCompatActivity {
         mRegProgress.setTitle("Chargement des messages");
         mRegProgress.setCanceledOnTouchOutside(false);
         mRegProgress.show();
+
+        //Lecture de la base de données pour pouvoir lire les messages
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
