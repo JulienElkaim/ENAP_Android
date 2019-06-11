@@ -693,11 +693,14 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 <br>
 <br>
+<br>
+<br>
 
 
 
 <div align="justify">
-	<img style=" width: 10%; " src="img/wikipedia_screen2.png" width = "300px" align="right">
+	<img style=" width: 10%; " src="img/wikipedia_screen3.png" width = "300px" align="right">
+	<img style=" width: 10%; " src="img/wikipedia_screen4.png" width = "300px" align="right">
 	<h4>
 		Résultats de recherche
 	</h4>
@@ -706,6 +709,36 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 <br>
 	 Il suffit alors de cliquer sur un résultat pour voir l'article qui lui est associé.
 	</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<div align="justify">
+	<img style=" width: 10%; " src="img/wikipedia_screen1.png" width = "300px" align="right">
+	<h4> Visualisation des résultats
+	<br>
+	</h4>
+	 La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. Remarquons que toute la typographie a été pensée pour être la plus <em> eye friendly </em> possible, id est être agréable, informative sans pour autant <b>distraire l'attention de l'utilisateur</b>. De même, le clavier s'active automatiquement à l'ouveture de l'activité et se referme aussitôt que le bouton <em>RECHERCHER</em> a été pressé. Encore une fois, toute manipulation inutile qui ne permet pas à l'utilisateur d'apporter de nouvelles données est évitée.
+	 <br>
+	 <br>
+	 Le bouton recherche permet donc d'obtenir une liste de résultats.
+	</div>
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 <br>
