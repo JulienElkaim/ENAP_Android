@@ -680,6 +680,8 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 <br>
 	 <br>
 	 Le bouton recherche permet donc d'obtenir une liste de résultats.</div>
+	</div>
+	
 
 
 #### Résultats de recherche
