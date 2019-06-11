@@ -749,18 +749,18 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 
 
 <h4> <b> Reste à faire sur la messagerie pour la v 2.0.0 : </b> </h4>
-_____________________  
+<br>
 
 - Optimisation de l'affichage des images, notamment pour obtenir une meilleure définition
 - Généraliser la recherche à d'autres ressources que Wikipédia
 - Tracker les préférences en terme d'article de l'enfant pour que l'aidant ait un suivi sur son activité sur le module
 
-_____________________  
 <br>
 <br>
 <br>
 <br>
 Pour toute question, n'hésitez surtout pas à me contacter :  
+<br>
 
 ``` 
 rayane.zaibet@mines-nancy.org
