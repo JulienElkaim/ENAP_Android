@@ -697,7 +697,6 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 
 
-<body>
 <div align="justify">
 	<img style=" width: 10%; " src="img/wikipedia_screen2.png" width = "300px" align="right">	
 	<h4>
@@ -708,18 +707,37 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 <br>
 	 Il suffit alors de cliquer sur un résultat pour voir l'article qui lui est associé.
 	</div>
-	</body>
+	
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
 
 <body>
 <div align="justify">
-	<img style=" width: 10%; " src="img/wikipedia_screen1.png" width = "300px" align="right">
-	<h4> Visualisation des résultats
+	<img style=" width: 10%; " src="img/wikipedia_screen4.png" width = "200px" align="right">
+	<img style=" width: 10%; " src="img/wikipedia_screen3.png" width = "200px" align="right">
+	<h4> Affichage de l'article
 	<br>
 	</h4>
-	 La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. Remarquons que toute la typographie a été pensée pour être la plus <em> eye friendly </em> possible, id est être agréable, informative sans pour autant <b>distraire l'attention de l'utilisateur</b>. De même, le clavier s'active automatiquement à l'ouveture de l'activité et se referme aussitôt que le bouton <em>RECHERCHER</em> a été pressé. Encore une fois, toute manipulation inutile qui ne permet pas à l'utilisateur d'apporter de nouvelles données est évitée.
+	 Nous voilà dans le coeur de ce module : l'affichage de l'article avec l'interface pensée pour. En tête de layout, on retrouve en clair le titre de l'article, pour qu'à tout moment l'enfant puisse vérifier d'un coup d'oeil le titre de l'article qu'il est en train de lire. Ce titre est encadré de deux boutons <em> Suivant </em> et <em> Précédent </em> qui permettent de progresser dans l'article au rythme de l'enfant, qui peut à tout moment revenir en arrière.
 	 <br>
 	 <br>
-	 Le bouton recherche permet donc d'obtenir une liste de résultats.
+	 On trouve ensuite un bloc fondamental dans la méthode ABA et rend ce module particulièrement adapté pour les enfants atteints de troubles du spectre autistique : la barre de progression. Elle permet très facilement à l'enfant d'une part de se répérer dans la progression de l'article et veille à la rassurer sur son avancée dans la lecture. D'autre part, elle lui permet de jauger rapidement si l'article est long ou pas.
+	<br>
+	<br>
+	Enfin, on trouve dans le dernier et plus grand module de ce bloc l'affichage article, dont le dynamisme est géré à l'image d'une page web. La structure de celui-ci est <b> constante </b> pour ne pas perdre l'enfant dans des interfaces multiples. Il y a toujours une image centrée surplombant un paragraphe d'article, dont la longeur peut varier selon la taille de l'article source, mais qui reste toujours mesuré dans sa longeur.
 	</div>
 </body>
 <br>
@@ -734,3 +752,12 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 <br>
 <br>
+
+<h4> <b> Reste à faire sur la messagerie pour la v 2.0.0 : </b> </h4>
+_____________________  
+
+- Optimisation de l'affichage des images, notamment pour obtenir une meilleure définition
+- Généraliser la recherche à d'autres ressources que Wikipédia
+- Tracker les préférences en terme d'article de l'enfant pour que l'aidant ait un suivi sur son activité sur le module
+
+_____________________  
