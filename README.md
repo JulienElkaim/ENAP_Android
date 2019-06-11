@@ -666,4 +666,4 @@ En quelques mots, même un enfant sans trouble autistique peut éprouver un sent
 <br>
 Donc, l'idée est de : 
 <br>
-<img src="img/messagerie_screen_contacts.png">
+<img src="img/wikipedia_screen1.png">
