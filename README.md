@@ -666,4 +666,4 @@ En quelques mots, même un enfant sans trouble autistique peut éprouver un sent
 <br>
 Donc, l'idée est de : 
 <br>
-<img src="img/wikipedia_screen1.png" height="100">
+<img src="img/wikipedia_screen1.png" height="300">
