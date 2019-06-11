@@ -37,7 +37,7 @@ __________________________________
 
 **Julien Elkaim**   - julienelk@gmail.com       : Youtube **[Nb: 3A Nancy 2019 - 2020]**  
 
-**Rayan Zaibet**    - rayananana@gmail.com      : Wikipédia  
+**Rayan Zaibet**    - ryan.zbr      : Wikipédia  
 
 **Mathis Fouques**  - maths.fouques@gmail.com         : Messagerie
 
@@ -658,5 +658,6 @@ _____________________
 
 ### Wikipédia  
 
+#### Préambule
 
-/* RAYANE */
+L'idée du module Wikipédia est de proposer une encyclopédie libre dont l'accessibilité a été pensée pour les enfants. A l'image du module <em>youtube</em>, même si Wikipédia
