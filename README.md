@@ -37,7 +37,7 @@ __________________________________
 
 **Julien Elkaim**   - julienelk@gmail.com       : Youtube **[Nb: 3A Nancy 2019 - 2020]**  
 
-**Rayan Zaibet**    - ryan.zbr      : Wikipédia  
+**Rayan Zaibet**    - rayane.zaibet@mines-nancy.org      : Wikipédia  
 
 **Mathis Fouques**  - maths.fouques@gmail.com         : Messagerie
 
@@ -660,4 +660,6 @@ _____________________
 
 #### Préambule
 
-L'idée du module Wikipédia est de proposer une encyclopédie libre dont l'accessibilité a été pensée pour les enfants. A l'image du module <em>youtube</em>, même si Wikipédia
+L'idée du module Wikipédia est de proposer une encyclopédie libre dont l'accessibilité a été pensée pour les enfants. A l'image du module <em>Youtube</em>, même si Wikipédia présente l'avantage de ne pas utiliser la publicité pour se financer mais plutôt l'économie de dons, l'interface dite <em>classique</em> est complexe par le paradoxe de l'encyclopédie : cette dernière se veut précise, mais tellement précise qu'il en devient compliqué de s'y informer. On entend par là la légende de tous les éléments graphiques (images, tableaux, vidéos, sons...), tous les liens paramétrables dans les marges (choix de langue, outils d'éditions d'articles, outils de statistiques) et surtout toutes les références permettant de <em>sourcer</em> chacune des informations énoncées. En quelques mots, même un enfant sans trouble autistique peut éprouver un sentiment de panique face à un tel flot d'information réuni sur un écran.
+Donc, l'idée est de : 
+<img src="img/messagerie_screen_contacts.png">
