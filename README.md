@@ -684,19 +684,9 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	</div>
 	</p>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
+<p>
 
 
 #### Accueil du module
+
+</p>
