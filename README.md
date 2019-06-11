@@ -662,8 +662,18 @@ _____________________
 
 L'idée du module Wikipédia est de proposer une encyclopédie libre dont l'accessibilité a été pensée pour les enfants. A l'image du module <em>Youtube</em>, même si Wikipédia présente l'avantage de ne pas utiliser la publicité pour se financer mais plutôt l'économie de dons, l'interface dite <em>classique</em> est complexe par le paradoxe de l'encyclopédie : cette dernière se veut précise, mais tellement précise qu'il en devient compliqué de s'y informer. On entend par là la légende de tous les éléments graphiques (images, tableaux, vidéos, sons...), tous les liens paramétrables dans les marges (choix de langue, outils d'éditions d'articles, outils de statistiques) et surtout toutes les références permettant de <em>sourcer</em> chacune des informations énoncées. 
 <br>
+<br>
 En quelques mots, même un enfant sans trouble autistique peut éprouver un sentiment de panique face à un tel flot d'information réuni sur un écran.
 <br>
-Donc, l'idée est de : 
 <br>
-<img src="img/wikipedia_screen1.png" height="300">
+L'idée est donc de développer dans ce volet de l'application une interface très épurée qui permet de revenir à l'essentiel : réaliser une recherche sur un sujet donné et de <b>recevoir le flot d'information au fur et à mesure</b>. Nous allons donc nous intéresser aux différentes activités composant ce module. <em>Si la notion d'activité est flou, se référer aux explications en introduction de ce rapport.</em>
+<br>
+<br>
+<br>
+<br>
+#### Accueil du module
+
+<div style="padding: 20px 220px 0px 10px;" align="center">
+	<img style=" width: 50%; " src="img/wikipedia_screen1.png" align="right">
+ <div style="font-size  : 1.4em; padding: 20px 2px 20px 2px; line-height: 150%;" align="justify"> La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. <br><br>La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple.</div>
+
