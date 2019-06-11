@@ -709,23 +709,8 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 Il suffit alors de cliquer sur un résultat pour voir l'article qui lui est associé.
 	</div>
 	</body>
-	
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
-
+<body>
 <div align="justify">
 	<img style=" width: 10%; " src="img/wikipedia_screen1.png" width = "300px" align="right">
 	<h4> Visualisation des résultats
@@ -736,6 +721,7 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	 <br>
 	 Le bouton recherche permet donc d'obtenir une liste de résultats.
 	</div>
+</body>
 <br>
 <br>
 <br>
