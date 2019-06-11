@@ -746,12 +746,7 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
 
 <h4> <b> Reste à faire sur la messagerie pour la v 2.0.0 : </b> </h4>
 _____________________  
@@ -761,3 +756,9 @@ _____________________
 - Tracker les préférences en terme d'article de l'enfant pour que l'aidant ait un suivi sur son activité sur le module
 
 _____________________  
+
+Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :  
+
+``` 
+julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
+```  
