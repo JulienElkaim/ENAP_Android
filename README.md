@@ -39,7 +39,7 @@ __________________________________
 
 **Rayan Zaibet**    - rayananana@gmail.com      : Wikipédia  
 
-**Mathis Fouques**  - mathis@gmail.com          : Mails  
+**Mathis Fouques**  - maths.fouques@gmail.com         : Messagerie
 
 <br>  
 
@@ -461,6 +461,80 @@ L'objectif pour cette partie était notamment d'avoir la possibilité d'envoyer 
 ![alt text](img/messagerie_screen_messagerieENAP.png) <-- Messenger | ENAP --> ![alt text](img/messagerie_screen_messenger.png) 
 
 Pour cette interface, on utilise une fenetre popup, ouverte grâce à l'appui sur un pictogramme en bas à gauche de l'écran, pour pouvoir sélectionner les pictogrammes à envoyer. Ces émôticones sont ensuite disposés dans un editText, et envoyés grâce à l'appui sur un pictogramme symbolisant l'envoi.
+
+<br>
+<br>
+
+ // --------------- TEXTE ET PICTOGRAMMES -----------------------
+
+    /**
+     *
+     * @author Mathis Fouques
+     *
+     * Write a message via Firebase realtime database
+     *
+     * @param sender
+     * @param receiver
+     * @param message
+     */
+        protected void sendMessage(String sender,String receiver,String message){
+
+            HashMap<String,Object> hashMap = new HashMap<>();
+            hashMap.put("sender",sender);
+            hashMap.put("receiver",receiver);
+            hashMap.put("message",message);
+
+            reference.child("Chats").push().setValue(hashMap);
+        }
+
+    /**
+     *
+     * @author Mathis Fouques
+     *
+     * Read the message via Firebase realtime database reference
+     *
+     * @param myId
+     * @param userId
+     */
+        protected void readMessage(final String myId, final String userId){
+
+            reference.child("Chats").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    mChat.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+
+                        HashMap<String,String> hashMapTemp = (HashMap) ds.getValue();
+
+                        //Récupération sous forme de hashmap puis création d'un chat pour pouvoir utiliser messageadapter
+                        Chat chat =  new Chat(hashMapTemp.get("sender"),hashMapTemp.get("receiver"),hashMapTemp.get("message"));
+
+                        if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
+                                chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
+                            mChat.add(chat);
+                            }
+
+                        //Adapter
+                        messageAdapter = new MessageAdapter(ChatActivity.this,mChat) ;
+                        recyclerView.setAdapter(messageAdapter);
+                        //Layout manager
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        linearLayoutManager.setStackFromEnd(true);
+                        recyclerView.setLayoutManager(linearLayoutManager);
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+        }
+
+<br>
+<br>
 
 <br>
 <br>
