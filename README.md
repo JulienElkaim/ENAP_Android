@@ -674,6 +674,6 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 #### Accueil du module
 
 <div style="padding: 20px 220px 0px 10px;" align="center">
-	<img style=" width: 50%; " src="img/wikipedia_screen1.png" align="right">
+	<img style=" width: 10%; " src="img/wikipedia_screen1.png" align="right">
  <div style="font-size  : 1.4em; padding: 20px 2px 20px 2px; line-height: 150%;" align="justify"> La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. <br><br>La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple.</div>
 
