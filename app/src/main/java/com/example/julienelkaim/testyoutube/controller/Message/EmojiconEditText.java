@@ -14,14 +14,15 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.widget.EditText;
 
-import static com.example.julienelkaim.testyoutube.EmojiconHandler.addEmojis;
+import com.example.julienelkaim.testyoutube.R;
+
+import static com.example.julienelkaim.testyoutube.controller.Message.EmojiconHandler.addEmojis;
 
 /**
  * @author Hieu Rocker (rockerhieu@gmail.com).

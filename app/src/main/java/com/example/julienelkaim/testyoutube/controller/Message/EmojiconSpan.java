@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;

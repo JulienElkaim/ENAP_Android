@@ -17,14 +17,14 @@
         <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorFromYoutubeActivity"></activity>
         <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorDispatcherActivity" />
         <activity
-            android:name=".controller.ChatActivity"
+            android:name=".controller.Message.ChatActivity"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".controller.ContactsActivity" />
+        <activity android:name=".controller.Message.ContactsActivity" />
         <activity android:name=".controller.Youtube.Aidant.PlaylistCreatorActivity" />
         <activity android:name=".controller.Youtube.Aidant.PlaylistDisplayerSingleActivity" />
-        <activity android:name=".controller.LoginActivity" />
-        <activity android:name=".controller.RegisterActivity" />
-        <activity android:name=".controller.AuthActivity" />
+        <activity android:name=".controller.Message.LoginActivity" />
+        <activity android:name=".controller.Message.RegisterActivity" />
+        <activity android:name=".controller.Message.AuthActivity" />
         <activity android:name=".controller.Youtube.Child.VideoDisplayerActivity" />
         <activity android:name=".controller.Youtube.Aidant.PlaylistDisplayerAllActivity" />
         <activity android:name=".controller.DispatcherActivity">

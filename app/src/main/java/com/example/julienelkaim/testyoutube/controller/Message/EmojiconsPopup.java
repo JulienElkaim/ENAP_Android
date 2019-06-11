@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +39,10 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
+import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 import com.example.julienelkaim.testyoutube.emoji.Nature;
 import com.example.julienelkaim.testyoutube.emoji.Objects;
-import com.example.julienelkaim.testyoutube.emoji.People;
 import com.example.julienelkaim.testyoutube.emoji.Places;
 import com.example.julienelkaim.testyoutube.emoji.Symbols;
 

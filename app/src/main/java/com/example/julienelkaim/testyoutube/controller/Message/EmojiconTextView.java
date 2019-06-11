@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import com.example.julienelkaim.testyoutube.R;
 
@@ -23,7 +23,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
-import android.widget.TextView;
 
 /**
  * @author Hieu Rocker (rockerhieu@gmail.com).

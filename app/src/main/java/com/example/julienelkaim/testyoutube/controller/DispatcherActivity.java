@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.Message.AuthActivity;
+import com.example.julienelkaim.testyoutube.controller.Message.ContactsActivity;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -97,7 +99,7 @@ public class DispatcherActivity extends AppCompatActivity {
         messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DispatcherActivity.this,ContactsActivity.class));
+                startActivity(new Intent(DispatcherActivity.this, ContactsActivity.class));
             }
         });
 

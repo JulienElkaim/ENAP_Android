@@ -1,11 +1,10 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;

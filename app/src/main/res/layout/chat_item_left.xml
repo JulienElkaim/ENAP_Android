@@ -11,15 +11,16 @@
         android:id="@+id/profileImage"
         android:src="@mipmap/ic_launcher_round"/>
 
-    <com.example.julienelkaim.testyoutube.EmojiconTextView
+    <com.example.julienelkaim.testyoutube.controller.Message.EmojiconTextView
         android:layout_width="wrap_content"
         android:id="@+id/emojiTextView"
         android:layout_height="wrap_content"
         android:textSize="28sp"
         android:textColor="@color/colorBlack"
         emojicon:emojiconSize="28sp"
+        android:layout_toEndOf="@id/profileImage"
         android:background="@drawable/background_left">
 
-    </com.example.julienelkaim.testyoutube.EmojiconTextView>
+    </com.example.julienelkaim.testyoutube.controller.Message.EmojiconTextView>
 
 </RelativeLayout>

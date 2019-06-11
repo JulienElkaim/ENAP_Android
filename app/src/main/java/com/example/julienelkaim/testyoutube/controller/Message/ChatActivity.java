@@ -1,8 +1,7 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,14 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
-import com.example.julienelkaim.testyoutube.EmojiconEditText;
-import com.example.julienelkaim.testyoutube.EmojiconGridView;
-import com.example.julienelkaim.testyoutube.EmojiconTextView;
-import com.example.julienelkaim.testyoutube.EmojiconsPopup;
 import com.example.julienelkaim.testyoutube.MyApplication;
 import com.example.julienelkaim.testyoutube.R;
 
@@ -27,7 +21,6 @@ import com.example.julienelkaim.testyoutube.adapter.MessageAdapter;
 import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 import com.example.julienelkaim.testyoutube.model.Chat;
 import com.example.julienelkaim.testyoutube.model.ChatImage;
-import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -234,7 +227,18 @@ public class ChatActivity extends AppCompatActivity {
 
 
 
-        // TEXTE ET EMOJIS
+        // --------------- TEXTE ET PICTOGRAMMES -----------------------
+
+    /**
+     *
+     * @author Mathis Fouques
+     *
+     * Write a message via Firebase realtime database
+     *
+     * @param sender
+     * @param receiver
+     * @param message
+     */
         protected void sendMessage(String sender,String receiver,String message){
 
             HashMap<String,Object> hashMap = new HashMap<>();
@@ -245,6 +249,15 @@ public class ChatActivity extends AppCompatActivity {
             reference.child("Chats").push().setValue(hashMap);
         }
 
+    /**
+     *
+     * @author Mathis Fouques
+     *
+     * Read the message via Firebase realtime database reference
+     *
+     * @param myId
+     * @param userId
+     */
         protected void readMessage(final String myId, final String userId){
 
             reference.child("Chats").addValueEventListener(new ValueEventListener() {
@@ -254,14 +267,19 @@ public class ChatActivity extends AppCompatActivity {
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
 
                         HashMap<String,String> hashMapTemp = (HashMap) ds.getValue();
+
+                        //Récupération sous forme de hashmap puis création d'un chat pour pouvoir utiliser messageadapter
                         Chat chat =  new Chat(hashMapTemp.get("sender"),hashMapTemp.get("receiver"),hashMapTemp.get("message"));
 
                         if (chat.getReceiver().equals(myId) && chat.getSender().equals(userId) ||
                                 chat.getReceiver().equals(userId) && chat.getSender().equals(myId)) {
                             mChat.add(chat);
                             }
+
+                        //Adapter
                         messageAdapter = new MessageAdapter(ChatActivity.this,mChat) ;
                         recyclerView.setAdapter(messageAdapter);
+                        //Layout manager
                         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
                         linearLayoutManager.setStackFromEnd(true);
                         recyclerView.setLayoutManager(linearLayoutManager);

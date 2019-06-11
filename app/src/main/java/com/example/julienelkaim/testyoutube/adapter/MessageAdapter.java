@@ -8,10 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.julienelkaim.testyoutube.EmojiconTextView;
+import com.example.julienelkaim.testyoutube.controller.Message.EmojiconTextView;
 import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.model.Chat;
-import com.example.julienelkaim.testyoutube.model.ChatImage;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.adapter;
 
 
 import java.util.List;
@@ -26,12 +26,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.julienelkaim.testyoutube.controller.Message.EmojiconGridView;
+import com.example.julienelkaim.testyoutube.R;
 import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 
 /**
  * @author Ankush Sachdeva (sankush@yahoo.co.in)
  */
-class EmojiAdapter extends ArrayAdapter<Emojicon> {
+public class EmojiAdapter extends ArrayAdapter<Emojicon> {
 	EmojiconGridView.OnEmojiconClickedListener emojiClickListener;
     public EmojiAdapter(Context context, List<Emojicon> data) {
         super(context, R.layout.emojicon_item, data);

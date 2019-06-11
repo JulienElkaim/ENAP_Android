@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.julienelkaim.testyoutube;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 
 
@@ -26,9 +26,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
 
-import com.example.julienelkaim.testyoutube.EmojiAdapter;
-import com.example.julienelkaim.testyoutube.EmojiconRecents;
-import com.example.julienelkaim.testyoutube.EmojiconsPopup;
+import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.adapter.EmojiAdapter;
 import com.example.julienelkaim.testyoutube.emoji.Emojicon;
 import com.example.julienelkaim.testyoutube.emoji.People;
 

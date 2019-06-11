@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:theme="@style/AppTheme"
-    tools:context=".controller.ContactsActivity">
+    tools:context=".controller.Message.ContactsActivity">
 
     <TextView
         android:id="@+id/textView"

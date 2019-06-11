@@ -1,4 +1,4 @@
-package com.example.julienelkaim.testyoutube.controller;
+package com.example.julienelkaim.testyoutube.controller.Message;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.julienelkaim.testyoutube.R;
+import com.example.julienelkaim.testyoutube.controller.DispatcherActivity;
 import com.example.julienelkaim.testyoutube.toolbox.GlobalBox;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
