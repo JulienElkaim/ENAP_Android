@@ -677,7 +677,7 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 	<img style=" width: 10%; " src="img/wikipedia_screen1.png" width = "300px" align="right">
 	<h4> Accueil du module 
 	<br>
-	<br> </h4>
+	</h4>
 	 La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. Remarquons que toute la typographie a été pensée pour être la plus <em> eye friendly </em> possible, id est être agréable, informative sans pour autant <b>distraire l'attention de l'utilisateur</b>. De même, le clavier s'active automatiquement à l'ouveture de l'activité et se referme aussitôt que le bouton <em>RECHERCHER</em> a été pressé. Encore une fois, toute manipulation inutile qui ne permet pas à l'utilisateur d'apporter de nouvelles données est évitée.
 	 <br>
 	 <br>
@@ -691,15 +691,20 @@ L'idée est donc de développer dans ce volet de l'application une interface tr�
 <br>
 <br>
 <br>
+<br>
+<br>
 
 
 
 <div align="justify">
-	<img style=" width: 10%; " src="img/wikipedia_screen1.png" width = "300px" align="right">
-	 La première activité se compose tout simplement d'une barre de recherche et d'un message de bienvenue simple. Remarquons que toute la typographie a été pensée pour être la plus <em> eye friendly </em> possible, id est être agréable, informative sans pour autant <b>distraire l'attention de l'utilisateur</b>. De même, le clavier s'active automatiquement à l'ouveture de l'activité et se referme aussitôt que le bouton <em>RECHERCHER</em> a été pressé. Encore une fois, toute manipulation inutile qui ne permet pas à l'utilisateur d'apporter de nouvelles données est évitée.
+	<img style=" width: 10%; " src="img/wikipedia_screen2.png" width = "300px" align="right">
+	<h4>
+		Résultats de recherche
+	</h4>
+	 Voici l'aspect que prend l'activité lorsque la recherche est en cours. La barre de recherche et son bouton se replacent en tête de layout sur quelques dizaines de <em>dp (density-independant pixels, ie échelle de densité indépendante de la résolution de l'écran du téléphone, ce qui est indispensable aujourd'hui au vu de la diversité de définitions d'écran sur le marché)</em> pour laisser place à une <em>ListView</em> qui contient les résultats de la recherche. Cette liste autorise le <em> Scrolling vertical </em> pour voir l'ensemble des résultats disponibles.
 	 <br>
 	 <br>
-	 Le bouton recherche permet donc d'obtenir une liste de résultats.
+	 Il suffit alors de cliquer sur un résultat pour voir l'article qui lui est associé.
 	</div>
 <br>
 <br>
