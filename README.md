@@ -756,9 +756,12 @@ _____________________
 - Tracker les préférences en terme d'article de l'enfant pour que l'aidant ait un suivi sur son activité sur le module
 
 _____________________  
-
-Si ce tutoriel n'est pas suffisant, n'hésitez surtout pas à me contacter :  
+<br>
+<br>
+<br>
+<br>
+Pour toute question, n'hésitez surtout pas à me contacter :  
 
 ``` 
-julienelk@gmail.com - 2018  	//À mettre à jour tous les ans.
+rayane.zaibet@mines-nancy.org
 ```  
