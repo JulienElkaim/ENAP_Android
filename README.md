@@ -1,7 +1,7 @@
 # Projet Android ENAP: V 1.0.0
 <br>
 <br>  
-
+![#f03c15](https://placehold.it/15/f03c15/000000?text=+) `/!\ Warning: To make it works, use your own Google API Key. The one provided is not yet enabled.`
 ## Contexte et objectifs du projet
 
 L'application a pour objectif de permettre aux autistes de profiter des ressources d'internet dans le cadre d'un apprentissage encadré. ses objectifs sont : 
