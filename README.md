@@ -1,7 +1,9 @@
 # Projet Android ENAP: V 1.0.0
 <br>
 /!\ WARNING: To make it works, use your own Google API Key. The one provided is not yet enabled.
-<br>
+<br>  
+
+_**School project : June 2019**_  
 <br>  
 
 ## Contexte et objectifs du projet
